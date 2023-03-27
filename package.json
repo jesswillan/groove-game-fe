@@ -6,7 +6,8 @@
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
-    "web": "expo start --web"
+    "web": "expo start --web",
+    "prepare": "husky install"
   },
   "dependencies": {
     "expo": "~48.0.9",
@@ -20,7 +21,8 @@
   "devDependencies": {
     "@babel/core": "^7.20.0",
     "eslint": "^8.36.0",
-    "eslint-plugin-react": "^7.32.2"
+    "eslint-plugin-react": "^7.32.2",
+    "husky": "^8.0.3"
   },
   "private": true
 }
