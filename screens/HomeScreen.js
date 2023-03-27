@@ -1,6 +1,7 @@
 import React from "react";
 import {Text, View, Button} from 'react-native';
-import { NavigationActions } from 'react-navigation';
+
+//navigation passed through props
 
 const HomeScreen = ({navigation}) =>{
     return(
