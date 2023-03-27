@@ -1,9 +1,13 @@
 import React from "react";
-import {Text} from 'react-native';
+import {Text, View, Button} from 'react-native';
+import { NavigationActions } from 'react-navigation';
 
-const HomeScreen = () =>{
+const HomeScreen = ({navigation}) =>{
     return(
-        <Text>Hello How are you</Text>
+        <View>
+            <Text>Hello How are you</Text>
+            <Button title='Go to user login' onPress={() => navigation.navigate('UserLogin')}/>
+        </View>
     )
 }
 
