@@ -1,7 +1,7 @@
 import React from "react";
 import { Touchable } from "react-native";
 import { Text, View, Button } from "react-native";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import { TextInput, TouchableOpacity } from "react-native-gesture-handler";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { StyleSheet } from "react-native";
 
@@ -9,45 +9,65 @@ import { StyleSheet } from "react-native";
 
 const HomeScreen = ({ navigation }) => {
   return (
-    <View
-      style={{
-        flex: 1,
-        flexDirection: "row",
-        justifyContent: "space-between",
-        padding: 10,
-      }}
-    >
-      <Text style={{ fontWeight: "bold" }}>Home Page</Text>
+    <View style={styles.container}>
+      <View style={styles.userBtn}>
+        <Button title="login"></Button>
+      </View>
+      <TextInput placeholder="username" style={styles.input} />
+      <TextInput placeholder="password" style={styles.input} />
+      <View style={styles.loginBtn}>
+        <Button title="login" />
+      </View>
+      <Text style={styles.textCentre}>or create an account</Text>
+      <Text style={styles.textCentre}>Choose a username and password</Text>
 
-      <View
-        style={{
-          flex: 2,
-          alignItems: "center",
-          justifyContent: "center",
-          flexDirection: "row",
-        }}
-      >
-        <Icon.Button
-          name="home"
-          onPress={() => navigation.navigate("Home")}
-          size={24}
-          style={{ Width: 10, justifyContent: "flex-end" }}
-        ></Icon.Button>
-
-        <Icon.Button
-          name="user"
-          onPress={() => navigation.navigate("UserLogin")}
-        ></Icon.Button>
-
-        <Icon.Button
-          name="left"
-          onPress={() => navigation.navigate("Home")}
-        ></Icon.Button>
-
-        {/* <Button title='Go to user login' onPress={() => navigation.navigate('UserLogin')}/> */}
+      <TextInput placeholder="name" style={styles.input} />
+      <TextInput placeholder="username" style={styles.input} />
+      <TextInput placeholder="password" style={styles.input} />
+      <View style={styles.loginBtn}>
+        <Button title="create account" />
       </View>
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#3C3B72",
+  },
+  userBtn: { backgroundColor: "white", width: 75 },
+  input: {
+    height: 50,
+    marginLeft: 25,
+    marginRight: 25,
+    marginTop: 25,
+    borderWidth: 1,
+    backgroundColor: "white",
+    color: "black",
+    textAlign: "center",
+  },
+  loginBtn: {
+    flexDirection: "row",
+    marginTop: 25,
+    backgroundColor: "#6261b7",
+    borderColor: "white",
+    borderWidth: 2,
+    width: 250,
+    height: 50,
+    borderRadius: 20,
+    justifyContent: "center",
+    alignItems: "center",
+    marginLeft: "auto",
+    marginRight: "auto",
+  },
+  textCentre: {
+    marginTop: 25,
+    fontSize: 20,
+    textAlign: "center",
+    marginBottom: 20,
+    color: "white",
+  },
+});
 
 export default HomeScreen;
