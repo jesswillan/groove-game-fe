@@ -19,13 +19,26 @@ export default function App() {
         <Stack.Screen
           name="Home"
           component={HomeScreen}
-          options={{title: 'Groove Game'}}
+          options={{title: 'Groove Game', headerBackVisible: false, headerStyle: {
+            backgroundColor: '#f4511e',
+          },headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },}}
         />
+       
         <Stack.Screen
           name="UserLogin"
           component={UserLoginScreen}
-          options={{title: 'Groove Game'}}
+           options={{title: 'Groove Game', headerBackVisible: false, headerStyle: {
+            backgroundColor: '#f4511e',
+          },headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },}}
         />
+
+        
       </Stack.Navigator>
     </NavigationContainer>
   );
