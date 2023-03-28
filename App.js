@@ -1,9 +1,8 @@
-import {StyleSheet} from 'react-native';
-import HomeScreen from './screens/HomeScreen';
-import React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {UserLoginScreen} from './screens/UserLoginScreen';
+import React from "react";
+import HomeScreen from "./screens/HomeScreen";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { UserLoginScreen } from "./screens/UserLoginScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -19,26 +18,34 @@ export default function App() {
         <Stack.Screen
           name="Home"
           component={HomeScreen}
-          options={{title: 'Groove Game', headerBackVisible: false, headerStyle: {
-            backgroundColor: '#f4511e',
-          },headerTintColor: '#fff',
-          headerTitleStyle: {
-            fontWeight: 'bold',
-          },}}
+          options={{
+            title: "Groove Game",
+            headerBackVisible: false,
+            headerStyle: {
+              backgroundColor: "#6261b7",
+            },
+            headerTintColor: "#fff",
+            headerTitleStyle: {
+              fontWeight: "bold",
+            },
+          }}
         />
-       
+
         <Stack.Screen
           name="UserLogin"
           component={UserLoginScreen}
-           options={{title: 'Groove Game', headerBackVisible: false, headerStyle: {
-            backgroundColor: '#f4511e',
-          },headerTintColor: '#fff',
-          headerTitleStyle: {
-            fontWeight: 'bold',
-          },}}
+          options={{
+            title: "Groove Game",
+            headerBackVisible: false,
+            headerStyle: {
+              backgroundColor: "#f4511e",
+            },
+            headerTintColor: "#fff",
+            headerTitleStyle: {
+              fontWeight: "bold",
+            },
+          }}
         />
-
-        
       </Stack.Navigator>
     </NavigationContainer>
   );
