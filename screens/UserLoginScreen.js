@@ -9,30 +9,26 @@ import { StyleSheet } from "react-native";
 
 export const UserLoginScreen = ({ navigation }) => {
   return (
-  
-     
-    <View
-    style={{
-      flex: 1,
-      flexDirection: "row",
-      justifyContent: "space-between",
-      padding: 10,
-    }}
-  >
-    
-    <Text style={{ fontWeight: "bold" }}>User Profile Page</Text>
-    <Image
-          source={require("../img/user.png")}
-          style={{ width: 50, height: 50, justifyContent: "flex-end", flexDirection: "column" }}
-        />
     <View
       style={{
         flex: 1,
-        alignItems: "center",
         flexDirection: "column",
-        backgroundColor: 'red',
+        padding: 10,
       }}
     >
+      <View style={{ flex: 2, backgroundColor: "red" }}>
+        <Text style={{ fontWeight: "bold" }}>User Profile Page</Text>
+        <Image
+          source={require("../img/user.png")}
+          style={{
+            width: 50,
+            height: 50,
+            justifyContent: "flex-end",
+            flexDirection: "row",
+          }}
+        />
+      </View>
+
       <Icon.Button
         name="home"
         onPress={() => navigation.navigate("Home")}
@@ -49,11 +45,9 @@ export const UserLoginScreen = ({ navigation }) => {
       <Icon.Button
         name="left"
         onPress={() => navigation.navigate("Home")}
+        style={{ Width: 10, justifyContent: "flex-end" }}
       ></Icon.Button>
-     
     </View>
-  </View>
- 
   );
 };
 
