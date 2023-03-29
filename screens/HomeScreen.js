@@ -4,45 +4,47 @@ import { Text, View, Button, Image } from 'react-native';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { StyleSheet } from 'react-native';
+import {colourTheme} from '../stylesheet'
 
 //make sure to export function, not export default
 
-export const HomeScreen = ({ navigation }) => {
+export const HomeScreen = () => {
   return (
-    <View
-      style={{
-        flex: 1,
-        flexDirection: 'column',
-        padding: 10,
-      }}
-    >
-      <View style={{ flex: 2, backgroundColor: 'red' }}>
-        <Text style={{ fontWeight: 'bold' }}>User Profile Page</Text>
-        <Image
-          source={require('../img/user.png')}
-          style={{
-            width: 50,
-            height: 50,
-            justifyContent: 'flex-end',
-            flexDirection: 'row',
-          }}
-        />
+    <View style={styles.container}>
+      <View style={styles.playlistButton}>
+      <Button color={colourTheme.white} title='Play the game'></Button>
       </View>
-
-      <Icon.Button
-        name="home"
-        onPress={() => navigation.navigate('Home')}
-        size={24}
-        style={{ Width: 10, justifyContent: 'flex-end' }}
-      ></Icon.Button>
-
-      <Icon.Button
-        name="user"
-        onPress={() => navigation.navigate('UserLogin')}
-        style={{ Width: 10, justifyContent: 'flex-end' }}
-      ></Icon.Button>
+      <Text style={styles.instructions}>Welcome to Groove Game</Text>
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: colourTheme.primaryColour,
+    justifyContent: 'center',
+  },
+  playlistButton: {
+    marginTop: 25,
+    backgroundColor: colourTheme.secondaryColour,
+    borderColor: colourTheme.white,
+
+    borderWidth: 2,
+    width: 250,
+    height: 50,
+    borderRadius: 20,
+    justifyContent: 'center',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+  },
+  instructions: {
+    color: colourTheme.white,
+    justifyContent: 'center',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    marginTop: 20,
+  }
+});
 
 export default HomeScreen;
