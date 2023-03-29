@@ -1,73 +1,48 @@
-import React from "react";
-import { Touchable } from "react-native";
-import { Text, View, Button } from "react-native";
-import { TextInput, TouchableOpacity } from "react-native-gesture-handler";
-import Icon from "react-native-vector-icons/FontAwesome";
-import { StyleSheet } from "react-native";
+import React from 'react';
 
-//navigation passed through props
+import { Text, View, Button, Image } from 'react-native';
 
-const HomeScreen = ({ navigation }) => {
+import Icon from 'react-native-vector-icons/FontAwesome';
+import { StyleSheet } from 'react-native';
+
+//make sure to export function, not export default
+
+export const HomeScreen = ({ navigation }) => {
   return (
-    <View style={styles.container}>
-      <View style={styles.userBtn}>
-        <Button title="login"></Button>
+    <View
+      style={{
+        flex: 1,
+        flexDirection: 'column',
+        padding: 10,
+      }}
+    >
+      <View style={{ flex: 2, backgroundColor: 'red' }}>
+        <Text style={{ fontWeight: 'bold' }}>User Profile Page</Text>
+        <Image
+          source={require('../img/user.png')}
+          style={{
+            width: 50,
+            height: 50,
+            justifyContent: 'flex-end',
+            flexDirection: 'row',
+          }}
+        />
       </View>
-      <TextInput placeholder="username" style={styles.input} />
-      <TextInput placeholder="password" style={styles.input} />
-      <View style={styles.loginBtn}>
-        <Button title="login" />
-      </View>
-      <Text style={styles.textCentre}>or create an account</Text>
-      <Text style={styles.textCentre}>Choose a username and password</Text>
 
-      <TextInput placeholder="name" style={styles.input} />
-      <TextInput placeholder="username" style={styles.input} />
-      <TextInput placeholder="password" style={styles.input} />
-      <View style={styles.loginBtn}>
-        <Button title="create account" />
-      </View>
+      <Icon.Button
+        name="home"
+        onPress={() => navigation.navigate('Home')}
+        size={24}
+        style={{ Width: 10, justifyContent: 'flex-end' }}
+      ></Icon.Button>
+
+      <Icon.Button
+        name="user"
+        onPress={() => navigation.navigate('UserLogin')}
+        style={{ Width: 10, justifyContent: 'flex-end' }}
+      ></Icon.Button>
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#3C3B72",
-  },
-  userBtn: { backgroundColor: "white", width: 75 },
-  input: {
-    height: 50,
-    marginLeft: 25,
-    marginRight: 25,
-    marginTop: 25,
-    borderWidth: 1,
-    backgroundColor: "white",
-    color: "black",
-    textAlign: "center",
-  },
-  loginBtn: {
-    flexDirection: "row",
-    marginTop: 25,
-    backgroundColor: "#6261b7",
-    borderColor: "white",
-    borderWidth: 2,
-    width: 250,
-    height: 50,
-    borderRadius: 20,
-    justifyContent: "center",
-    alignItems: "center",
-    marginLeft: "auto",
-    marginRight: "auto",
-  },
-  textCentre: {
-    marginTop: 25,
-    fontSize: 20,
-    textAlign: "center",
-    marginBottom: 20,
-    color: "white",
-  },
-});
 
 export default HomeScreen;

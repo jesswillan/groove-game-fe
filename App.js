@@ -1,8 +1,8 @@
-import React from "react";
-import HomeScreen from "./screens/HomeScreen";
-import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { UserLoginScreen } from "./screens/UserLoginScreen";
+import React from 'react';
+import HomeScreen from './screens/HomeScreen';
+import UserLoginScreen from './screens/UserLoginScreen';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 const Stack = createNativeStackNavigator();
 
@@ -19,14 +19,14 @@ export default function App() {
           name="Home"
           component={HomeScreen}
           options={{
-            title: "Groove Game",
+            title: 'Groove Game',
             headerBackVisible: false,
             headerStyle: {
-              backgroundColor: "#6261b7",
+              backgroundColor: '#6261b7',
             },
-            headerTintColor: "#fff",
+            headerTintColor: '#fff',
             headerTitleStyle: {
-              fontWeight: "bold",
+              fontWeight: 'bold',
             },
           }}
         />
@@ -35,14 +35,14 @@ export default function App() {
           name="UserLogin"
           component={UserLoginScreen}
           options={{
-            title: "Groove Game",
+            title: 'Groove Game',
             headerBackVisible: false,
             headerStyle: {
-              backgroundColor: "#f4511e",
+              backgroundColor: '#6261b7',
             },
-            headerTintColor: "#fff",
+            headerTintColor: '#fff',
             headerTitleStyle: {
-              fontWeight: "bold",
+              fontWeight: 'bold',
             },
           }}
         />
