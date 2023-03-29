@@ -1,48 +1,68 @@
 import React from 'react';
 
-import { Text, View, Button, Image } from 'react-native';
+import {Text, View, Button, Image} from 'react-native';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { StyleSheet } from 'react-native';
+import {StyleSheet} from 'react-native';
+import {colourTheme, buttonTheme} from '../stylesheet';
 
 //make sure to export function, not export default
 
-export const HomeScreen = ({ navigation }) => {
+export const HomeScreen = () => {
   return (
-    <View
-      style={{
-        flex: 1,
-        flexDirection: 'column',
-        padding: 10,
-      }}
-    >
-      <View style={{ flex: 2, backgroundColor: 'red' }}>
-        <Text style={{ fontWeight: 'bold' }}>User Profile Page</Text>
-        <Image
-          source={require('../img/user.png')}
-          style={{
-            width: 50,
-            height: 50,
-            justifyContent: 'flex-end',
-            flexDirection: 'row',
-          }}
-        />
+    <View style={styles.container}>
+      <Text style={styles.welcome}>
+        Welcome to {'\n'} <Text style={styles.grooveGame}>Groove Game</Text>
+      </Text>
+      <View style={buttonTheme}>
+        <Button color={colourTheme.white} title="Play the game"></Button>
       </View>
-
-      <Icon.Button
-        name="home"
-        onPress={() => navigation.navigate('Home')}
-        size={24}
-        style={{ Width: 10, justifyContent: 'flex-end' }}
-      ></Icon.Button>
-
-      <Icon.Button
-        name="user"
-        onPress={() => navigation.navigate('UserLogin')}
-        style={{ Width: 10, justifyContent: 'flex-end' }}
-      ></Icon.Button>
+      <Text style={styles.instructions}>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Cursus sit amet
+        dictum sit amet justo donec enim diam. Quisque sagittis purus sit amet
+        volutpat consequat mauris nunc congue. Eget gravida cum sociis natoque
+        penatibus et. Aenean vel elit scelerisque mauris pellentesque pulvinar
+        pellentesque habitant.
+      </Text>
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: colourTheme.primaryColour,
+    padding: 20,
+  },
+  welcome: {
+    color: colourTheme.white,
+    justifyContent: 'center',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    marginTop: 50,
+    textAlign: 'center',
+    fontSize: 26,
+  },
+  grooveGame: {
+    color: colourTheme.white,
+    justifyContent: 'center',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    marginTop: 50,
+    textAlign: 'center',
+    fontSize: 40,
+    fontWeight: 'bold',
+  },
+  instructions: {
+    color: colourTheme.white,
+    justifyContent: 'center',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    marginTop: 50,
+    textAlign: 'center',
+    fontSize: 20,
+  },
+});
 
 export default HomeScreen;
