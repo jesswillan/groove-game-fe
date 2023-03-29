@@ -5,28 +5,26 @@ import { TextInput } from "react-native-gesture-handler";
 import { colourTheme } from "../stylesheet";
 import axios from "axios";
 
-const Signup = ({ setLogin, user, setUser }) => {
+const Signup = ({ setLogin }) => {
   const [name, setName] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [loggedInUser, setLoggedInUser] = useState("");
 
-  const resetState = () => {
-    setName("");
-    setUsername("");
-    setPassword("");
-  };
-  console.log(user, setUser);
   const handleSignup = () => {
-    const signupBody = {
+    console.log({
       username: username,
       name: name,
       password: password,
-    };
-    console.log(signupBody);
+    });
     axios
-      .post("https://groove-game-be.onrender.com/api/user-signup", signupBody)
+      .post("https://groove-game-be.onrender.com/api/user-signup", {
+        username: username,
+        name: name,
+        password: password,
+      })
       .then(() => {
-        setUser(username);
+        setLoggedInUser(username);
         console.log("posted sucessfully");
       })
       .catch((err) => {
@@ -60,7 +58,6 @@ const Signup = ({ setLogin, user, setUser }) => {
         <Button
           onPress={() => {
             handleSignup();
-            // resetState();
           }}
           color={"white"}
           title="create account"

@@ -10,8 +10,6 @@ const Tab = createBottomTabNavigator();
 
 //GameScreen takes us to filter page(Start of the game) - Currently leads to HomeScreen as filter screen hasnt been created
 export const MyTabs = () => {
-  const [user, setUser] = useState("");
-
   return (
     <Tab.Navigator
       initialRouteName="HomeScreen"
@@ -31,12 +29,7 @@ export const MyTabs = () => {
     >
       <Tab.Screen name="Home" component={HomeScreen} />
       <Tab.Screen name="Game" component={HomeScreen} />
-      <Tab.Screen
-        name="UserLogin"
-        component={UserLoginScreen}
-        user={user}
-        setUser={setUser}
-      />
+      <Tab.Screen name="UserLogin" component={UserLoginScreen} />
     </Tab.Navigator>
   );
 };
