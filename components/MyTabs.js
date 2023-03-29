@@ -4,6 +4,7 @@ import HomeScreen from '../screens/HomeScreen';
 import UserLoginScreen from '../screens/UserLoginScreen';
 import Icons from 'react-native-vector-icons/Ionicons';
 import {colourTheme} from '../stylesheet';
+import FilterScreen from '../screens/FilterScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -29,7 +30,7 @@ export const MyTabs = () => {
       })}
     >
       <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name="Game" component={HomeScreen} />
+      <Tab.Screen name="Game" component={FilterScreen} />
       <Tab.Screen name="UserLogin" component={UserLoginScreen} />
     </Tab.Navigator>
   );
