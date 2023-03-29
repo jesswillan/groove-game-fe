@@ -1,18 +1,37 @@
-import { View, Text } from 'react-native';
-import React, { useState } from 'react';
-import { StyleSheet, Button } from 'react-native';
-import { TextInput } from 'react-native-gesture-handler';
+import { View, Text } from "react-native";
+import React, { useState } from "react";
+import { StyleSheet, Button } from "react-native";
+import { TextInput } from "react-native-gesture-handler";
 // colour theme
-import { colourTheme } from '../stylesheet';
+import { colourTheme } from "../stylesheet";
+import axios from "axios";
 
 const Login = ({ setLogin }) => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
-  const resetState = () => {
-    setUsername('');
-    setPassword('');
+  // const resetState = () => {
+  //   setUsername("");
+  //   setPassword("");
+  // };
+
+  const handleLogin = () => {
+    const loginObj = {
+      username: username,
+      password: password,
+    };
+    axios
+      .post("https://groove-game-be.onrender.com/api/user-login", loginObj)
+      .then(() => {
+        setUsername("");
+        setPassword("");
+        console.log("logged in");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
+
   return (
     <View>
       <Text style={styles.textCentre}> Login</Text>
@@ -33,9 +52,10 @@ const Login = ({ setLogin }) => {
         <Button
           onPress={() => {
             console.log({ username, password });
-            resetState();
+            handleLogin();
+            // resetState();
           }}
-          color={'white'}
+          color={"white"}
           title="login"
         />
       </View>
@@ -57,8 +77,8 @@ const styles = StyleSheet.create({
     marginRight: 25,
     marginTop: 25,
     backgroundColor: colourTheme.white,
-    color: 'black',
-    textAlign: 'center',
+    color: "black",
+    textAlign: "center",
   },
   loginBtn: {
     marginTop: 25,
@@ -69,14 +89,14 @@ const styles = StyleSheet.create({
     width: 250,
     height: 50,
     borderRadius: 20,
-    justifyContent: 'center',
-    marginLeft: 'auto',
-    marginRight: 'auto',
+    justifyContent: "center",
+    marginLeft: "auto",
+    marginRight: "auto",
   },
   textCentre: {
     marginTop: 25,
     fontSize: 20,
-    textAlign: 'center',
+    textAlign: "center",
     marginBottom: 20,
     color: colourTheme.white,
   },

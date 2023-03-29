@@ -1,9 +1,19 @@
+<<<<<<< HEAD
+import React from "react";
+import { View, Text } from "react-native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { useState } from "react";
+import HomeScreen from "../screens/HomeScreen";
+import UserLoginScreen from "../screens/UserLoginScreen";
+import Icons from "react-native-vector-icons/Ionicons";
+=======
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import HomeScreen from '../screens/HomeScreen';
 import UserLoginScreen from '../screens/UserLoginScreen';
 import Icons from 'react-native-vector-icons/Ionicons';
 import {colourTheme} from '../stylesheet';
+>>>>>>> c74de701bbfbcdad10d331bba48bbe69635b6c0a
 
 const Tab = createBottomTabNavigator();
 
