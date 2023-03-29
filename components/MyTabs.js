@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import HomeScreen from '../screens/HomeScreen';
@@ -5,6 +6,14 @@ import UserLoginScreen from '../screens/UserLoginScreen';
 import Icons from 'react-native-vector-icons/Ionicons';
 import {colourTheme} from '../stylesheet';
 import FilterScreen from '../screens/FilterScreen';
+=======
+import React from "react";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import HomeScreen from "../screens/HomeScreen";
+import UserLoginScreen from "../screens/UserLoginScreen";
+import Icons from "react-native-vector-icons/Ionicons";
+import { colourTheme } from "../stylesheet";
+>>>>>>> 30719213bcc0f87f969372e6e46d4f652975f8fc
 
 const Tab = createBottomTabNavigator();
 
@@ -13,15 +22,15 @@ export const MyTabs = () => {
   return (
     <Tab.Navigator
       initialRouteName="HomeScreen"
-      screenOptions={({route}) => ({
-        tabBarIcon: ({focused, color, size}) => {
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ focused, color, size }) => {
           let iconName;
-          if (route.name === 'Home') {
-            iconName = focused ? 'home' : 'home-outline';
-          } else if (route.name === 'Game') {
-            iconName = focused ? 'musical-notes' : 'musical-notes-outline';
+          if (route.name === "Home") {
+            iconName = focused ? "home" : "home-outline";
+          } else if (route.name === "Game") {
+            iconName = focused ? "musical-notes" : "musical-notes-outline";
           } else {
-            iconName = focused ? 'person' : 'person-outline';
+            iconName = focused ? "person" : "person-outline";
           }
           return <Icons name={iconName} color={color} size={size} />;
         },
