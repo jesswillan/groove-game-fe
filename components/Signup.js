@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
+// colour theme
+import { colourTheme } from '../stylesheet';
 
 const Signup = ({ setLogin }) => {
   const [name, setName] = useState('');
@@ -56,20 +58,20 @@ const Signup = ({ setLogin }) => {
 };
 
 const styles = StyleSheet.create({
-  userBtn: { backgroundColor: 'white', width: 75 },
+  userBtn: { backgroundColor: colourTheme.white, width: 75 },
   input: {
     height: 50,
     marginLeft: 25,
     marginRight: 25,
     marginTop: 25,
-    backgroundColor: 'white',
+    backgroundColor: colourTheme.white,
     color: 'black',
     textAlign: 'center',
   },
   loginBtn: {
     marginTop: 25,
-    backgroundColor: '#6261b7',
-    borderColor: 'white',
+    backgroundColor: colourTheme.secondaryColour,
+    borderColor: colourTheme.white,
     borderWidth: 2,
     width: 250,
     height: 50,
@@ -83,10 +85,10 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textAlign: 'center',
     marginBottom: 20,
-    color: 'white',
+    color: colourTheme.white,
   },
   switch: {
-    color: 'red',
+    color: colourTheme.highlightPink,
   },
 });
 

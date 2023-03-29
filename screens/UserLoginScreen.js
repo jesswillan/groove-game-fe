@@ -1,16 +1,15 @@
 import React from 'react';
-import { Text, View, Button } from 'react-native';
-import { TextInput } from 'react-native-gesture-handler';
+import { View } from 'react-native';
 import { StyleSheet } from 'react-native';
 // components
 import Login from '../components/Login';
 import Signup from '../components/Signup';
 // hooks
 import { useState } from 'react';
+// colour theme
+import { colourTheme } from '../stylesheet';
 
-//navigation passed through props
-
-const UserLoginScreen = ({ navigation }) => {
+const UserLoginScreen = () => {
   const [login, setLogin] = useState(true);
   return (
     <View style={styles.container}>
@@ -22,7 +21,7 @@ const UserLoginScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#3C3B72',
+    backgroundColor: colourTheme.primaryColour,
     justifyContent: 'center',
   },
 });
