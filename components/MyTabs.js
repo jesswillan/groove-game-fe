@@ -1,9 +1,19 @@
+<<<<<<< HEAD
+import React from 'react';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import HomeScreen from '../screens/HomeScreen';
+import UserLoginScreen from '../screens/UserLoginScreen';
+import Icons from 'react-native-vector-icons/Ionicons';
+import {colourTheme} from '../stylesheet';
+import FilterScreen from '../screens/FilterScreen';
+=======
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeScreen from "../screens/HomeScreen";
 import UserLoginScreen from "../screens/UserLoginScreen";
 import Icons from "react-native-vector-icons/Ionicons";
 import { colourTheme } from "../stylesheet";
+>>>>>>> 30719213bcc0f87f969372e6e46d4f652975f8fc
 
 const Tab = createBottomTabNavigator();
 
@@ -29,7 +39,7 @@ export const MyTabs = () => {
       })}
     >
       <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name="Game" component={HomeScreen} />
+      <Tab.Screen name="Game" component={FilterScreen} />
       <Tab.Screen name="UserLogin" component={UserLoginScreen} />
     </Tab.Navigator>
   );
