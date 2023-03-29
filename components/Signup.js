@@ -1,18 +1,37 @@
-import React, { useState } from 'react';
-import { View, Text, Button, StyleSheet } from 'react-native';
-import { TextInput } from 'react-native-gesture-handler';
+import React, { useState } from "react";
+import { View, Text, Button, StyleSheet } from "react-native";
+import { TextInput } from "react-native-gesture-handler";
 // colour theme
-import { colourTheme } from '../stylesheet';
+import { colourTheme } from "../stylesheet";
+import axios from "axios";
 
-const Signup = ({ setLogin }) => {
-  const [name, setName] = useState('');
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+const Signup = ({ setLogin, user, setUser }) => {
+  const [name, setName] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
   const resetState = () => {
-    setName('');
-    setUsername('');
-    setPassword('');
+    setName("");
+    setUsername("");
+    setPassword("");
+  };
+  console.log(user, setUser);
+  const handleSignup = () => {
+    const signupBody = {
+      username: username,
+      name: name,
+      password: password,
+    };
+    console.log(signupBody);
+    axios
+      .post("https://groove-game-be.onrender.com/api/user-signup", signupBody)
+      .then(() => {
+        setUser(username);
+        console.log("posted sucessfully");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
@@ -40,10 +59,10 @@ const Signup = ({ setLogin }) => {
       <View style={styles.loginBtn}>
         <Button
           onPress={() => {
-            console.log({ name, username, password });
-            resetState();
+            handleSignup();
+            // resetState();
           }}
-          color={'white'}
+          color={"white"}
           title="create account"
         />
       </View>
@@ -65,8 +84,8 @@ const styles = StyleSheet.create({
     marginRight: 25,
     marginTop: 25,
     backgroundColor: colourTheme.white,
-    color: 'black',
-    textAlign: 'center',
+    color: "black",
+    textAlign: "center",
   },
   loginBtn: {
     marginTop: 25,
@@ -76,14 +95,14 @@ const styles = StyleSheet.create({
     width: 250,
     height: 50,
     borderRadius: 20,
-    justifyContent: 'center',
-    marginLeft: 'auto',
-    marginRight: 'auto',
+    justifyContent: "center",
+    marginLeft: "auto",
+    marginRight: "auto",
   },
   textCentre: {
     marginTop: 25,
     fontSize: 20,
-    textAlign: 'center',
+    textAlign: "center",
     marginBottom: 20,
     color: colourTheme.white,
   },
