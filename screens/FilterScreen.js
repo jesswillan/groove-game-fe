@@ -23,7 +23,9 @@ export default function App() {
       <Text style={styles.paragraph}>Please Select One Genre: </Text>
       <RadioButton data={data} onSelect={(value) => setOption(value)} />
       <Text style={styles.options}> Your option: {option}</Text>
-      <Button title="start" />
+      <View style={buttonTheme}>
+        <Button color={colourTheme.white} title="Play the game"></Button>
+      </View>
     </View>
   );
 }
@@ -47,6 +49,13 @@ const styles = StyleSheet.create({
     fontSize: 12,
     textAlign: "left",
     color: colourTheme.white,
+  },
+
+  startBtn: {
+    backgroundColor: colourTheme.secondaryColour,
+    borderRadius: 10,
+    borderWidth: 3,
+    color: colourTheme.secondaryColour,
   },
 });
 
