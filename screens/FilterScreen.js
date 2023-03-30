@@ -4,7 +4,6 @@ import { colourTheme, buttonTheme } from "../stylesheet";
 import { useState, useEffect } from "react";
 import RadioButton from "../components/RadioButton";
 import axios from "axios";
-
 import { useNavigation } from "@react-navigation/native";
 
 export default function App() {

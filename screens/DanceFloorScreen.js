@@ -1,5 +1,6 @@
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import React, { useState } from "react";
+import { colourTheme } from "../stylesheet";
+import React, { useEffect, useState } from "react";
 
 const DanceFloorScreen = () => {
   const [sampleMuisc, setSampleMusic] = useState([
@@ -13,6 +14,10 @@ const DanceFloorScreen = () => {
     "lucy",
     "laura",
   ]);
+
+  // useEffect(() => {
+  //   axios.get('')
+  // })
 
   const [square1, setSquare1] = useState("");
   const [square1Pressed, setSquare1Pressed] = useState(false);
@@ -101,9 +106,9 @@ const DanceFloorScreen = () => {
             }}
           >
             {!square1Pressed ? (
-              <View style={styles.square1}></View>
+              <View style={styles.squareBlue}></View>
             ) : (
-              <View style={styles.square1}>
+              <View style={styles.squareBlue}>
                 <Text>{square1}</Text>
               </View>
             )}
@@ -114,9 +119,9 @@ const DanceFloorScreen = () => {
             }}
           >
             {!square2Pressed ? (
-              <View style={styles.square2}></View>
+              <View style={styles.squareGreen}></View>
             ) : (
-              <View style={styles.square2}>
+              <View style={styles.squareGreen}>
                 <Text>{square2}</Text>
               </View>
             )}
@@ -127,9 +132,9 @@ const DanceFloorScreen = () => {
             }}
           >
             {!square3Pressed ? (
-              <View style={styles.square3}></View>
+              <View style={styles.squarePink}></View>
             ) : (
-              <View style={styles.square3}>
+              <View style={styles.squarePink}>
                 <Text>{square3}</Text>
               </View>
             )}
@@ -140,9 +145,9 @@ const DanceFloorScreen = () => {
             }}
           >
             {!square4Pressed ? (
-              <View style={styles.square4}></View>
+              <View style={styles.squarePink}></View>
             ) : (
-              <View style={styles.square4}>
+              <View style={styles.squarePink}>
                 <Text>{square4}</Text>
               </View>
             )}
@@ -153,9 +158,9 @@ const DanceFloorScreen = () => {
             }}
           >
             {!square5Pressed ? (
-              <View style={styles.square1}></View>
+              <View style={styles.squareBlue}></View>
             ) : (
-              <View style={styles.square1}>
+              <View style={styles.squareBlue}>
                 <Text>{square5}</Text>
               </View>
             )}
@@ -166,9 +171,9 @@ const DanceFloorScreen = () => {
             }}
           >
             {!square6Pressed ? (
-              <View style={styles.square2}></View>
+              <View style={styles.squareGreen}></View>
             ) : (
-              <View style={styles.square2}>
+              <View style={styles.squareGreen}>
                 <Text>{square6}</Text>
               </View>
             )}
@@ -179,9 +184,9 @@ const DanceFloorScreen = () => {
             }}
           >
             {!square7Pressed ? (
-              <View style={styles.square3}></View>
+              <View style={styles.squareGreen}></View>
             ) : (
-              <View style={styles.square3}>
+              <View style={styles.squareGreen}>
                 <Text>{square7}</Text>
               </View>
             )}
@@ -192,9 +197,9 @@ const DanceFloorScreen = () => {
             }}
           >
             {!square8Pressed ? (
-              <View style={styles.square4}></View>
+              <View style={styles.squarePink}></View>
             ) : (
-              <View style={styles.square4}>
+              <View style={styles.squarePink}>
                 <Text>{square8}</Text>
               </View>
             )}
@@ -205,9 +210,9 @@ const DanceFloorScreen = () => {
             }}
           >
             {!square9Pressed ? (
-              <View style={styles.square1}></View>
+              <View style={styles.squareBlue}></View>
             ) : (
-              <View style={styles.square1}>
+              <View style={styles.squareBlue}>
                 <Text>{square9}</Text>
               </View>
             )}
@@ -215,16 +220,10 @@ const DanceFloorScreen = () => {
         </View>
       </View>
       <View style={styles.songList}>
-        <Text>
-          songs here
-          {!selectedSongs ? (
-            <Text>test</Text>
-          ) : (
-            selectedSongs.map((song) => {
-              return <Text key={song}>{song}</Text>;
-            })
-          )}
-        </Text>
+        <Text>songs here</Text>
+        {selectedSongs.map((song) => {
+          return <Text key={song}>{song}</Text>;
+        })}
       </View>
     </View>
   );
@@ -239,31 +238,41 @@ const styles = StyleSheet.create({
     width: 400,
     justifyContent: "center",
   },
-  square1: {
+  squareBlue: {
     width: 125,
     height: 125,
-    backgroundColor: "blue",
+    backgroundColor: colourTheme.highlightBlue,
+    borderColor: "black",
+    borderWidth: 1,
+    justifyContent: "center",
+    alignItems: "center",
   },
-  square2: {
+  squareGreen: {
     width: 125,
     height: 125,
-    backgroundColor: "pink",
+    backgroundColor: colourTheme.highlightGreen,
+    borderColor: "black",
+    borderWidth: 1,
+    justifyContent: "center",
+    alignItems: "center",
   },
-  square3: {
+  squarePink: {
     width: 125,
     height: 125,
-    backgroundColor: "green",
-  },
-  square4: {
-    width: 125,
-    height: 125,
-    backgroundColor: "yellow",
+    backgroundColor: colourTheme.highlightPink,
+    borderColor: "black",
+    borderWidth: 1,
+    justifyContent: "center",
+    alignItems: "center",
   },
   songList: {
     margin: "auto",
     backgroundColor: "lightblue",
     width: 100,
     height: 100,
+  },
+  songs: {
+    backgroundColor: "black",
   },
 });
 
