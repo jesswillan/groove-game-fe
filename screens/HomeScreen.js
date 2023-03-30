@@ -5,11 +5,14 @@ import userContext from "../context/userContext";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { StyleSheet } from "react-native";
 import { colourTheme, buttonTheme } from "../stylesheet";
+import { useNavigation } from "@react-navigation/native";
 
 //make sure to export function, not export default
 
 export const HomeScreen = () => {
   const { user, setUser } = useContext(userContext);
+
+  const navigation = useNavigation();
 
   return (
     <View style={styles.container}>
@@ -19,6 +22,7 @@ export const HomeScreen = () => {
       </Text>
       <View style={styles.button}>
         <Button
+          onPress={() => navigation.navigate("Game")}
           color={
             Platform.OS === "android" ? colourTheme.secondaryColour : "white"
           }
