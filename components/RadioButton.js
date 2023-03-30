@@ -38,8 +38,11 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   unselected: {
-    backgroundColor: "red",
-    margin: 5,
+    backgroundColor: colourTheme.secondaryColour,
+    margin: 7,
+    borderRadius: 10,
+    borderWidth: 2,
+    borderColor: colourTheme.white,
   },
   selected: {
     backgroundColor: "blue",
