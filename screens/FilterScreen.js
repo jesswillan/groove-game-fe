@@ -1,22 +1,29 @@
 import React from "react";
 import { View, Button, Text, StyleSheet } from "react-native";
 import { colourTheme, buttonTheme } from "../stylesheet";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import RadioButton from "../components/RadioButton";
+import axios from "axios";
 
 export default function App() {
   const [option, setOption] = useState(null);
+  const [data, setData] = useState([]);
 
-  const data = [
-    { value: "Apple" },
-    { value: "Samsung" },
-    { value: "Blackberry" },
-  ];
+  useEffect(() => {
+    axios
+      .get("https://groove-game-be.onrender.com/api/genres")
+      .then(({ data }) => {
+        console.log(data.genres);
+        setData(data.genres);
+      });
+  }, []);
+
   return (
     <View style={styles.container}>
       <Text style={styles.paragraph}>Please Select One Genre: </Text>
       <RadioButton data={data} onSelect={(value) => setOption(value)} />
       <Text style={styles.options}> Your option: {option}</Text>
+      <Button title="start" />
     </View>
   );
 }

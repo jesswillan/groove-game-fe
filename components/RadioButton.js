@@ -9,21 +9,26 @@ export default function RadioButton({ data, onSelect }) {
     onSelect(value);
     setUserOption(value);
   };
-  data.map((item, index) => {
-    return (
-      <Pressable
-        key={index}
-        style={
-          //Line 5
-          item.value === userOption ? styles.selected : styles.unselected
-        } /*Add style here */ //Line 7
-        onPress={() => selectHanlder(item.value)}
-      >
-        {/* add style here */}
-        <Text style={styles.option}> {item.value}</Text>
-      </Pressable>
-    );
-  });
+
+  return (
+    <View>
+      {data.map((item) => {
+        return (
+          <Pressable
+            key={item}
+            style={
+              //Line 5
+              item.value === userOption ? styles.selected : styles.unselected
+            } /*Add style here */ //Line 7
+            onPress={() => selectHandler(item)}
+          >
+            {/* add style here */}
+            <Text style={styles.option}>{item}</Text>
+          </Pressable>
+        );
+      })}
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
