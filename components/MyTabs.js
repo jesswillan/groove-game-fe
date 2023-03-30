@@ -1,12 +1,18 @@
 import React from "react";
+// Tab Navigator
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+// screens
 import HomeScreen from "../screens/HomeScreen";
 import UserLoginScreen from "../screens/UserLoginScreen";
 //import FilterScreen from "../screens/FilterScreen";
 import DanceFloorScreen from "../screens/DanceFloorScreen";
+import FilterScreen from "../screens/FilterScreen";
+// icons
 import Icons from "react-native-vector-icons/Ionicons";
+// colour theme
 import { colourTheme } from "../stylesheet";
 
+// creates Tab navigator
 const Tab = createBottomTabNavigator();
 
 export const MyTabs = () => {
@@ -29,9 +35,21 @@ export const MyTabs = () => {
         tabBarInactiveTintColor: colourTheme.secondaryColour,
       })}
     >
-      <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name="Game" component={DanceFloorScreen} />
-      <Tab.Screen name="UserLogin" component={UserLoginScreen} />
+      <Tab.Screen
+        name="Home"
+        options={{ headerShown: false }}
+        component={HomeScreen}
+      />
+      <Tab.Screen
+        options={{ headerShown: false }}
+        name="Game"
+        component={FilterScreen}
+      />
+      <Tab.Screen
+        options={{ headerShown: false }}
+        name="UserLogin"
+        component={UserLoginScreen}
+      />
     </Tab.Navigator>
   );
 };

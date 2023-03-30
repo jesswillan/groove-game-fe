@@ -1,22 +1,8 @@
+import { Text } from "react-native";
 import React from "react";
-import { StyleSheet, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { colourTheme } from "../stylesheet";
 
 const DanceFloorScreen = () => {
-  return (
-    (
-      <View>
-        <View style={styles.square1}></View>
-      </View>
-    ),
-    (
-      <View>
-        <View style={styles.square2}></View>
-      </View>
-    )
-
-  );
+  return <Text>test</Text>;
 };
 
 const styles = StyleSheet.create({
