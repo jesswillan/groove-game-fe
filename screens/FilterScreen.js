@@ -5,10 +5,13 @@ import { useState, useEffect } from "react";
 import RadioButton from "../components/RadioButton";
 import axios from "axios";
 import { useNavigation } from "@react-navigation/native";
+import { useContext } from "react";
+import songsGenre from "../context/songsGenre";
 
 export default function App() {
   const [option, setOption] = useState(null);
   const [data, setData] = useState([]);
+  const { chosenGenre, setChosenGenre } = useContext(songsGenre);
 
   const navigation = useNavigation();
 
@@ -24,7 +27,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Text style={styles.paragraph}>Please Select One Genre: </Text>
-      <RadioButton data={data} onSelect={(value) => setOption(value)} />
+      <RadioButton data={data} onSelect={(value) => setChosenGenre(value)} />
       <Text style={styles.options}> Your option: {option}</Text>
       <View style={buttonTheme}>
         <Button

@@ -1,6 +1,9 @@
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { colourTheme } from "../stylesheet";
 import React, { useEffect, useState } from "react";
+import { useContext } from "react";
+import songsGenre from "../context/songsGenre";
+import axios from "axios";
 
 const DanceFloorScreen = () => {
   const [sampleMuisc, setSampleMusic] = useState([
@@ -14,10 +17,16 @@ const DanceFloorScreen = () => {
     "lucy",
     "laura",
   ]);
+  const { chosenGenre, setChosenGenre } = useContext(songsGenre);
 
-  // useEffect(() => {
-  //   axios.get('')
-  // })
+  useEffect(() => {
+    console.log(chosenGenre);
+    axios
+      .get(`https://groove-game-be.onrender.com/api/songs/${chosenGenre}`)
+      .then((res) => {
+        console.log(res);
+      });
+  });
 
   const [square1, setSquare1] = useState("");
   const [square1Pressed, setSquare1Pressed] = useState(false);
