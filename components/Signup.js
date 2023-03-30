@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { View, Text, Button, StyleSheet } from "react-native";
 import { TextInput } from "react-native-gesture-handler";
+import userContext from "../context/userContext";
 // colour theme
 import { colourTheme } from "../stylesheet";
 import axios from "axios";
@@ -9,7 +10,7 @@ const Signup = ({ setLogin }) => {
   const [name, setName] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [loggedInUser, setLoggedInUser] = useState("");
+  const { user, setUser } = useContext(userContext);
 
   const handleSignup = () => {
     console.log({
@@ -24,7 +25,10 @@ const Signup = ({ setLogin }) => {
         password: password,
       })
       .then(() => {
-        setLoggedInUser(username);
+        setUser(username);
+        setUsername("");
+        setPassword("");
+        setName("");
         console.log("posted sucessfully");
       })
       .catch((err) => {
@@ -59,7 +63,9 @@ const Signup = ({ setLogin }) => {
           onPress={() => {
             handleSignup();
           }}
-          color={"white"}
+          color={
+            Platform.OS === "android" ? colourTheme.secondaryColour : "white"
+          }
           title="create account"
         />
       </View>
@@ -91,7 +97,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     width: 250,
     height: 50,
-    borderRadius: 20,
+    borderRadius: 10,
     justifyContent: "center",
     marginLeft: "auto",
     marginRight: "auto",

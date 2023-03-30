@@ -1,4 +1,5 @@
 import React from "react";
+<<<<<<< HEAD
 import { View, Button, Text, StyleSheet } from "react-native";
 import { colourTheme, buttonTheme } from "../stylesheet";
 import { useState, useEffect } from "react";
@@ -24,6 +25,20 @@ export default function App() {
       <RadioButton data={data} onSelect={(value) => setOption(value)} />
       <Text style={styles.options}> Your option: {option}</Text>
       <Button title="start" />
+=======
+import { View, Button } from "react-native";
+import { StyleSheet } from "react-native";
+import { colourTheme, buttonTheme } from "../stylesheet";
+import { RadioButton } from "react-native-paper";
+import { useState } from "react";
+
+const FilterScreen = () => {
+  return (
+    <View style={styles.container}>
+      <View style={buttonTheme}>
+        <Button color={colourTheme.white} title="Play"></Button>
+      </View>
+>>>>>>> 5e4c78311951eac2cdc0079b85a664536f12ea08
     </View>
   );
 }
