@@ -4,10 +4,10 @@ import HomeScreen from "../screens/HomeScreen";
 import UserLoginScreen from "../screens/UserLoginScreen";
 import Icons from "react-native-vector-icons/Ionicons";
 import { colourTheme } from "../stylesheet";
+import FilterScreen from "../screens/FilterScreen";
 
 const Tab = createBottomTabNavigator();
 
-//GameScreen takes us to filter page(Start of the game) - Currently leads to HomeScreen as filter screen hasnt been created
 export const MyTabs = () => {
   return (
     <Tab.Navigator
