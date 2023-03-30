@@ -2,7 +2,8 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeScreen from "../screens/HomeScreen";
 import UserLoginScreen from "../screens/UserLoginScreen";
-import FilterScreen from "../screens/FilterScreen";
+//import FilterScreen from "../screens/FilterScreen";
+import DanceFloorScreen from "../screens/DanceFloorScreen";
 import Icons from "react-native-vector-icons/Ionicons";
 import { colourTheme } from "../stylesheet";
 
@@ -29,7 +30,7 @@ export const MyTabs = () => {
       })}
     >
       <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name="Game" component={FilterScreen} />
+      <Tab.Screen name="Game" component={DanceFloorScreen} />
       <Tab.Screen name="UserLogin" component={UserLoginScreen} />
     </Tab.Navigator>
   );
