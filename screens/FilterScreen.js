@@ -1,11 +1,12 @@
 import React from "react";
 import { View, Button, Text, StyleSheet } from "react-native";
 import { colourTheme, buttonTheme } from "../stylesheet";
-import { RadioGroup } from "react-native-radio-button-group";
 import { useState } from "react";
 import RadioButton from "../components/RadioButton";
 
 export default function App() {
+  const [option, setOption] = useState(null);
+
   const data = [
     { value: "Apple" },
     { value: "Samsung" },
@@ -13,39 +14,12 @@ export default function App() {
   ];
   return (
     <View style={styles.container}>
-      <Text style={styles.paragraph}>Choose your favorite company: </Text>
-      <RadioButton data={data} />
+      <Text style={styles.paragraph}>Please Select One Genre: </Text>
+      <RadioButton data={data} onSelect={(value) => setOption(value)} />
+      <Text style={styles.options}> Your option: {option}</Text>
     </View>
   );
 }
-
-// const FilterScreen = () => {
-//   const [radioButtons, setRadioButtons] = useState([
-//     {
-//       id: "1", // acts as primary key, should be unique and non-empty string
-//       label: "Option 1",
-//       value: "option1",
-//     },
-//     {
-//       id: "2",
-//       label: "Option 2",
-//       value: "option2",
-//     },
-//   ]);
-
-//   function onPressRadioButton(radioButtonsArray) {
-//     setRadioButtons(radioButtonsArray);
-//   }
-
-//   return (
-//     <View style={styles.container}>
-//       <View style={buttonTheme}>
-//         <Button color={colourTheme.white} title="Play"></Button>
-//       </View>
-//       <RadioGroup radioButtons={radioButtons} onPress={onPressRadioButton} />
-//     </View>
-//   );
-// };
 
 const styles = StyleSheet.create({
   container: {
@@ -54,7 +28,17 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   paragraph: {
+    margin: 24,
+    fontSize: 18,
     fontWeight: "bold",
+    textAlign: "center",
+    color: colourTheme.white,
+  },
+
+  options: {
+    margin: 24,
+    fontSize: 12,
+    textAlign: "left",
     color: colourTheme.white,
   },
 });
