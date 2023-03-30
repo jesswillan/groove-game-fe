@@ -4,6 +4,8 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 // screens
 import HomeScreen from "../screens/HomeScreen";
 import UserLoginScreen from "../screens/UserLoginScreen";
+//import FilterScreen from "../screens/FilterScreen";
+import DanceFloorScreen from "../screens/DanceFloorScreen";
 import FilterScreen from "../screens/FilterScreen";
 // icons
 import Icons from "react-native-vector-icons/Ionicons";

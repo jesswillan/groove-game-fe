@@ -1,14 +1,32 @@
-import { Button, Text, View } from "react-native";
+import { Text } from "react-native";
 import React from "react";
-import { useNavigation } from "@react-navigation/native";
 
 const DanceFloorScreen = () => {
-  const navigate = useNavigation();
-  return (
-    <View>
-      <Button onPress={() => navigate.navigate("Tabs")} title="click" />
-    </View>
-  );
+  return <Text>test</Text>;
 };
+
+const styles = StyleSheet.create({
+  square1: {
+    width: 100,
+    height: 100,
+    marginLeft: 10,
+    backgroundColor: "blue",
+  },
+  square2: {
+    width: 100,
+    height: 100,
+    backgroundColor: "pink",
+  },
+  square3: {
+    width: 100,
+    height: 100,
+    backgroundColor: "green",
+  },
+  square4: {
+    width: 100,
+    height: 100,
+    backgroundColor: "yellow",
+  },
+});
 
 export default DanceFloorScreen;
