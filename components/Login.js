@@ -1,5 +1,5 @@
-import { View, Text } from "react-native";
 import React, { useState, useContext } from "react";
+import { View, Text, Platform } from "react-native";
 import { StyleSheet, Button } from "react-native";
 import { TextInput } from "react-native-gesture-handler";
 // colour theme
@@ -58,7 +58,9 @@ const Login = ({ setLogin }) => {
             handleLogin();
             // resetState();
           }}
-          color={"white"}
+          color={
+            Platform.OS === "android" ? colourTheme.secondaryColour : "white"
+          }
           title="login"
         />
       </View>
@@ -87,15 +89,15 @@ const styles = StyleSheet.create({
     marginTop: 25,
     backgroundColor: colourTheme.secondaryColour,
     borderColor: colourTheme.white,
-
     borderWidth: 2,
     width: 250,
     height: 50,
-    borderRadius: 20,
+    borderRadius: 10,
     justifyContent: "center",
     marginLeft: "auto",
     marginRight: "auto",
   },
+
   textCentre: {
     marginTop: 25,
     fontSize: 20,

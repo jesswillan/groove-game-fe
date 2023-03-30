@@ -63,7 +63,9 @@ const Signup = ({ setLogin }) => {
           onPress={() => {
             handleSignup();
           }}
-          color={"white"}
+          color={
+            Platform.OS === "android" ? colourTheme.secondaryColour : "white"
+          }
           title="create account"
         />
       </View>
@@ -95,7 +97,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     width: 250,
     height: 50,
-    borderRadius: 20,
+    borderRadius: 10,
     justifyContent: "center",
     marginLeft: "auto",
     marginRight: "auto",
