@@ -1,13 +1,17 @@
 import React from "react";
 import { View, Button, Text, StyleSheet } from "react-native";
-import { colourTheme, buttonTheme } from "../stylesheet";
+import { colourTheme } from "../stylesheet";
 import { useState, useEffect } from "react";
 import RadioButton from "../components/RadioButton";
 import axios from "axios";
 
+import { useNavigation } from "@react-navigation/native";
+
 export default function App() {
   const [option, setOption] = useState(null);
   const [data, setData] = useState([]);
+
+  const navigation = useNavigation();
 
   useEffect(() => {
     axios

@@ -17,8 +17,13 @@ export const HomeScreen = () => {
       <Text style={styles.welcome}>
         Welcome to {"\n"} <Text style={styles.grooveGame}>Groove Game</Text>
       </Text>
-      <View style={buttonTheme}>
-        <Button color={colourTheme.white} title="Play the game"></Button>
+      <View style={styles.button}>
+        <Button
+          color={
+            Platform.OS === "android" ? colourTheme.secondaryColour : "white"
+          }
+          title="Play the game"
+        ></Button>
       </View>
       <Text style={styles.instructions}>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
@@ -33,6 +38,18 @@ export const HomeScreen = () => {
 };
 
 const styles = StyleSheet.create({
+  button: {
+    marginTop: 25,
+    backgroundColor: colourTheme.secondaryColour,
+    borderColor: colourTheme.white,
+    borderWidth: 2,
+    width: 250,
+    height: 50,
+    borderRadius: 10,
+    justifyContent: "center",
+    marginLeft: "auto",
+    marginRight: "auto",
+  },
   container: {
     flex: 1,
     backgroundColor: colourTheme.primaryColour,

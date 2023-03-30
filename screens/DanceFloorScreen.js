@@ -1,8 +1,14 @@
-import { Text } from "react-native";
+import { Button, Text, View } from "react-native";
 import React from "react";
+import { useNavigation } from "@react-navigation/native";
 
 const DanceFloorScreen = () => {
-  return <Text>test</Text>;
+  const navigate = useNavigation();
+  return (
+    <View>
+      <Button onPress={() => navigate.navigate("Tabs")} title="click" />
+    </View>
+  );
 };
 
 export default DanceFloorScreen;
