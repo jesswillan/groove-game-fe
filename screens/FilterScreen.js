@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Button, Text, StyleSheet } from "react-native";
-import { colourTheme } from "../stylesheet";
+import { colourTheme, buttonTheme } from "../stylesheet";
 import { useState, useEffect } from "react";
 import RadioButton from "../components/RadioButton";
 import axios from "axios";
@@ -28,7 +28,11 @@ export default function App() {
       <RadioButton data={data} onSelect={(value) => setOption(value)} />
       <Text style={styles.options}> Your option: {option}</Text>
       <View style={buttonTheme}>
-        <Button color={colourTheme.white} title="Play the game"></Button>
+        <Button
+          onPress={() => navigation.navigate("dance")}
+          color={colourTheme.white}
+          title="Play the game"
+        ></Button>
       </View>
     </View>
   );
