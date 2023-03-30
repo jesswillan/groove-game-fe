@@ -6,17 +6,7 @@ import songsGenre from "../context/songsGenre";
 import axios from "axios";
 
 const DanceFloorScreen = () => {
-  const [sampleMuisc, setSampleMusic] = useState([
-    "tom",
-    "jerry",
-    "bill",
-    "tom",
-    "alex",
-    "john",
-    "sarah",
-    "lucy",
-    "laura",
-  ]);
+  const [sampleMuisc, setSampleMusic] = useState([]);
   const { chosenGenre, setChosenGenre } = useContext(songsGenre);
 
   useEffect(() => {
@@ -24,9 +14,19 @@ const DanceFloorScreen = () => {
     axios
       .get(`https://groove-game-be.onrender.com/api/songs/${chosenGenre}`)
       .then((res) => {
-        console.log(res);
+        const mappedArr = res.data.tracks.map((obj) => {
+          let newObj = {
+            track_name: obj.name,
+            track_artist: obj.artists,
+            track_preview: obj.preview_url,
+            img_url: obj.album.images[0].url,
+            track_id: obj.id,
+          };
+          return newObj;
+        });
+        setSampleMusic(mappedArr);
       });
-  });
+  }, []);
 
   const [square1, setSquare1] = useState("");
   const [square1Pressed, setSquare1Pressed] = useState(false);
@@ -231,7 +231,7 @@ const DanceFloorScreen = () => {
       <View style={styles.songList}>
         <Text>songs here</Text>
         {selectedSongs.map((song) => {
-          return <Text key={song}>{song}</Text>;
+          return <Text key={song.name}>{song.name}</Text>;
         })}
       </View>
     </View>
