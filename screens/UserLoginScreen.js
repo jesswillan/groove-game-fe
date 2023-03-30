@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { View } from "react-native";
 import { StyleSheet } from "react-native";
 // components
@@ -8,15 +8,21 @@ import Signup from "../components/Signup";
 import { useState } from "react";
 // colour theme
 import { colourTheme } from "../stylesheet";
+import userContext from "../context/userContext";
+import UserProfile from "../components/UserProfile";
 
-const UserLoginScreen = ({ user, setUser }) => {
+const UserLoginScreen = () => {
   const [login, setLogin] = useState(true);
+  const { user, setUser } = useContext(userContext);
+
   return (
     <View style={styles.container}>
-      {login ? (
-        <Login setLogin={setLogin} user={user} setUser={setUser} />
+      {user !== "" ? (
+        <UserProfile />
+      ) : login ? (
+        <Login setLogin={setLogin} />
       ) : (
-        <Signup setLogin={setLogin} user={user} setUser={setUser} />
+        <Signup setLogin={setLogin} />
       )}
     </View>
   );

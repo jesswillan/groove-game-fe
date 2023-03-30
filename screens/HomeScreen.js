@@ -1,18 +1,21 @@
-import React from 'react';
+import React, { useContext } from "react";
 
-import {Text, View, Button, Image} from 'react-native';
-
-import Icon from 'react-native-vector-icons/FontAwesome';
-import {StyleSheet} from 'react-native';
-import {colourTheme, buttonTheme} from '../stylesheet';
+import { Text, View, Button, Image } from "react-native";
+import userContext from "../context/userContext";
+import Icon from "react-native-vector-icons/FontAwesome";
+import { StyleSheet } from "react-native";
+import { colourTheme, buttonTheme } from "../stylesheet";
 
 //make sure to export function, not export default
 
 export const HomeScreen = () => {
+  const { user, setUser } = useContext(userContext);
+
   return (
     <View style={styles.container}>
+      <Text style={{ color: "white" }}>logged in as: {user}</Text>
       <Text style={styles.welcome}>
-        Welcome to {'\n'} <Text style={styles.grooveGame}>Groove Game</Text>
+        Welcome to {"\n"} <Text style={styles.grooveGame}>Groove Game</Text>
       </Text>
       <View style={buttonTheme}>
         <Button color={colourTheme.white} title="Play the game"></Button>
@@ -37,30 +40,30 @@ const styles = StyleSheet.create({
   },
   welcome: {
     color: colourTheme.white,
-    justifyContent: 'center',
-    marginLeft: 'auto',
-    marginRight: 'auto',
+    justifyContent: "center",
+    marginLeft: "auto",
+    marginRight: "auto",
     marginTop: 50,
-    textAlign: 'center',
+    textAlign: "center",
     fontSize: 26,
   },
   grooveGame: {
     color: colourTheme.white,
-    justifyContent: 'center',
-    marginLeft: 'auto',
-    marginRight: 'auto',
+    justifyContent: "center",
+    marginLeft: "auto",
+    marginRight: "auto",
     marginTop: 50,
-    textAlign: 'center',
+    textAlign: "center",
     fontSize: 40,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   instructions: {
     color: colourTheme.white,
-    justifyContent: 'center',
-    marginLeft: 'auto',
-    marginRight: 'auto',
+    justifyContent: "center",
+    marginLeft: "auto",
+    marginRight: "auto",
     marginTop: 50,
-    textAlign: 'center',
+    textAlign: "center",
     fontSize: 20,
   },
 });
