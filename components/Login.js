@@ -1,14 +1,16 @@
 import { View, Text } from "react-native";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { StyleSheet, Button } from "react-native";
 import { TextInput } from "react-native-gesture-handler";
 // colour theme
 import { colourTheme } from "../stylesheet";
 import axios from "axios";
+import userContext from "../context/userContext";
 
 const Login = ({ setLogin }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const { user, setUser } = useContext(userContext);
 
   // const resetState = () => {
   //   setUsername("");
@@ -23,6 +25,7 @@ const Login = ({ setLogin }) => {
     axios
       .post("https://groove-game-be.onrender.com/api/user-login", loginObj)
       .then(() => {
+        setUser(username);
         setUsername("");
         setPassword("");
         console.log("logged in");

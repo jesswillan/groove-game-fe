@@ -4,6 +4,7 @@ import HomeScreen from "../screens/HomeScreen";
 import UserLoginScreen from "../screens/UserLoginScreen";
 import Icons from "react-native-vector-icons/Ionicons";
 import { colourTheme } from "../stylesheet";
+import FilterScreen from "../screens/FilterScreen";
 
 const Tab = createBottomTabNavigator();
 
