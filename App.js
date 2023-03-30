@@ -7,21 +7,24 @@ import StackNavigator from "./StackNavigator";
 import MyTabs from "./components/MyTabs";
 // global state for users
 import userContext from "./context/userContext";
+import songsGenre from "./context/songsGenre";
 // initialises the stack navigator
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   const [user, setUser] = React.useState("");
+  const [chosenGenre, setChosenGenre] = React.useState("");
 
   return (
     <userContext.Provider value={{ user, setUser }}>
-      <NavigationContainer>
-        <Stack.Navigator screenOptions={{ headerShown: false }}>
-          <Stack.Screen name="StackNavigator" component={StackNavigator} />
-          {/* navigator contains the screens to be navigated between */}
-          <Stack.Screen name="MyTabs" component={MyTabs} />
-        </Stack.Navigator>
-      </NavigationContainer>
+      <songsGenre.Provider value={{ chosenGenre, setChosenGenre }}>
+        <NavigationContainer>
+          <Stack.Navigator screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="StackNavigator" component={StackNavigator} />
+            <Stack.Screen name="MyTabs" component={MyTabs} />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </songsGenre.Provider>
     </userContext.Provider>
   );
 }
