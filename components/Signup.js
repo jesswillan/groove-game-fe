@@ -6,8 +6,6 @@ import userContext from "../context/userContext";
 import { buttonTheme, colourTheme } from "../stylesheet";
 import axios from "axios";
 
-
-
 const Signup = ({ setLogin }) => {
   const [name, setName] = useState("");
   const [username, setUsername] = useState("");
@@ -15,40 +13,36 @@ const Signup = ({ setLogin }) => {
   const { user, setUser } = useContext(userContext);
   const [passwordwarning, setPasswordwarning] = useState("");
 
-  let min="Password needs minimum six characters"
+  let min = "Password needs minimum six characters";
 
   const handleSignup = () => {
-if(password.length >=6){
-
-   {
-    console.log({
-      username: username,
-      name: name,
-      password: password,
-    });
-    axios
-      .post("https://groove-game-be.onrender.com/api/user-signup", {
-        username: username,
-        name: name,
-        password: password,
-      })
-      .then(() => {
-        setUser(username);
-        setUsername("");
-        setPassword("");
-        setName("");
-        console.log("posted sucessfully");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-   
-   }
-  }else{
-   
-setPasswordwarning("Password needs to be 6 characters, please try again");
-  } 
-  
+    if (password.length >= 6) {
+      {
+        console.log({
+          username: username,
+          name: name,
+          password: password,
+        });
+        axios
+          .post("https://groove-game-be.onrender.com/api/user-signup", {
+            username: username,
+            name: name,
+            password: password,
+          })
+          .then(() => {
+            setUser(username);
+            setUsername("");
+            setPassword("");
+            setName("");
+            console.log("posted sucessfully");
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+    } else {
+      setPasswordwarning("Password needs to be 6 characters, please try again");
+    }
   };
 
   return (
@@ -72,32 +66,27 @@ setPasswordwarning("Password needs to be 6 characters, please try again");
         secureTextEntry={true}
         placeholder="password"
         style={styles.input}
-        
       />
-
-
-      <TextInput value={passwordwarning} style={styles.textCentre} /> 
-
-      <View style={styles.loginBtn}>
-
-      <View style={buttonTheme}>
-
-        <Button
-          onPress={() => {
-            handleSignup();
-          }}
-          color={
-            Platform.OS === "android" ? colourTheme.secondaryColour : "white"
-          }
-          title="create account"
-        />
-      </View>
-      <Text style={styles.textCentre}>
-        already have an account?
-        <Text onPress={() => setLogin(true)} style={styles.switch}>
-          login
+      <TextInput value={passwordwarning} style={styles.textCentre} />
+      <View>
+        <View style={buttonTheme}>
+          <Button
+            onPress={() => {
+              handleSignup();
+            }}
+            color={
+              Platform.OS === "android" ? colourTheme.secondaryColour : "white"
+            }
+            title="create account"
+          />
+        </View>
+        <Text style={styles.textCentre}>
+          already have an account?
+          <Text onPress={() => setLogin(true)} style={styles.switch}>
+            login
+          </Text>
         </Text>
-      </Text>
+      </View>
     </View>
   );
 };
@@ -113,18 +102,6 @@ const styles = StyleSheet.create({
     color: "black",
     textAlign: "center",
   },
-  loginBtn: {
-    marginTop: 25,
-    backgroundColor: colourTheme.secondaryColour,
-    borderColor: colourTheme.white,
-    borderWidth: 2,
-    width: 250,
-    height: 50,
-    borderRadius: 10,
-    justifyContent: "center",
-    marginLeft: "auto",
-    marginRight: "auto",
-  },
   textCentre: {
     marginTop: 25,
     fontSize: 20,
@@ -135,8 +112,7 @@ const styles = StyleSheet.create({
   switch: {
     color: colourTheme.highlightPink,
   },
-  min:{
-
+  min: {
     color: colourTheme.highlightPink,
   },
 });
