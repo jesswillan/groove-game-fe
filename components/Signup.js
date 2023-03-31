@@ -6,13 +6,21 @@ import userContext from "../context/userContext";
 import { buttonTheme, colourTheme } from "../stylesheet";
 import axios from "axios";
 
+
+
 const Signup = ({ setLogin }) => {
   const [name, setName] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const { user, setUser } = useContext(userContext);
+  const [passwordwarning, setPasswordwarning] = useState("");
+
+  let min="Password needs minimum six characters"
 
   const handleSignup = () => {
+if(password.length >=6){
+
+   {
     console.log({
       username: username,
       name: name,
@@ -34,6 +42,13 @@ const Signup = ({ setLogin }) => {
       .catch((err) => {
         console.log(err);
       });
+   
+   }
+  }else{
+   
+setPasswordwarning("Password needs to be 6 characters, please try again");
+  } 
+  
   };
 
   return (
@@ -57,8 +72,16 @@ const Signup = ({ setLogin }) => {
         secureTextEntry={true}
         placeholder="password"
         style={styles.input}
+        
       />
+
+
+      <TextInput value={passwordwarning} style={styles.textCentre} /> 
+
+      <View style={styles.loginBtn}>
+
       <View style={buttonTheme}>
+
         <Button
           onPress={() => {
             handleSignup();
@@ -110,6 +133,10 @@ const styles = StyleSheet.create({
     color: colourTheme.white,
   },
   switch: {
+    color: colourTheme.highlightPink,
+  },
+  min:{
+
     color: colourTheme.highlightPink,
   },
 });
