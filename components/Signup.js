@@ -11,12 +11,12 @@ const Signup = ({ setLogin }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const { user, setUser } = useContext(userContext);
-  const [passwordwarning, setPasswordwarning] = useState("");
+  const [alertWarning, setAlertWarning] = useState("");
+  const [showAlert, setShowAlert] = useState(false);
 
-  let min = "Password needs minimum six characters";
-
+  //if statement for password and username and user to be truthy
   const handleSignup = () => {
-    if (password.length >= 6) {
+    if (password.length >= 6 && username && user) {
       {
         console.log({
           username: username,
@@ -40,8 +40,21 @@ const Signup = ({ setLogin }) => {
             console.log(err);
           });
       }
-    } else {
-      setPasswordwarning("Password needs to be 6 characters, please try again");
+      //if any fields are missing, show the alert
+    } else if (!username || !password || !name) {
+      setAlertWarning("Please fill out all values");
+      setShowAlert(true);
+      setTimeout(() => {
+        setShowAlert(false);
+      }, 4000);
+    } else if (password.length < 6) {
+      setAlertWarning(
+        "Password must be a minimum of 6 characters. Please try again"
+      );
+      setShowAlert(true);
+      setTimeout(() => {
+        setShowAlert(false);
+      }, 4000);
     }
   };
 
@@ -60,6 +73,7 @@ const Signup = ({ setLogin }) => {
         placeholder="username"
         style={styles.input}
       />
+
       <TextInput
         onChangeText={(text) => setPassword(text)}
         value={password}
@@ -67,7 +81,8 @@ const Signup = ({ setLogin }) => {
         placeholder="password"
         style={styles.input}
       />
-      <TextInput value={passwordwarning} style={styles.textCentre} />
+
+      {showAlert ? <Text style={styles.textCentre}>{alertWarning} </Text> : ""}
       <View>
         <View style={buttonTheme}>
           <Button

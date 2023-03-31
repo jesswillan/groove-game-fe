@@ -11,6 +11,8 @@ const Login = ({ setLogin }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const { user, setUser } = useContext(userContext);
+  //const [alertWarning, setAlertWarning] = useState("");
+  const [showAlert, setShowAlert] = useState(false);
 
   // const resetState = () => {
   //   setUsername("");
@@ -31,6 +33,11 @@ const Login = ({ setLogin }) => {
         console.log("logged in");
       })
       .catch((err) => {
+        //setAlertWarning("Invalid Username or password");
+        setShowAlert(true);
+        setTimeout(() => {
+          setShowAlert(false);
+        }, 4000);
         console.log(err);
       });
   };
@@ -51,6 +58,11 @@ const Login = ({ setLogin }) => {
         placeholder="password"
         style={styles.input}
       />
+      {showAlert ? (
+        <Text style={styles.textCentre}>Invalid username or password</Text>
+      ) : (
+        ""
+      )}
       <View style={buttonTheme}>
         <Button
           onPress={() => {

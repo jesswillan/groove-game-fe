@@ -23,7 +23,7 @@ export default HomeScreen = () => {
       <Text style={styles.welcome}>
         Welcome to {"\n"} <Text style={styles.grooveGame}>Groove Game</Text>
       </Text>
-      <View style={buttonTheme}>
+      <View style={buttonTheme}> 
         <Button
           onPress={() => navigation.navigate("Game")}
           color={
