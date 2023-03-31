@@ -14,7 +14,7 @@ const Stack = createNativeStackNavigator();
 
 export default function App() {
   const [user, setUser] = React.useState("");
-  const [chosenGenre, setChosenGenre] = React.useState("");
+  const [chosenGenre, setChosenGenre] = React.useState("pop");
   const [globalArray, setGlobalArray] = React.useState([]);
 
   return (
