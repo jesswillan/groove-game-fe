@@ -1,26 +1,29 @@
+// react/hooks
 import React, { useContext } from "react";
-
-import { Text, View, Button, Image } from "react-native";
+// react components
+import { Text, View, Button } from "react-native";
+// global userContext
 import userContext from "../context/userContext";
-import Icon from "react-native-vector-icons/FontAwesome";
+// StyleSheet component to create styles object
 import { StyleSheet } from "react-native";
-import { colourTheme, buttonTheme } from "../stylesheet";
+// custom styling objects
+import { colourTheme, defaultPaddinTop, buttonTheme } from "../stylesheet";
+// navigation hook
 import { useNavigation } from "@react-navigation/native";
 
-//make sure to export function, not export default
-
-export const HomeScreen = () => {
+export default HomeScreen = () => {
+  // grabs the user and setUser values from the userContext
   const { user, setUser } = useContext(userContext);
-
+  // invokes hook to allow access to the navigation object
   const navigation = useNavigation();
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, defaultPaddinTop]}>
       <Text style={{ color: "white" }}>logged in as: {user}</Text>
       <Text style={styles.welcome}>
         Welcome to {"\n"} <Text style={styles.grooveGame}>Groove Game</Text>
       </Text>
-      <View style={styles.button}>
+      <View style={buttonTheme}>
         <Button
           onPress={() => navigation.navigate("Game")}
           color={
@@ -42,23 +45,14 @@ export const HomeScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  button: {
-    marginTop: 25,
-    backgroundColor: colourTheme.secondaryColour,
-    borderColor: colourTheme.white,
-    borderWidth: 2,
-    width: 250,
-    height: 50,
-    borderRadius: 10,
-    justifyContent: "center",
-    marginLeft: "auto",
-    marginRight: "auto",
-  },
+  // checks device if android padding added based on statusBar heiht if ios padding top is 40
+  default: defaultPaddinTop,
   container: {
     flex: 1,
     backgroundColor: colourTheme.primaryColour,
     padding: 20,
   },
+
   welcome: {
     color: colourTheme.white,
     justifyContent: "center",
@@ -88,5 +82,3 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
 });
-
-export default HomeScreen;

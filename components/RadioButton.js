@@ -1,13 +1,11 @@
 import React from "react";
 import { View, Text, Pressable, StyleSheet } from "react-native";
-import { useState } from "react";
-import { colourTheme } from "../stylesheet";
+
+import { radioButtonUnselected, radioButtonSelected } from "../stylesheet";
 
 export default function RadioButton({ data, onSelect }) {
-  const [userOption, setUserOption] = useState(null);
   const selectHandler = (value) => {
     onSelect(value);
-    setUserOption(value);
   };
 
   return (
@@ -16,13 +14,11 @@ export default function RadioButton({ data, onSelect }) {
         return (
           <Pressable
             key={item}
-            style={
-              //Line 5
-              item.value === userOption ? styles.selected : styles.unselected
-            } /*Add style here */ //Line 7
+            style={({ pressed }) => [
+              pressed === true ? radioButtonSelected : radioButtonUnselected,
+            ]}
             onPress={() => selectHandler(item)}
           >
-            {/* add style here */}
             <Text style={styles.option}>{item}</Text>
           </Pressable>
         );
@@ -36,18 +32,5 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: "white",
     textAlign: "center",
-  },
-  unselected: {
-    backgroundColor: colourTheme.secondaryColour,
-    margin: 7,
-    borderRadius: 10,
-    borderWidth: 2,
-    borderColor: colourTheme.white,
-  },
-  selected: {
-    backgroundColor: "blue",
-    margin: 6,
-    padding: 10,
-    borderRadius: 10,
   },
 });

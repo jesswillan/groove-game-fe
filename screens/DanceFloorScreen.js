@@ -1,14 +1,25 @@
-import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  Image,
+  Button,
+} from "react-native";
 import { colourTheme } from "../stylesheet";
-import React, { useEffect, useState } from "react";
-import { useContext } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import songsGenre from "../context/songsGenre";
 import axios from "axios";
+import FruitMachineGame from "../components/FruitMachineGame";
+import globalSongArray from "../context/globalSongArray";
 
 const DanceFloorScreen = () => {
   const [sampleMuisc, setSampleMusic] = useState([]);
   const { chosenGenre, setChosenGenre } = useContext(songsGenre);
   const [isLoading, setIsLoading] = useState(true);
+  const [isRoundFinished, setIsRoundFinished] = useState(false);
+  const [isNextRound, setIsNextRound] = useState(false);
+  const { globalArray, setGlobalArray } = useContext(globalSongArray);
 
   const [square1, setSquare1] = useState("");
   const [square1Pressed, setSquare1Pressed] = useState(false);
@@ -46,7 +57,8 @@ const DanceFloorScreen = () => {
           };
           return newObj;
         });
-        setSampleMusic(mappedArr);
+        // setSelectedSongs(mappedArr);
+        setGlobalArray(mappedArr);
         setSquare1(mappedArr[0]);
         setSquare2(mappedArr[1]);
         setSquare3(mappedArr[2]);
@@ -61,8 +73,13 @@ const DanceFloorScreen = () => {
       });
   }, []);
 
+  const renderNextRound = () => {
+    setIsNextRound(true);
+  };
+
   const handleClick = (str) => {
     if (count >= 3) {
+      setIsRoundFinished(true);
       console.log("round complete");
     } else {
       if (str === "square1") {
@@ -107,200 +124,211 @@ const DanceFloorScreen = () => {
 
   return (
     <View>
-      <View>
-        {isLoading ? (
-          <Text>loading...</Text>
-        ) : (
-          <View style={styles.container}>
-            <TouchableOpacity
-              onPress={() => {
-                handleClick("square1");
-              }}
-            >
-              {!square1Pressed ? (
-                <View style={styles.squareBlue}></View>
-              ) : (
-                <View style={styles.squareBlue}>
-                  {/* <Text>{square1.track_name}</Text> */}
-                  <Image
-                    source={{
-                      uri: square1.img_url,
-                      width: 123,
-                      height: 123,
-                    }}
-                  />
-                </View>
-              )}
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => {
-                handleClick("square2");
-              }}
-            >
-              {!square2Pressed ? (
-                <View style={styles.squareGreen}></View>
-              ) : (
-                <View style={styles.squareGreen}>
-                  {/* <Text>{square2.track_name}</Text> */}
-                  <Image
-                    source={{
-                      uri: square2.img_url,
-                      width: 123,
-                      height: 123,
-                    }}
-                  />
-                </View>
-              )}
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => {
-                handleClick("square3");
-              }}
-            >
-              {!square3Pressed ? (
-                <View style={styles.squarePink}></View>
-              ) : (
-                <View style={styles.squarePink}>
-                  {/* <Text>{square3.track_name}</Text> */}
-                  <Image
-                    source={{
-                      uri: square3.img_url,
-                      width: 123,
-                      height: 123,
-                    }}
-                  />
-                </View>
-              )}
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => {
-                handleClick("square4");
-              }}
-            >
-              {!square4Pressed ? (
-                <View style={styles.squarePink}></View>
-              ) : (
-                <View style={styles.squarePink}>
-                  {/* <Text>{square4.track_name}</Text> */}
-                  <Image
-                    source={{
-                      uri: square4.img_url,
-                      width: 123,
-                      height: 123,
-                    }}
-                  />
-                </View>
-              )}
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => {
-                handleClick("square5");
-              }}
-            >
-              {!square5Pressed ? (
-                <View style={styles.squareBlue}></View>
-              ) : (
-                <View style={styles.squareBlue}>
-                  {/* <Text>{square5.track_name}</Text> */}
-                  <Image
-                    source={{
-                      uri: square5.img_url,
-                      width: 123,
-                      height: 123,
-                    }}
-                  />
-                </View>
-              )}
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => {
-                handleClick("square6");
-              }}
-            >
-              {!square6Pressed ? (
-                <View style={styles.squareGreen}></View>
-              ) : (
-                <View style={styles.squareGreen}>
-                  {/* <Text>{square6.track_name}</Text> */}
-                  <Image
-                    source={{
-                      uri: square6.img_url,
-                      width: 123,
-                      height: 123,
-                    }}
-                  />
-                </View>
-              )}
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => {
-                handleClick("square7");
-              }}
-            >
-              {!square7Pressed ? (
-                <View style={styles.squareGreen}></View>
-              ) : (
-                <View style={styles.squareGreen}>
-                  {/* <Text>{square7.track_name}</Text> */}
-                  <Image
-                    source={{
-                      uri: square7.img_url,
-                      width: 123,
-                      height: 123,
-                    }}
-                  />
-                </View>
-              )}
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => {
-                handleClick("square8");
-              }}
-            >
-              {!square8Pressed ? (
-                <View style={styles.squarePink}></View>
-              ) : (
-                <View style={styles.squarePink}>
-                  {/* <Text>{square8.track_name}</Text> */}
-                  <Image
-                    source={{
-                      uri: square8.img_url,
-                      width: 123,
-                      height: 123,
-                    }}
-                  />
-                </View>
-              )}
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => {
-                handleClick("square9");
-              }}
-            >
-              {!square9Pressed ? (
-                <View style={styles.squareBlue}></View>
-              ) : (
-                <View style={styles.squareBlue}>
-                  {/* <Text>{square9.track_name}</Text> */}
-                  <Image
-                    source={{
-                      uri: square9.img_url,
-                      width: 123,
-                      height: 123,
-                    }}
-                  />
-                </View>
-              )}
-            </TouchableOpacity>
+      {!isNextRound ? (
+        <View>
+          <View>
+            {isLoading ? (
+              <Text>loading...</Text>
+            ) : (
+              <View style={styles.container}>
+                <TouchableOpacity
+                  onPress={() => {
+                    handleClick("square1");
+                  }}
+                >
+                  {!square1Pressed ? (
+                    <View style={styles.squareBlue}></View>
+                  ) : (
+                    <View style={styles.squareBlue}>
+                      {/* <Text>{square1.track_name}</Text> */}
+                      <Image
+                        source={{
+                          uri: square1.img_url,
+                          width: 123,
+                          height: 123,
+                        }}
+                      />
+                    </View>
+                  )}
+                </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => {
+                    handleClick("square2");
+                  }}
+                >
+                  {!square2Pressed ? (
+                    <View style={styles.squareGreen}></View>
+                  ) : (
+                    <View style={styles.squareGreen}>
+                      {/* <Text>{square2.track_name}</Text> */}
+                      <Image
+                        source={{
+                          uri: square2.img_url,
+                          width: 123,
+                          height: 123,
+                        }}
+                      />
+                    </View>
+                  )}
+                </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => {
+                    handleClick("square3");
+                  }}
+                >
+                  {!square3Pressed ? (
+                    <View style={styles.squarePink}></View>
+                  ) : (
+                    <View style={styles.squarePink}>
+                      {/* <Text>{square3.track_name}</Text> */}
+                      <Image
+                        source={{
+                          uri: square3.img_url,
+                          width: 123,
+                          height: 123,
+                        }}
+                      />
+                    </View>
+                  )}
+                </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => {
+                    handleClick("square4");
+                  }}
+                >
+                  {!square4Pressed ? (
+                    <View style={styles.squarePink}></View>
+                  ) : (
+                    <View style={styles.squarePink}>
+                      {/* <Text>{square4.track_name}</Text> */}
+                      <Image
+                        source={{
+                          uri: square4.img_url,
+                          width: 123,
+                          height: 123,
+                        }}
+                      />
+                    </View>
+                  )}
+                </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => {
+                    handleClick("square5");
+                  }}
+                >
+                  {!square5Pressed ? (
+                    <View style={styles.squareBlue}></View>
+                  ) : (
+                    <View style={styles.squareBlue}>
+                      {/* <Text>{square5.track_name}</Text> */}
+                      <Image
+                        source={{
+                          uri: square5.img_url,
+                          width: 123,
+                          height: 123,
+                        }}
+                      />
+                    </View>
+                  )}
+                </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => {
+                    handleClick("square6");
+                  }}
+                >
+                  {!square6Pressed ? (
+                    <View style={styles.squareGreen}></View>
+                  ) : (
+                    <View style={styles.squareGreen}>
+                      {/* <Text>{square6.track_name}</Text> */}
+                      <Image
+                        source={{
+                          uri: square6.img_url,
+                          width: 123,
+                          height: 123,
+                        }}
+                      />
+                    </View>
+                  )}
+                </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => {
+                    handleClick("square7");
+                  }}
+                >
+                  {!square7Pressed ? (
+                    <View style={styles.squareGreen}></View>
+                  ) : (
+                    <View style={styles.squareGreen}>
+                      {/* <Text>{square7.track_name}</Text> */}
+                      <Image
+                        source={{
+                          uri: square7.img_url,
+                          width: 123,
+                          height: 123,
+                        }}
+                      />
+                    </View>
+                  )}
+                </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => {
+                    handleClick("square8");
+                  }}
+                >
+                  {!square8Pressed ? (
+                    <View style={styles.squarePink}></View>
+                  ) : (
+                    <View style={styles.squarePink}>
+                      {/* <Text>{square8.track_name}</Text> */}
+                      <Image
+                        source={{
+                          uri: square8.img_url,
+                          width: 123,
+                          height: 123,
+                        }}
+                      />
+                    </View>
+                  )}
+                </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => {
+                    handleClick("square9");
+                  }}
+                >
+                  {!square9Pressed ? (
+                    <View style={styles.squareBlue}></View>
+                  ) : (
+                    <View style={styles.squareBlue}>
+                      {/* <Text>{square9.track_name}</Text> */}
+                      <Image
+                        source={{
+                          uri: square9.img_url,
+                          width: 123,
+                          height: 123,
+                        }}
+                      />
+                    </View>
+                  )}
+                </TouchableOpacity>
+              </View>
+            )}
           </View>
-        )}
-      </View>
-      <View style={styles.songList}>
-        <Text>songs here</Text>
-        {selectedSongs.map((song) => {
-          return <Text key={song.track_name}>{song.track_name}</Text>;
-        })}
-      </View>
+          <View style={styles.songList}>
+            <Text>songs here</Text>
+            {selectedSongs.map((song) => {
+              return <Text key={song.track_name}>{song.track_name}</Text>;
+            })}
+          </View>
+          {isRoundFinished ? (
+            <Button title="next round" onPress={renderNextRound} />
+          ) : (
+            <Text></Text>
+          )}
+        </View>
+      ) : (
+        <FruitMachineGame />
+      )}
     </View>
   );
 };

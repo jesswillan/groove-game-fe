@@ -3,7 +3,7 @@ import { View, Text, Button, StyleSheet } from "react-native";
 import { TextInput } from "react-native-gesture-handler";
 import userContext from "../context/userContext";
 // colour theme
-import { colourTheme } from "../stylesheet";
+import { buttonTheme, colourTheme } from "../stylesheet";
 import axios from "axios";
 
 
@@ -75,9 +75,13 @@ setPasswordwarning("Password needs to be 6 characters, please try again");
         
       />
 
+
       <TextInput value={passwordwarning} style={styles.textCentre} /> 
 
       <View style={styles.loginBtn}>
+
+      <View style={buttonTheme}>
+
         <Button
           onPress={() => {
             handleSignup();
