@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, Pressable, StyleSheet } from "react-native";
 import { useState } from "react";
-import { colourTheme } from "../stylesheet";
+import { colourTheme, buttonTheme, radioButtonUnselected, radioButtonSelected } from "../stylesheet";
 
 export default function RadioButton({ data, onSelect }) {
   const [userOption, setUserOption] = useState(null);
@@ -16,13 +16,11 @@ export default function RadioButton({ data, onSelect }) {
         return (
           <Pressable
             key={item}
-            style={
-              //Line 5
-              item.value === userOption ? styles.selected : styles.unselected
-            } /*Add style here */ //Line 7
+            style={({pressed}) => [
+              pressed === true ? radioButtonSelected : radioButtonUnselected
+            ]}
             onPress={() => selectHandler(item)}
           >
-            {/* add style here */}
             <Text style={styles.option}>{item}</Text>
           </Pressable>
         );
@@ -39,7 +37,7 @@ const styles = StyleSheet.create({
   },
   unselected: {
     backgroundColor: colourTheme.secondaryColour,
-    margin: 7,
+    margin: 10,
     borderRadius: 10,
     borderWidth: 2,
     borderColor: colourTheme.white,
