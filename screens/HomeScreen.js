@@ -7,7 +7,7 @@ import userContext from "../context/userContext";
 // StyleSheet component to create styles object
 import { StyleSheet } from "react-native";
 // custom styling objects
-import { colourTheme, defaultPaddinTop } from "../stylesheet";
+import { colourTheme, defaultPaddinTop, buttonTheme } from "../stylesheet";
 // navigation hook
 import { useNavigation } from "@react-navigation/native";
 
@@ -23,7 +23,7 @@ export default HomeScreen = () => {
       <Text style={styles.welcome}>
         Welcome to {"\n"} <Text style={styles.grooveGame}>Groove Game</Text>
       </Text>
-      <View style={styles.button}>
+      <View style={buttonTheme}>
         <Button
           onPress={() => navigation.navigate("Game")}
           color={
@@ -52,18 +52,7 @@ const styles = StyleSheet.create({
     backgroundColor: colourTheme.primaryColour,
     padding: 20,
   },
-  button: {
-    marginTop: 25,
-    backgroundColor: colourTheme.secondaryColour,
-    borderColor: colourTheme.white,
-    borderWidth: 2,
-    width: 250,
-    height: 50,
-    borderRadius: 10,
-    justifyContent: "center",
-    marginLeft: "auto",
-    marginRight: "auto",
-  },
+
   welcome: {
     color: colourTheme.white,
     justifyContent: "center",

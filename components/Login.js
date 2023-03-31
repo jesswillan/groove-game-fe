@@ -3,7 +3,7 @@ import { View, Text, Platform } from "react-native";
 import { StyleSheet, Button } from "react-native";
 import { TextInput } from "react-native-gesture-handler";
 // colour theme
-import { colourTheme } from "../stylesheet";
+import { colourTheme, buttonTheme } from "../stylesheet";
 import axios from "axios";
 import userContext from "../context/userContext";
 
@@ -51,7 +51,7 @@ const Login = ({ setLogin }) => {
         placeholder="password"
         style={styles.input}
       />
-      <View style={styles.loginBtn}>
+      <View style={buttonTheme}>
         <Button
           onPress={() => {
             console.log({ username, password });
@@ -75,7 +75,6 @@ const Login = ({ setLogin }) => {
 };
 
 const styles = StyleSheet.create({
-  userBtn: { backgroundColor: colourTheme.white, width: 75 },
   input: {
     height: 50,
     marginLeft: 25,
@@ -84,18 +83,6 @@ const styles = StyleSheet.create({
     backgroundColor: colourTheme.white,
     color: "black",
     textAlign: "center",
-  },
-  loginBtn: {
-    marginTop: 25,
-    backgroundColor: colourTheme.secondaryColour,
-    borderColor: colourTheme.white,
-    borderWidth: 2,
-    width: 250,
-    height: 50,
-    borderRadius: 10,
-    justifyContent: "center",
-    marginLeft: "auto",
-    marginRight: "auto",
   },
 
   textCentre: {

@@ -4,7 +4,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { View, Button, Text, StyleSheet } from "react-native";
 // custom styling objects
 import { colourTheme, buttonTheme, defaultPaddinTop } from "../stylesheet";
-//
+// imports Radio Button component
 import RadioButton from "../components/RadioButton";
 // axios for requests
 import axios from "axios";
@@ -12,7 +12,6 @@ import axios from "axios";
 import { useNavigation } from "@react-navigation/native";
 // global songsGenre context
 import songsGenre from "../context/songsGenre";
-import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function App() {
   // option state
@@ -34,28 +33,20 @@ export default function App() {
   }, []);
 
   return (
-      <View style={styles.container}>
-        <Text style={styles.paragraph}>Please Select One Genre: </Text>
-        <RadioButton data={data} onSelect={(value) => setChosenGenre(value)} />
-        <Text style={styles.options}> You've chosen {chosenGenre}</Text>
-        <View style={buttonTheme}>
-          <Button
-            onPress={() => navigation.navigate('dance')}
-            color={colourTheme.white}
-            title="Play the game"
-          ></Button>
-        </View>
     <View style={[styles.container, defaultPaddinTop]}>
       <Text style={styles.paragraph}>Please Select One Genre: </Text>
       <RadioButton data={data} onSelect={(value) => setChosenGenre(value)} />
-      <Text style={styles.options}> Your option: {option}</Text>
+      <Text style={styles.options}> You've chosen {chosenGenre}</Text>
       <View style={buttonTheme}>
         <Button
           onPress={() => navigation.navigate("dance")}
-          color={colourTheme.white}
+          color={
+            Platform.OS === "android" ? colourTheme.secondaryColour : "white"
+          }
           title="Play the game"
         ></Button>
       </View>
+    </View>
   );
 }
 
@@ -66,7 +57,7 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   paragraph: {
-    margin:0,
+    margin: 0,
     fontSize: 18,
     fontWeight: "bold",
     textAlign: "center",
@@ -78,12 +69,5 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textAlign: "center",
     color: colourTheme.white,
-  },
-
-  startBtn: {
-    backgroundColor: colourTheme.secondaryColour,
-    borderRadius: 10,
-    borderWidth: 3,
-    color: colourTheme.secondaryColour,
   },
 });

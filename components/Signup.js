@@ -3,7 +3,7 @@ import { View, Text, Button, StyleSheet } from "react-native";
 import { TextInput } from "react-native-gesture-handler";
 import userContext from "../context/userContext";
 // colour theme
-import { colourTheme } from "../stylesheet";
+import { buttonTheme, colourTheme } from "../stylesheet";
 import axios from "axios";
 
 const Signup = ({ setLogin }) => {
@@ -58,7 +58,7 @@ const Signup = ({ setLogin }) => {
         placeholder="password"
         style={styles.input}
       />
-      <View style={styles.loginBtn}>
+      <View style={buttonTheme}>
         <Button
           onPress={() => {
             handleSignup();

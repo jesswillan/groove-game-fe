@@ -19,9 +19,9 @@ const buttonTheme = {
   width: 250,
   height: 50,
   borderRadius: 10,
-  justifyContent: 'center',
-  marginLeft: 'auto',
-  marginRight: 'auto',
+  justifyContent: "center",
+  marginLeft: "auto",
+  marginRight: "auto",
 };
 const radioButtonUnselected = {
   marginTop: 25,
@@ -33,9 +33,9 @@ const radioButtonUnselected = {
   width: 250,
   height: 50,
   borderRadius: 30,
-  justifyContent: 'center',
-  marginLeft: 'auto',
-  marginRight: 'auto',
+  justifyContent: "center",
+  marginLeft: "auto",
+  marginRight: "auto",
 };
 
 const radioButtonSelected = {
@@ -48,21 +48,20 @@ const radioButtonSelected = {
   width: 250,
   height: 50,
   borderRadius: 30,
-  justifyContent: 'center',
-  marginLeft: 'auto',
-  marginRight: 'auto',
-};
-
-export {colourTheme, buttonTheme, radioButtonUnselected, radioButtonSelected};
-
-  borderRadius: 20,
   justifyContent: "center",
   marginLeft: "auto",
   marginRight: "auto",
 };
+
 // checks if device is ios or android and adds padding top depending on the device
 const defaultPaddinTop = {
   paddingTop: Platform.OS === "ios" ? 40 : StatusBar.currentHeight,
 };
 
-export { colourTheme, buttonTheme, defaultPaddinTop };
+export {
+  colourTheme,
+  buttonTheme,
+  defaultPaddinTop,
+  radioButtonUnselected,
+  radioButtonSelected,
+};
