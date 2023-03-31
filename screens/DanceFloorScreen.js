@@ -7,11 +7,11 @@ import {
   Button,
 } from "react-native";
 import { colourTheme } from "../stylesheet";
-import React, { useEffect, useState } from "react";
-import { useContext } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import songsGenre from "../context/songsGenre";
 import axios from "axios";
 import FruitMachineGame from "../components/FruitMachineGame";
+import globalSongArray from "../context/globalSongArray";
 
 const DanceFloorScreen = () => {
   const [sampleMuisc, setSampleMusic] = useState([]);
@@ -19,6 +19,7 @@ const DanceFloorScreen = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [isRoundFinished, setIsRoundFinished] = useState(false);
   const [isNextRound, setIsNextRound] = useState(false);
+  const { globalArray, setGlobalArray } = useContext(globalSongArray);
 
   const [square1, setSquare1] = useState("");
   const [square1Pressed, setSquare1Pressed] = useState(false);
@@ -56,7 +57,8 @@ const DanceFloorScreen = () => {
           };
           return newObj;
         });
-        setSampleMusic(mappedArr);
+        // setSelectedSongs(mappedArr);
+        setGlobalArray(mappedArr);
         setSquare1(mappedArr[0]);
         setSquare2(mappedArr[1]);
         setSquare3(mappedArr[2]);

@@ -5,27 +5,87 @@ import {
   TouchableOpacity,
   View,
   Animated,
+  Button,
+  Image,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
+import globalSongArray from "../context/globalSongArray";
 
 export default function FruitMachineGame() {
-  const [box1PositionValue] = useState(new Animated.Value(-17));
-  const [box2PositionValue] = useState(new Animated.Value(-17));
-  const [box3PositionValue] = useState(new Animated.Value(-17));
-  const [songSample, setSongSample] = useState([
-    "bob",
-    "paul",
-    "pete",
-    "jim",
-    "steve",
-    "dan",
-    "robert",
-  ]);
+  const [box1PositionValue] = useState(new Animated.Value(0));
+  const [box2PositionValue] = useState(new Animated.Value(0));
+  const [box3PositionValue] = useState(new Animated.Value(0));
+  const [count, setCount] = useState(0);
+  const [isBox1Spun, setIsBox1Spun] = useState(false);
+  const [isBox2Spun, setIsBox2Spun] = useState(false);
+  const [isBox3Spun, setIsBox3Spun] = useState(false);
+  const [isRoundOver, setIsRoundOver] = useState(false);
+  const { globalArray, setGlobalArray } = useContext(globalSongArray);
+  const [selectedSongs, setSelectedSongs] = useState([]);
+
+  const rndNum = () => {
+    let min = 1;
+    let max = 10;
+    let rndNum = Math.floor(Math.random() * (max - min) + min);
+    let roundedNum = Math.ceil(rndNum / 1.2) * 1.2;
+    return roundedNum;
+    // return 1.2;
+  };
+
+  let randomValue = rndNum();
+  let tile1LandingPosition;
+  let tile2LandingPosition;
+  let tile3LandingPosition;
 
   const moveBox = (boxPositionValue) => {
-    console.log(rndNum());
+    if (boxPositionValue === box1PositionValue) {
+      tile1LandingPosition = randomValue;
+    } else if (boxPositionValue === box2PositionValue) {
+      tile2LandingPosition = randomValue;
+    } else if (boxPositionValue === box3PositionValue) {
+      tile3LandingPosition = randomValue;
+    }
+
+    // tile1LandingPosition number === index value of global array;
+    let t1Song = tile1LandingPosition / 1.2;
+    let t2Song = tile2LandingPosition / 1.2;
+    let t3Song = tile3LandingPosition / 1.2;
+
+    // console.log(t1Song);
+    // console.log(globalArray[Math.floor(t1Song)].track_artist[0].name);
+
+    setSelectedSongs((currentSongs) => {
+      if (boxPositionValue === box1PositionValue) {
+        return [
+          ...currentSongs,
+          globalArray[Math.floor(t1Song)].track_artist[0].name,
+        ];
+      } else if (boxPositionValue === box2PositionValue) {
+        return [
+          ...currentSongs,
+          globalArray[Math.floor(t2Song)].track_artist[0].name,
+        ];
+      } else if (boxPositionValue === box3PositionValue) {
+        return [
+          ...currentSongs,
+          globalArray[Math.floor(t3Song)].track_artist[0].name,
+        ];
+      }
+    });
+
+    if (count >= 2) {
+      setTimeout(() => {
+        console.log("round over");
+        setIsRoundOver(true);
+      }, 3500);
+    }
+
+    setCount((previous) => {
+      return previous + 1;
+    });
+
     Animated.timing(boxPositionValue, {
-      toValue: rndNum(),
+      toValue: randomValue,
       duration: 3000,
       useNativeDriver: true,
     }).start();
@@ -37,16 +97,11 @@ export default function FruitMachineGame() {
       outputRange: [0, 100],
     });
 
-  const rndNum = () => {
-    let min = 5;
-    let max = 20;
-    return Math.floor(Math.random() * (max - min + 1) + min);
-  };
-
   const renderBoxes = () => {
+    const reversedGlobal = globalArray.slice().reverse();
     const boxArr = [];
-    for (let i = 0; i < 10; i++) {
-      songSample.map((song) => {
+    for (let i = 0; i < 2; i++) {
+      reversedGlobal.map((song) => {
         boxArr.push(
           <View
             style={[styles.box]}
@@ -56,7 +111,14 @@ export default function FruitMachineGame() {
               Math.floor(Math.random() * (5000 - 0 + 1) + 0)
             }
           >
-            <Text style={styles.text}>{song}</Text>
+            {/* <Text style={styles.text}>{song.track_name}</Text> */}
+            <Image
+              source={{
+                uri: song.img_url,
+                width: 110,
+                height: 110,
+              }}
+            />
           </View>
         );
       });
@@ -66,70 +128,92 @@ export default function FruitMachineGame() {
 
   return (
     <View style={styles.container}>
-      <StatusBar style="auto" />
-      <View style={styles.tileContainer}>
-        <Animated.View
-          style={[
-            styles.spinner,
-            {
-              transform: [{ translateX: translateBox(box1PositionValue) }],
-            },
-          ]}
+      <View>
+        <StatusBar style="auto" />
+        <View style={styles.tileContainer}>
+          <Animated.View
+            style={[
+              styles.spinner,
+              {
+                transform: [{ translateX: translateBox(box1PositionValue) }],
+              },
+            ]}
+          >
+            {renderBoxes()}
+          </Animated.View>
+        </View>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => {
+            moveBox(box1PositionValue);
+            setIsBox1Spun(true);
+          }}
+          disabled={isBox1Spun}
         >
-          {renderBoxes()}
-        </Animated.View>
-      </View>
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => moveBox(box1PositionValue)}
-      >
-        <Text>Move</Text>
-      </TouchableOpacity>
-      <View style={styles.tileContainer}>
-        <Animated.View
-          style={[
-            styles.spinner,
-            { transform: [{ translateX: translateBox(box2PositionValue) }] },
-          ]}
+          <Text>spin</Text>
+        </TouchableOpacity>
+        {isRoundOver ? <Text>{selectedSongs[0]}</Text> : <Text></Text>}
+        <View style={styles.tileContainer}>
+          <Animated.View
+            style={[
+              styles.spinner,
+              {
+                transform: [{ translateX: translateBox(box2PositionValue) }],
+              },
+            ]}
+          >
+            {renderBoxes()}
+          </Animated.View>
+        </View>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => {
+            moveBox(box2PositionValue);
+            setIsBox2Spun(true);
+          }}
+          disabled={isBox2Spun}
         >
-          {renderBoxes()}
-        </Animated.View>
-      </View>
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => moveBox(box2PositionValue)}
-      >
-        <Text>Move</Text>
-      </TouchableOpacity>
-      <View style={styles.tileContainer}>
-        <Animated.View
-          style={[
-            styles.spinner,
-            { transform: [{ translateX: translateBox(box3PositionValue) }] },
-          ]}
+          <Text>spin</Text>
+        </TouchableOpacity>
+        {isRoundOver ? <Text>{selectedSongs[1]}</Text> : <Text></Text>}
+        <View style={styles.tileContainer}>
+          <Animated.View
+            style={[
+              styles.spinner,
+              {
+                transform: [{ translateX: translateBox(box3PositionValue) }],
+              },
+            ]}
+          >
+            {renderBoxes()}
+          </Animated.View>
+        </View>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => {
+            moveBox(box3PositionValue);
+            setIsBox3Spun(true);
+          }}
+          disabled={isBox3Spun}
         >
-          {renderBoxes()}
-        </Animated.View>
+          <Text>spin</Text>
+        </TouchableOpacity>
+        {isRoundOver ? <Text>{selectedSongs[2]}</Text> : <Text></Text>}
+        {isRoundOver ? <Button title="next round" /> : <Text></Text>}
       </View>
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => moveBox(box3PositionValue)}
-      >
-        <Text>Move</Text>
-      </TouchableOpacity>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    // flex: 1,
-    marginTop: 100,
-    backgroundColor: "#fff",
+    marginTop: 50,
     alignItems: "center",
     justifyContent: "center",
   },
   spinner: {
+    // marginRight: 120,
+    right: -60,
     flexDirection: "row",
     backgroundColor: "lightgrey",
     width: 5000,
@@ -138,8 +222,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   box: {
-    width: 100,
-    height: 100,
+    width: 110,
+    height: 110,
     marginLeft: 5,
     marginRight: 5,
     backgroundColor: "blue",
