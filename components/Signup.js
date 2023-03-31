@@ -46,7 +46,7 @@ if(password.length >=6){
    }
   }else{
    
-setPasswordwarning("Password needs to be 6 characters");
+setPasswordwarning("Password needs to be 6 characters, please try again");
   } 
   
   };
