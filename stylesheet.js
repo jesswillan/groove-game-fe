@@ -10,14 +10,45 @@ const colourTheme = {
 const buttonTheme = {
   marginTop: 25,
   backgroundColor: colourTheme.secondaryColour,
-  borderColor: colourTheme.white,
-  borderWidth: 2,
+  borderColor: colourTheme.highlightBlue,
+  borderBottomColor: colourTheme.highlightGreen,
+  borderTopColor: colourTheme.highlightPink,
+  borderWidth: 4,
   width: 250,
   height: 50,
-  borderRadius: 20,
+  borderRadius: 10,
+  justifyContent: 'center',
+  marginLeft: 'auto',
+  marginRight: 'auto',
+};
+const radioButtonUnselected = {
+  marginTop: 25,
+  backgroundColor: colourTheme.secondaryColour,
+  borderColor: colourTheme.highlightGreen,
+  borderBottomColor: colourTheme.highlightPink,
+  borderTopColor: colourTheme.highlightBlue,
+  borderWidth: 4,
+  width: 250,
+  height: 50,
+  borderRadius: 30,
   justifyContent: 'center',
   marginLeft: 'auto',
   marginRight: 'auto',
 };
 
-export {colourTheme, buttonTheme};
+const radioButtonSelected = {
+  marginTop: 25,
+  backgroundColor: colourTheme.primaryColour,
+  borderColor: colourTheme.highlightBlue,
+  borderBottomColor: colourTheme.highlightGreen,
+  borderTopColor: colourTheme.highlightPink,
+  borderWidth: 4,
+  width: 250,
+  height: 50,
+  borderRadius: 30,
+  justifyContent: 'center',
+  marginLeft: 'auto',
+  marginRight: 'auto',
+};
+
+export {colourTheme, buttonTheme, radioButtonUnselected, radioButtonSelected};
