@@ -1,13 +1,13 @@
 import React, { useContext } from "react";
-import { Text, View, Button, StyleSheet, SafeAreaView } from "react-native";
+import { Text, View, Button, StyleSheet, Image } from "react-native";
 import userContext from "../context/userContext";
 import Icons from "react-native-vector-icons/Ionicons";
-import { colourTheme } from "../stylesheet";
+import { colourTheme, defaultPaddinTop } from "../stylesheet";
 
 const UserProfile = () => {
   const { user, setUser } = useContext(userContext);
   return (
-    <SafeAreaView style={styles.container}>
+<View style={[styles.container, defaultPaddinTop]}>
       <View style={styles.user}>
         <Icons name={"person"} color={colourTheme.white} size={50} />
         <Text style={{ color: "white", fontSize: 30 }}>{user}</Text>
@@ -21,7 +21,9 @@ const UserProfile = () => {
       >
         logout
       </Button>
-    </SafeAreaView>
+      <Image source={require('../img/logo-nobg.png')}/>
+</View>
+
   );
 };
 
