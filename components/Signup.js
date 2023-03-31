@@ -16,7 +16,7 @@ const Signup = ({ setLogin }) => {
 
   //if statement for password and username and user to be truthy
   const handleSignup = () => {
-    if (password.length >= 6 && username && user) {
+    if (password.length >= 6 && username && name) {
       {
         console.log({
           username: username,
