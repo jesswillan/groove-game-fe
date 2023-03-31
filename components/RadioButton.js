@@ -17,11 +17,13 @@ export default function RadioButton({ data, onSelect }) {
           <Pressable
             key={item}
             style={({pressed}) => [
-              pressed === true ? radioButtonSelected : radioButtonUnselected
+              pressed === true ? radioButtonSelected : radioButtonUnselected,
             ]}
             onPress={() => selectHandler(item)}
           >
-            <Text style={styles.option}>{item}</Text>
+            <Text style={styles.option}>
+              {item}
+            </Text>
           </Pressable>
         );
       })}
@@ -34,18 +36,5 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: "white",
     textAlign: "center",
-  },
-  unselected: {
-    backgroundColor: colourTheme.secondaryColour,
-    margin: 10,
-    borderRadius: 10,
-    borderWidth: 2,
-    borderColor: colourTheme.white,
-  },
-  selected: {
-    backgroundColor: "blue",
-    margin: 6,
-    padding: 10,
-    borderRadius: 10,
-  },
+  }
 });
