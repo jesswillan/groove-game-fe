@@ -37,7 +37,7 @@ const Login = ({ setLogin }) => {
         setShowAlert(true);
         setTimeout(() => {
           setShowAlert(false);
-        }, 4000);
+        }, 10000);
         console.log(err);
       });
   };
@@ -48,14 +48,14 @@ const Login = ({ setLogin }) => {
       <TextInput
         onChangeText={(text) => setUsername(text)}
         value={username}
-        placeholder="username"
+        placeholder="Username"
         style={styles.input}
       />
       <TextInput
         onChangeText={(text) => setPassword(text)}
         value={password}
         secureTextEntry={true}
-        placeholder="password"
+        placeholder="Password"
         style={styles.input}
       />
       {showAlert ? (
@@ -73,13 +73,13 @@ const Login = ({ setLogin }) => {
           color={
             Platform.OS === "android" ? colourTheme.secondaryColour : "white"
           }
-          title="login"
+          title="Login"
         />
       </View>
       <Text style={styles.textCentre}>
-        Not a member?
+        Not a Member?
         <Text onPress={() => setLogin(false)} style={styles.switch}>
-          Register
+          {"\n"}Register
         </Text>
       </Text>
     </View>
