@@ -14,7 +14,7 @@ import FruitMachineGame from "../components/FruitMachineGame";
 import globalSongArray from "../context/globalSongArray";
 
 const DanceFloorScreen = () => {
-  const [sampleMuisc, setSampleMusic] = useState([]);
+  const [sampleMusic, setSampleMusic] = useState([]);
   const { chosenGenre, setChosenGenre } = useContext(songsGenre);
   const [isLoading, setIsLoading] = useState(true);
   const [isRoundFinished, setIsRoundFinished] = useState(false);
@@ -133,7 +133,7 @@ const DanceFloorScreen = () => {
               <View style={styles.squaresContainer}>
                 <TouchableOpacity
                   onPress={() => {
-                    handleClick('square1');
+                    handleClick("square1");
                   }}
                 >
                   {!square1Pressed ? (
@@ -153,7 +153,7 @@ const DanceFloorScreen = () => {
                 </TouchableOpacity>
                 <TouchableOpacity
                   onPress={() => {
-                    handleClick('square2');
+                    handleClick("square2");
                   }}
                 >
                   {!square2Pressed ? (
@@ -173,7 +173,7 @@ const DanceFloorScreen = () => {
                 </TouchableOpacity>
                 <TouchableOpacity
                   onPress={() => {
-                    handleClick('square3');
+                    handleClick("square3");
                   }}
                 >
                   {!square3Pressed ? (
@@ -193,7 +193,7 @@ const DanceFloorScreen = () => {
                 </TouchableOpacity>
                 <TouchableOpacity
                   onPress={() => {
-                    handleClick('square4');
+                    handleClick("square4");
                   }}
                 >
                   {!square4Pressed ? (
@@ -213,7 +213,7 @@ const DanceFloorScreen = () => {
                 </TouchableOpacity>
                 <TouchableOpacity
                   onPress={() => {
-                    handleClick('square5');
+                    handleClick("square5");
                   }}
                 >
                   {!square5Pressed ? (
@@ -233,7 +233,7 @@ const DanceFloorScreen = () => {
                 </TouchableOpacity>
                 <TouchableOpacity
                   onPress={() => {
-                    handleClick('square6');
+                    handleClick("square6");
                   }}
                 >
                   {!square6Pressed ? (
@@ -253,7 +253,7 @@ const DanceFloorScreen = () => {
                 </TouchableOpacity>
                 <TouchableOpacity
                   onPress={() => {
-                    handleClick('square7');
+                    handleClick("square7");
                   }}
                 >
                   {!square7Pressed ? (
@@ -266,7 +266,6 @@ const DanceFloorScreen = () => {
                           uri: square7.img_url,
                           width: 123,
                           height: 123,
-                          
                         }}
                       />
                     </View>
@@ -274,7 +273,7 @@ const DanceFloorScreen = () => {
                 </TouchableOpacity>
                 <TouchableOpacity
                   onPress={() => {
-                    handleClick('square8');
+                    handleClick("square8");
                   }}
                 >
                   {!square8Pressed ? (
@@ -294,7 +293,7 @@ const DanceFloorScreen = () => {
                 </TouchableOpacity>
                 <TouchableOpacity
                   onPress={() => {
-                    handleClick('square9');
+                    handleClick("square9");
                   }}
                 >
                   {!square9Pressed ? (
@@ -307,10 +306,10 @@ const DanceFloorScreen = () => {
                           uri: square9.img_url,
                           width: 123,
                           height: 123,
-                          borderColor: 'black',
+                          borderColor: "black",
                           borderWidth: 5,
                           borderRadius: 5,
-                          overflow: 'hidden',
+                          overflow: "hidden",
                         }}
                       />
                     </View>
@@ -333,11 +332,11 @@ const DanceFloorScreen = () => {
             <View style={buttonTheme}>
               <Button
                 color={
-                  Platform.OS === 'android'
+                  Platform.OS === "android"
                     ? colourTheme.secondaryColour
-                    : 'white'
+                    : "white"
                 }
-                title="next round"
+                title="Next round"
                 onPress={renderNextRound}
               />
             </View>
@@ -361,13 +360,13 @@ const styles = StyleSheet.create({
   },
   squaresContainer: {
     borderColor: colourTheme.primaryColour,
-    flexDirection: 'row',
-    flexWrap: 'wrap',
+    flexDirection: "row",
+    flexWrap: "wrap",
     marginTop: 150,
-    marginLeft: 'auto',
-    marginRight: 'auto',
-    width: 'auto',
-    justifyContent: 'center',
+    marginLeft: "auto",
+    marginRight: "auto",
+    width: "auto",
+    justifyContent: "center",
   },
   squareBlue: {
     width: 125,
@@ -375,8 +374,8 @@ const styles = StyleSheet.create({
     backgroundColor: colourTheme.highlightBlue,
     borderColor: colourTheme.primaryColour,
     borderWidth: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
   squareGreen: {
     width: 125,
@@ -384,8 +383,8 @@ const styles = StyleSheet.create({
     backgroundColor: colourTheme.highlightGreen,
     borderColor: colourTheme.primaryColour,
     borderWidth: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
   squarePink: {
     width: 125,
@@ -393,23 +392,23 @@ const styles = StyleSheet.create({
     backgroundColor: colourTheme.highlightPink,
     borderColor: colourTheme.primaryColour,
     borderWidth: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
   songList: {
     backgroundColor: colourTheme.secondaryColour,
     width: 375,
-    height: 'auto',
-    alignItems: 'center',
-    marginLeft: 'auto',
-    marginRight: 'auto',
+    height: "auto",
+    alignItems: "center",
+    marginLeft: "auto",
+    marginRight: "auto",
     marginTop: 10,
     padding: 10,
     borderRadius: 5,
   },
   yourSongs: {
     color: colourTheme.white,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     fontSize: 18,
     padding: 2,
     paddingBottom: 10,
