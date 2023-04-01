@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import React, { useState, useContext, useEffect } from "react";
 import globalSongArray from "../context/globalSongArray";
+import { colourTheme } from "../stylesheet";
 
 export default function FruitMachineGame() {
   const [box1PositionValue] = useState(new Animated.Value(0));
@@ -150,9 +151,13 @@ export default function FruitMachineGame() {
           }}
           disabled={isBox1Spun}
         >
-          <Text>spin</Text>
+          <Text>Spin</Text>
         </TouchableOpacity>
-        {isRoundOver ? <Text>{selectedSongs[0]}</Text> : <Text></Text>}
+        {isRoundOver ? (
+          <Text style={styles.yourSongs}>{selectedSongs[0]}</Text>
+        ) : (
+          <Text></Text>
+        )}
         <View style={styles.tileContainer}>
           <Animated.View
             style={[
@@ -173,9 +178,13 @@ export default function FruitMachineGame() {
           }}
           disabled={isBox2Spun}
         >
-          <Text>spin</Text>
+          <Text>Spin</Text>
         </TouchableOpacity>
-        {isRoundOver ? <Text>{selectedSongs[1]}</Text> : <Text></Text>}
+        {isRoundOver ? (
+          <Text style={styles.yourSongs}>{selectedSongs[1]}</Text>
+        ) : (
+          <Text></Text>
+        )}
         <View style={styles.tileContainer}>
           <Animated.View
             style={[
@@ -196,10 +205,14 @@ export default function FruitMachineGame() {
           }}
           disabled={isBox3Spun}
         >
-          <Text>spin</Text>
+          <Text>Spin</Text>
         </TouchableOpacity>
-        {isRoundOver ? <Text>{selectedSongs[2]}</Text> : <Text></Text>}
-        {isRoundOver ? <Button title="next round" /> : <Text></Text>}
+        {isRoundOver ? (
+          <Text style={styles.yourSongs}>{selectedSongs[2]}</Text>
+        ) : (
+          <Text></Text>
+        )}
+        {isRoundOver ? <Button title="Next round" /> : <Text></Text>}
       </View>
     </View>
   );
@@ -207,7 +220,7 @@ export default function FruitMachineGame() {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 50,
+    marginTop: 70,
     alignItems: "center",
     justifyContent: "center",
   },
@@ -249,7 +262,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     overflow: "hidden",
   },
-  text: {
-    color: "white",
+  yourSongs: {
+    color: colourTheme.white,
+    fontWeight: "bold",
+    fontSize: 18,
+    padding: 2,
+    paddingBottom: 10,
   },
 });
