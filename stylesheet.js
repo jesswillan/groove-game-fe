@@ -23,6 +23,18 @@ const buttonTheme = {
   marginLeft: "auto",
   marginRight: "auto",
 };
+const logoutButtonTheme = {
+  marginTop: 25,
+  backgroundColor: colourTheme.highlightPink,
+  borderColor: colourTheme.white,
+  borderWidth: 4,
+  width: 200,
+  height: 50,
+  borderRadius: 10,
+  justifyContent: 'center',
+  marginLeft: 'auto',
+  marginRight: 'auto',
+};
 const radioButtonUnselected = {
   marginTop: 25,
   backgroundColor: colourTheme.secondaryColour,
@@ -64,4 +76,5 @@ export {
   defaultPaddinTop,
   radioButtonUnselected,
   radioButtonSelected,
+  logoutButtonTheme
 };
