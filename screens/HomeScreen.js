@@ -37,6 +37,20 @@ export default HomeScreen = () => {
         games. Please log in or create an account to be able to add the songs to
         your Spotify playlist at the end of each round.{' '}
       </Text>
+      {user ? (
+        <View style={buttonTheme}>
+          <Button
+            onPress={() => navigation.navigate("quiz")}
+            color={
+              Platform.OS === "android" ? colourTheme.secondaryColour : "white"
+            }
+            title="Play Quiz"
+          ></Button>
+        </View>
+      ) : (
+        ""
+      )}
+
       <Image
         source={require('../img/logo-nobg.png')}
         style={[

@@ -3,6 +3,7 @@ import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 // screen
 import DanceFloorScreen from "./screens/DanceFloorScreen";
+import QuizScreen from "./screens/QuizScreen";
 // Bottom Navigator / Navbar
 import MyTabs from "./components/MyTabs";
 
@@ -21,6 +22,11 @@ export default function StackNavigator() {
         options={{ headerShown: false }}
         name="dance"
         component={DanceFloorScreen}
+      />
+      <Stack.Screen
+        options={{ headerShown: false }}
+        name="quiz"
+        component={QuizScreen}
       />
     </Stack.Navigator>
   );
