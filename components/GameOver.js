@@ -1,15 +1,21 @@
-import React, { useState } from "react";
-import { Text, View, StyleSheet, Image } from "react-native";
+import React, { useEffect, useState } from "react";
+import { Text, View, StyleSheet, Image, Button } from "react-native";
 import songsSelectedArray from "../context/songsSelectedArray";
 import { useContext } from "react";
 import { WebView } from "react-native-webview";
 import { TouchableOpacity } from "react-native";
+import userContext from "../context/userContext";
+import axios from "axios";
+// import { useNavigation } from "@react-navigation/native";
 
 const GameOver = () => {
   const { songsSelected } = useContext(songsSelectedArray);
+  const { user } = useContext(userContext);
 
   const [itsPlaying, setItsPlaying] = useState(false);
   const [songIndex, setSongIndex] = useState(0);
+
+  //   const navigation = useNavigation();
 
   const playSong = (song) => {
     if (songIndex === song && itsPlaying) {
@@ -20,8 +26,22 @@ const GameOver = () => {
     }
   };
 
+  useEffect(() => {
+    if (user) {
+      axios.post("https://groove-game-be.onrender.com/api/submit-games", {
+        game: {
+          user: user,
+          songs: songsSelected,
+        },
+      });
+    }
+  });
+
   return (
     <View style={{ alignItems: "center" }}>
+      {/* <Button onPress={navigation.navigate("Home")} title="nav-button">
+        <Text>home</Text>
+      </Button> */}
       <Text style={{ color: "white", fontSize: 30 }}>Your playlist</Text>
       <View style={styles.playlistContainer}>
         {songsSelected.map((songs) => {
