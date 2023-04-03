@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import userContext from "../context/userContext";
 import Icons from "react-native-vector-icons/Ionicons";
-import { colourTheme, defaultPaddinTop } from "../stylesheet";
+import { colourTheme, defaultPaddinTop, logoutButtonTheme } from "../stylesheet";
 import axios from "axios";
 import { WebView } from "react-native-webview";
 import { useIsFocused } from "@react-navigation/native";
@@ -54,10 +54,12 @@ const UserProfile = () => {
         <View>
           <View style={styles.user}>
             <Icons name={"person"} color={colourTheme.white} size={50} />
-            <Text style={{ color: "white", fontSize: 30 }}>{user}</Text>
+            <Text style={{ color: "white", fontSize: 30, paddingLeft: 30 }}>{user}</Text>
           </View>
+          <View style={logoutButtonTheme}>
+
           <Button
-            color={"red"}
+            color={colourTheme.primaryColour}
             onPress={() => {
               setUser("");
             }}
@@ -65,14 +67,7 @@ const UserProfile = () => {
           >
             logout
           </Button>
-          <Image
-            style={[
-              { opacity: 0.2 },
-              { position: "absolute", zIndex: -1 },
-              styles.backgroundImg,
-            ]}
-            source={require("../img/logo-nobg.png")}
-          />
+          </View>
           <View>
             {usersGames.map(({ game }) => {
               return (
@@ -156,16 +151,12 @@ const UserProfile = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colourTheme.primaryColour,
     justifyContent: "flex-start",
   },
   user: {
     flexDirection: "row",
-    alignItems: "center",
+    alignItems: "flex-end",
     padding: 30,
-  },
-  backgroundImg: {
-    marginTop: 120,
   },
   playlistContainer: {
     marginTop: 50,
