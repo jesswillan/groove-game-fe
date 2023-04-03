@@ -1,7 +1,7 @@
 // react/hooks
 import React, { useContext } from "react";
 // react components
-import { Text, View, Button } from "react-native";
+import { Text, View, Button, Image } from "react-native";
 // global userContext
 import userContext from "../context/userContext";
 // StyleSheet component to create styles object
@@ -23,23 +23,24 @@ export default HomeScreen = () => {
       <Text style={styles.welcome}>
         Welcome to {"\n"} <Text style={styles.grooveGame}>Groove Game</Text>
       </Text>
-      <View style={buttonTheme}> 
+      <View style={buttonTheme}>
         <Button
           onPress={() => navigation.navigate("Game")}
           color={
             Platform.OS === "android" ? colourTheme.secondaryColour : "white"
           }
-          title="Play the game"
+          title="Play Game"
         ></Button>
       </View>
       <Text style={styles.instructions}>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Cursus sit amet
-        dictum sit amet justo donec enim diam. Quisque sagittis purus sit amet
-        volutpat consequat mauris nunc congue. Eget gravida cum sociis natoque
-        penatibus et. Aenean vel elit scelerisque mauris pellentesque pulvinar
-        pellentesque habitant.
+        Click "Play Game" to start playing through the three rounds of mini
+        games. Please log in or create an account to be able to add the songs to
+        your Spotify playlist at the end of each round.{" "}
       </Text>
+      <Image
+        source={require("../img/logo-nobg.png")}
+        style={{ opacity: 0.1 }}
+      />
     </View>
   );
 };
