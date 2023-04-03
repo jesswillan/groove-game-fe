@@ -9,17 +9,22 @@ import { TouchableOpacity } from "react-native";
 const GameOver = () => {
   const { songsSelected } = useContext(songsSelectedArray);
   //   console.log(songsSelected[0].track_preview);
-const [webViewArray, setWebViewArray] = useState([]);
+const [webViewArray, setWebViewArray] = useState([<Text/>]);
+
+const [itsPlaying, setItsPlaying] = useState(false);
+const [songIndex, setSongIndex] = useState(0);
 
   const playSong = (song) =>{
     console.log(song)
+    setItsPlaying(true);
+    setSongIndex(song)
   }
 
   useEffect(() =>{
-
 let mappedArray = songsSelected.map((song) =>{
-return <WebView source={{ uri: song.track_preview }}></WebView>
+return song.track_preview 
 })
+
 setWebViewArray(mappedArray)
 console.log(mappedArray);
   }, [])
@@ -56,7 +61,7 @@ console.log(mappedArray);
                     borderRadius: 10,
                   }}
                   onPress={() => {
-                    playSong(songs.track_name);
+                    playSong(songsSelected.indexOf(songs));
                   }}
                 >
 
@@ -67,6 +72,8 @@ console.log(mappedArray);
           );
         })}
       </View>
+      {itsPlaying ?  <WebView source={{ uri: songsSelected[songIndex].track_preview }}></WebView> : <Text/>}
+
       <WebView source={{ uri: songsSelected[0].track_preview }}></WebView>
       <WebView source={{ uri: songsSelected[1].track_preview }}></WebView>
       <WebView source={{ uri: songsSelected[2].track_preview }}></WebView>
@@ -74,6 +81,7 @@ console.log(mappedArray);
       <WebView source={{ uri: songsSelected[4].track_preview }}></WebView>
       <WebView source={{ uri: songsSelected[5].track_preview }}></WebView>
     </View>
+
   );
 };
 
