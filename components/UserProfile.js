@@ -11,12 +11,15 @@ import userContext from "../context/userContext";
 import Icons from "react-native-vector-icons/Ionicons";
 import { colourTheme, defaultPaddinTop } from "../stylesheet";
 import axios from "axios";
+import { WebView } from "react-native-webview";
 
 const UserProfile = () => {
   const { user, setUser } = useContext(userContext);
   const [usersGames, setUsersGames] = useState([]);
   const [currentGame, setCurrentGame] = useState([]);
   const [isViewingGame, setIsViewingGame] = useState(false);
+  const [itsPlaying, setItsPlaying] = useState(false);
+  const [songIndex, setSongIndex] = useState(0);
 
   useEffect(() => {
     axios
@@ -31,6 +34,15 @@ const UserProfile = () => {
   const renderGame = (game) => {
     setCurrentGame(game);
     setIsViewingGame(true);
+  };
+
+  const playSong = (song) => {
+    if (songIndex === song && itsPlaying) {
+      setItsPlaying(false);
+    } else {
+      setItsPlaying(true);
+      setSongIndex(song);
+    }
   };
 
   return (
@@ -61,8 +73,11 @@ const UserProfile = () => {
           <View>
             {usersGames.map(({ game }) => {
               return (
-                <View key={Math.floor(Math.random() * 1000)}>
-                  <Button title="game" onPress={() => renderGame(game)} />
+                <View key={Math.floor(Math.random() * 5000)}>
+                  <Button
+                    title={game.game_name}
+                    onPress={() => renderGame(game)}
+                  ></Button>
                 </View>
               );
             })}
@@ -75,16 +90,16 @@ const UserProfile = () => {
           </Button>
           <Button title="log" onPress={() => console.log(currentGame.songs)} />
           <View style={styles.playlistContainer}>
-            {currentGame.songs.map((songs) => {
+            {currentGame.songs.map((song) => {
               return (
                 <View
-                  key={Math.floor(Math.random() * 500)}
+                  key={Math.floor(Math.random() * 5000)}
                   style={styles.songContainer}
                 >
                   <View style={{ padding: 5 }}>
                     <Image
                       source={{
-                        uri: songs.img_url,
+                        uri: song.img_url,
                         width: 50,
                         height: 50,
                       }}
@@ -92,13 +107,13 @@ const UserProfile = () => {
                   </View>
                   <View style={{ width: 250 }}>
                     <Text style={{ fontSize: 16, color: "white" }}>
-                      {songs.track_name}
+                      {song.track_name}
                     </Text>
                     <Text style={{ fontSize: 12, color: "white" }}>
-                      {songs.track_artist[0].name}
+                      {song.track_artist[0].name}
                     </Text>
                   </View>
-                  {songs.track_preview ? (
+                  {song.track_preview ? (
                     <View style={styles.playButton}>
                       <TouchableOpacity
                         style={{
@@ -107,7 +122,7 @@ const UserProfile = () => {
                           borderRadius: 10,
                         }}
                         onPress={() => {
-                          // playSong(songsSelected.indexOf(songs));
+                          playSong(currentGame.songs.indexOf(song));
                         }}
                       >
                         <Text>+</Text>
@@ -120,6 +135,15 @@ const UserProfile = () => {
               );
             })}
           </View>
+          {itsPlaying ? (
+            <View>
+              <WebView
+                source={{ uri: currentGame.songs[songIndex].track_preview }}
+              ></WebView>
+            </View>
+          ) : (
+            <Text />
+          )}
         </View>
       )}
     </View>
