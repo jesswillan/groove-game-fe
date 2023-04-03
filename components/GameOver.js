@@ -1,39 +1,24 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Text, View, StyleSheet, Image } from "react-native";
 import songsSelectedArray from "../context/songsSelectedArray";
 import { useContext } from "react";
 import { WebView } from "react-native-webview";
 import { TouchableOpacity } from "react-native";
 
-
 const GameOver = () => {
   const { songsSelected } = useContext(songsSelectedArray);
-  //   console.log(songsSelected[0].track_preview);
-const [webViewArray, setWebViewArray] = useState([<Text/>]);
 
-const [itsPlaying, setItsPlaying] = useState(false);
-const [songIndex, setSongIndex] = useState(0);
+  const [itsPlaying, setItsPlaying] = useState(false);
+  const [songIndex, setSongIndex] = useState(0);
 
-  const playSong = (song) =>{
-    
-    if(songIndex === song && itsPlaying){
-      setItsPlaying(false)
-    }else{
-      console.log(song)
+  const playSong = (song) => {
+    if (songIndex === song && itsPlaying) {
+      setItsPlaying(false);
+    } else {
       setItsPlaying(true);
-      setSongIndex(song)
+      setSongIndex(song);
     }
-
-  }
-
-  useEffect(() =>{
-let mappedArray = songsSelected.map((song) =>{
-return song.track_preview 
-})
-
-setWebViewArray(mappedArray)
-console.log(mappedArray);
-  }, [])
+  };
 
   return (
     <View style={{ alignItems: "center" }}>
@@ -41,7 +26,10 @@ console.log(mappedArray);
       <View style={styles.playlistContainer}>
         {songsSelected.map((songs) => {
           return (
-            <View key={songs.track_id} style={styles.songContainer}>
+            <View
+              key={Math.floor(Math.random() * 500)}
+              style={styles.songContainer}
+            >
               <View style={{ padding: 5 }}>
                 <Image
                   source={{
@@ -59,28 +47,36 @@ console.log(mappedArray);
                   {songs.track_artist[0].name}
                 </Text>
               </View>
-              <View style={styles.playButton}>
-                <TouchableOpacity
-                  style={{
-                    backgroundColor: "lightgreen",
-                    padding: 10,
-                    borderRadius: 10,
-                  }}
-                  onPress={() => {
-                    playSong(songsSelected.indexOf(songs));
-                  }}
-                >
-
-                  <Text>+</Text>
-                </TouchableOpacity>
-              </View>
+              {songs.track_preview ? (
+                <View style={styles.playButton}>
+                  <TouchableOpacity
+                    style={{
+                      backgroundColor: "lightgreen",
+                      padding: 10,
+                      borderRadius: 10,
+                    }}
+                    onPress={() => {
+                      playSong(songsSelected.indexOf(songs));
+                    }}
+                  >
+                    <Text>+</Text>
+                  </TouchableOpacity>
+                </View>
+              ) : (
+                <Text></Text>
+              )}
             </View>
           );
         })}
       </View>
-      {itsPlaying ?  <WebView source={{ uri: songsSelected[songIndex].track_preview }}></WebView> : <Text/>}
+      {itsPlaying ? (
+        <WebView
+          source={{ uri: songsSelected[songIndex].track_preview }}
+        ></WebView>
+      ) : (
+        <Text />
+      )}
     </View>
-
   );
 };
 
