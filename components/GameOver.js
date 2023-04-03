@@ -1,13 +1,29 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Text, View, StyleSheet, Image } from "react-native";
 import songsSelectedArray from "../context/songsSelectedArray";
 import { useContext } from "react";
 import { WebView } from "react-native-webview";
 import { TouchableOpacity } from "react-native";
 
+
 const GameOver = () => {
   const { songsSelected } = useContext(songsSelectedArray);
   //   console.log(songsSelected[0].track_preview);
+const [webViewArray, setWebViewArray] = useState([]);
+
+  const playSong = (song) =>{
+    console.log(song)
+  }
+
+  useEffect(() =>{
+
+let mappedArray = songsSelected.map((song) =>{
+return <WebView source={{ uri: song.track_preview }}></WebView>
+})
+setWebViewArray(mappedArray)
+console.log(mappedArray);
+  }, [])
+
   return (
     <View style={{ alignItems: "center" }}>
       <Text style={{ color: "white", fontSize: 30 }}>Your playlist</Text>
@@ -39,7 +55,11 @@ const GameOver = () => {
                     padding: 10,
                     borderRadius: 10,
                   }}
+                  onPress={() => {
+                    playSong(songs.track_name);
+                  }}
                 >
+
                   <Text>+</Text>
                 </TouchableOpacity>
               </View>
