@@ -18,7 +18,9 @@ const Signup = ({ setLogin }) => {
 
   //if statement for password and username and user to be truthy
   const handleSignup = () => {
+
     //check if the username, name is filled up and the password box has minimum 6 characters
+
     if (password.length >= 6 && username && name) {
       {
         console.log({
@@ -52,15 +54,24 @@ const Signup = ({ setLogin }) => {
       setShowAlert(true);
       setTimeout(() => {
         setShowAlert(false);
+
       }, 6000);
     } else if (password.length < 6) { // checking to see if password field is less than 6 characters
+
+      }, 10000);
+    } else if (password.length < 6) {
+
       setAlertWarning(
         "Password must be a minimum of 6 characters. Please try again"
       );
       setShowAlert(true);
       setTimeout(() => {
         setShowAlert(false);
+
       }, 6000); // message displayed of error should time out after 6 secs
+
+      }, 10000);
+
     }
   };
 
@@ -98,13 +109,14 @@ const Signup = ({ setLogin }) => {
             color={
               Platform.OS === "android" ? colourTheme.secondaryColour : "white"
             }
-            title="create account"
+            title="Create Account"
           />
         </View>
         <Text style={styles.textCentre}>
-          already have an account?
+          Already have an account?
           <Text onPress={() => setLogin(true)} style={styles.switch}>
-            login
+            {"\n"}
+            Login
           </Text>
         </Text>
       </View>

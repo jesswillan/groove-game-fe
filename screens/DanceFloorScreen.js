@@ -6,7 +6,7 @@ import {
   Image,
   Button,
 } from "react-native";
-import { colourTheme } from "../stylesheet";
+import { buttonTheme, colourTheme } from "../stylesheet";
 import React, { useEffect, useState, useContext } from "react";
 import songsGenre from "../context/songsGenre";
 import axios from "axios";
@@ -14,7 +14,7 @@ import FruitMachineGame from "../components/FruitMachineGame";
 import globalSongArray from "../context/globalSongArray";
 
 const DanceFloorScreen = () => {
-  const [sampleMuisc, setSampleMusic] = useState([]);
+  const [sampleMusic, setSampleMusic] = useState([]);
   const { chosenGenre, setChosenGenre } = useContext(songsGenre);
   const [isLoading, setIsLoading] = useState(true);
   const [isRoundFinished, setIsRoundFinished] = useState(false);
@@ -123,14 +123,14 @@ const DanceFloorScreen = () => {
   };
 
   return (
-    <View>
+    <View style={styles.container}>
       {!isNextRound ? (
         <View>
           <View>
             {isLoading ? (
               <Text>loading...</Text>
             ) : (
-              <View style={styles.container}>
+              <View style={styles.squaresContainer}>
                 <TouchableOpacity
                   onPress={() => {
                     handleClick("square1");
@@ -306,6 +306,10 @@ const DanceFloorScreen = () => {
                           uri: square9.img_url,
                           width: 123,
                           height: 123,
+                          borderColor: "black",
+                          borderWidth: 5,
+                          borderRadius: 5,
+                          overflow: "hidden",
                         }}
                       />
                     </View>
@@ -315,13 +319,27 @@ const DanceFloorScreen = () => {
             )}
           </View>
           <View style={styles.songList}>
-            <Text>songs here</Text>
+            <Text style={styles.yourSongs}>Your songs:</Text>
             {selectedSongs.map((song) => {
-              return <Text key={song.track_name}>{song.track_name}</Text>;
+              return (
+                <Text style={styles.songs} key={song.track_name}>
+                  {song.track_name}
+                </Text>
+              );
             })}
           </View>
           {isRoundFinished ? (
-            <Button title="next round" onPress={renderNextRound} />
+            <View style={buttonTheme}>
+              <Button
+                color={
+                  Platform.OS === "android"
+                    ? colourTheme.secondaryColour
+                    : "white"
+                }
+                title="Next round"
+                onPress={renderNextRound}
+              />
+            </View>
           ) : (
             <Text></Text>
           )}
@@ -335,18 +353,26 @@ const DanceFloorScreen = () => {
 
 const styles = StyleSheet.create({
   container: {
-    borderColor: "black",
+    flex: 1,
+    backgroundColor: colourTheme.primaryColour,
+    marginTop: 0,
+    fontSize: 30,
+  },
+  squaresContainer: {
+    borderColor: colourTheme.primaryColour,
     flexDirection: "row",
     flexWrap: "wrap",
-    marginTop: 200,
-    width: 400,
+    marginTop: 150,
+    marginLeft: "auto",
+    marginRight: "auto",
+    width: "auto",
     justifyContent: "center",
   },
   squareBlue: {
     width: 125,
     height: 125,
     backgroundColor: colourTheme.highlightBlue,
-    borderColor: "black",
+    borderColor: colourTheme.primaryColour,
     borderWidth: 1,
     justifyContent: "center",
     alignItems: "center",
@@ -355,7 +381,7 @@ const styles = StyleSheet.create({
     width: 125,
     height: 125,
     backgroundColor: colourTheme.highlightGreen,
-    borderColor: "black",
+    borderColor: colourTheme.primaryColour,
     borderWidth: 1,
     justifyContent: "center",
     alignItems: "center",
@@ -364,19 +390,33 @@ const styles = StyleSheet.create({
     width: 125,
     height: 125,
     backgroundColor: colourTheme.highlightPink,
-    borderColor: "black",
+    borderColor: colourTheme.primaryColour,
     borderWidth: 1,
     justifyContent: "center",
     alignItems: "center",
   },
   songList: {
-    margin: "auto",
-    backgroundColor: "lightblue",
-    width: 400,
-    height: 100,
+    backgroundColor: colourTheme.secondaryColour,
+    width: 375,
+    height: "auto",
+    alignItems: "center",
+    marginLeft: "auto",
+    marginRight: "auto",
+    marginTop: 10,
+    padding: 10,
+    borderRadius: 5,
+  },
+  yourSongs: {
+    color: colourTheme.white,
+    fontWeight: "bold",
+    fontSize: 18,
+    padding: 2,
+    paddingBottom: 10,
   },
   songs: {
-    backgroundColor: "black",
+    color: colourTheme.white,
+    padding: 2,
+    fontSize: 16,
   },
 });
 

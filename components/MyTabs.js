@@ -47,7 +47,7 @@ export const MyTabs = () => {
       />
       <Tab.Screen
         options={{ headerShown: false }}
-        name="UserLogin"
+        name="User Login"
         component={UserLoginScreen}
       />
     </Tab.Navigator>
