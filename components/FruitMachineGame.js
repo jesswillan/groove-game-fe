@@ -1,4 +1,4 @@
-import { StatusBar } from "expo-status-bar";
+import {StatusBar} from 'expo-status-bar';
 import {
   StyleSheet,
   Text,
@@ -7,10 +7,10 @@ import {
   Animated,
   Button,
   Image,
-} from "react-native";
-import React, { useState, useContext, useEffect } from "react";
-import globalSongArray from "../context/globalSongArray";
-import { colourTheme } from "../stylesheet";
+} from 'react-native';
+import React, {useState, useContext, useEffect} from 'react';
+import globalSongArray from '../context/globalSongArray';
+import {buttonTheme, colourTheme} from '../stylesheet';
 
 export default function FruitMachineGame() {
   const [box1PositionValue] = useState(new Animated.Value(0));
@@ -21,7 +21,7 @@ export default function FruitMachineGame() {
   const [isBox2Spun, setIsBox2Spun] = useState(false);
   const [isBox3Spun, setIsBox3Spun] = useState(false);
   const [isRoundOver, setIsRoundOver] = useState(false);
-  const { globalArray, setGlobalArray } = useContext(globalSongArray);
+  const {globalArray, setGlobalArray} = useContext(globalSongArray);
   const [selectedSongs, setSelectedSongs] = useState([]);
 
   const rndNum = () => {
@@ -76,7 +76,7 @@ export default function FruitMachineGame() {
 
     if (count >= 2) {
       setTimeout(() => {
-        console.log("round over");
+        console.log('round over');
         setIsRoundOver(true);
       }, 3500);
     }
@@ -105,7 +105,7 @@ export default function FruitMachineGame() {
       reversedGlobal.map((song) => {
         boxArr.push(
           <View
-            style={[styles.box]}
+            style={[styles.songImgBox,]}
             key={
               Math.floor(Math.random() * (5000 - 0 + 1) + 0) +
               song +
@@ -136,83 +136,102 @@ export default function FruitMachineGame() {
             style={[
               styles.spinner,
               {
-                transform: [{ translateX: translateBox(box1PositionValue) }],
+                transform: [{translateX: translateBox(box1PositionValue)}],
               },
             ]}
           >
             {renderBoxes()}
           </Animated.View>
         </View>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => {
-            moveBox(box1PositionValue);
-            setIsBox1Spun(true);
-          }}
-          disabled={isBox1Spun}
-        >
-          <Text>Spin</Text>
-        </TouchableOpacity>
-        {isRoundOver ? (
-          <Text style={styles.yourSongs}>{selectedSongs[0]}</Text>
-        ) : (
-          <Text></Text>
-        )}
+        <View style={styles.buttonResultContainer}>
+          <TouchableOpacity
+            style={[buttonTheme, styles.button]}
+            onPress={() => {
+              moveBox(box1PositionValue);
+              setIsBox1Spun(true);
+            }}
+            disabled={isBox1Spun}
+          >
+            <Text style={{color: colourTheme.white}}>Spin</Text>
+          </TouchableOpacity>
+          {isRoundOver ? (
+            <Text style={styles.yourSongs}>{selectedSongs[0]}</Text>
+          ) : (
+            <Text></Text>
+          )}
+        </View>
         <View style={styles.tileContainer}>
           <Animated.View
             style={[
               styles.spinner,
               {
-                transform: [{ translateX: translateBox(box2PositionValue) }],
+                transform: [{translateX: translateBox(box2PositionValue)}],
               },
             ]}
           >
             {renderBoxes()}
           </Animated.View>
         </View>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => {
-            moveBox(box2PositionValue);
-            setIsBox2Spun(true);
-          }}
-          disabled={isBox2Spun}
-        >
-          <Text>Spin</Text>
-        </TouchableOpacity>
-        {isRoundOver ? (
-          <Text style={styles.yourSongs}>{selectedSongs[1]}</Text>
-        ) : (
-          <Text></Text>
-        )}
+        <View style={styles.buttonResultContainer}>
+          <TouchableOpacity
+            style={[buttonTheme, styles.button]}
+            onPress={() => {
+              moveBox(box2PositionValue);
+              setIsBox2Spun(true);
+            }}
+            disabled={isBox2Spun}
+          >
+            <Text style={{color: colourTheme.white}}>Spin</Text>
+          </TouchableOpacity>
+          {isRoundOver ? (
+            <Text style={styles.yourSongs}>{selectedSongs[1]}</Text>
+          ) : (
+            <Text></Text>
+          )}
+        </View>
         <View style={styles.tileContainer}>
           <Animated.View
             style={[
               styles.spinner,
               {
-                transform: [{ translateX: translateBox(box3PositionValue) }],
+                transform: [{translateX: translateBox(box3PositionValue)}],
               },
             ]}
           >
             {renderBoxes()}
           </Animated.View>
         </View>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => {
-            moveBox(box3PositionValue);
-            setIsBox3Spun(true);
-          }}
-          disabled={isBox3Spun}
-        >
-          <Text>Spin</Text>
-        </TouchableOpacity>
+        <View style={styles.buttonResultContainer}>
+          <TouchableOpacity
+            style={[buttonTheme, styles.button]}
+            onPress={() => {
+              moveBox(box3PositionValue);
+              setIsBox3Spun(true);
+            }}
+            disabled={isBox3Spun}
+          >
+            <Text style={{color: colourTheme.white}}>Spin</Text>
+          </TouchableOpacity>
+          {isRoundOver ? (
+            <Text style={styles.yourSongs}>{selectedSongs[2]}</Text>
+          ) : (
+            <Text></Text>
+          )}
+        </View>
         {isRoundOver ? (
-          <Text style={styles.yourSongs}>{selectedSongs[2]}</Text>
+          <View style={buttonTheme}>
+            <Button
+              title="Next round"
+              color={
+                Platform.OS === 'android'
+                  ? colourTheme.secondaryColour
+                  : 'white'
+              }
+            />
+          </View>
         ) : (
           <Text></Text>
         )}
-        {isRoundOver ? <Button title="Next round" /> : <Text></Text>}
       </View>
     </View>
   );
@@ -221,52 +240,59 @@ export default function FruitMachineGame() {
 const styles = StyleSheet.create({
   container: {
     marginTop: 70,
-    alignItems: "center",
-    justifyContent: "center",
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   spinner: {
     // marginRight: 120,
     right: -60,
-    flexDirection: "row",
-    backgroundColor: "lightgrey",
+    flexDirection: 'row',
+    backgroundColor: colourTheme.white,
     width: 5000,
     height: 120,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-  box: {
+  songImgBox: {
     width: 110,
     height: 110,
     marginLeft: 5,
     marginRight: 5,
-    backgroundColor: "blue",
-    alignItems: "center",
-    justifyContent: "center",
+    backgroundColor: 'blue',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   button: {
-    alignItems: "center",
-    justifyContent: "center",
-    marginTop: 15,
-    marginBottom: 15,
-    width: 100,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 10,
+    marginBottom: 10,
+    marginLeft: 0,
+    marginRight: 0,
+    width: 80,
     height: 40,
-    backgroundColor: "lightgreen",
-    borderRadius: 10,
   },
   tileContainer: {
-    borderColor: "black",
-    backgroundColor: "#f5f0f0",
+    borderColor: colourTheme.white,
+    backgroundColor: '#f5f0f0',
     width: 300,
-    height: 150,
-    justifyContent: "center",
-    alignItems: "center",
-    overflow: "hidden",
+    height: 120,
+    justifyContent: 'center',
+    alignItems: 'center',
+    overflow: 'hidden',
+    borderRadius: 5,
   },
   yourSongs: {
     color: colourTheme.white,
-    fontWeight: "bold",
-    fontSize: 18,
-    padding: 2,
-    paddingBottom: 10,
+    fontWeight: 'bold',
+    fontSize: 16,
+    marginTop: 10,
+    marginBottom: 10,
+  },
+  buttonResultContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'flex-start',
+    marginBottom: 30,
   },
 });
