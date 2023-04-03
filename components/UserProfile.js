@@ -7,23 +7,29 @@ import { colourTheme, defaultPaddinTop } from "../stylesheet";
 const UserProfile = () => {
   const { user, setUser } = useContext(userContext);
   return (
-<View style={[styles.container, defaultPaddinTop]}>
+    <View style={[styles.container, defaultPaddinTop]}>
       <View style={styles.user}>
-        <Icons name={"person"} color={colourTheme.white} size={50} />
-        <Text style={{ color: "white", fontSize: 30 }}>{user}</Text>
+        <Icons name={'person'} color={colourTheme.white} size={50} />
+        <Text style={{color: 'white', fontSize: 30}}>{user}</Text>
       </View>
       <Button
-        color={"red"}
+        color={'red'}
         onPress={() => {
-          setUser("");
+          setUser('');
         }}
         title="logout"
       >
         logout
       </Button>
-      <Image source={require('../img/logo-nobg.png')}/>
-</View>
-
+      <Image
+        style={[
+          {opacity: 0.2},
+          {position: 'absolute', zIndex: -1},
+          styles.backgroundImg,
+        ]}
+        source={require('../img/logo-nobg.png')}
+      />
+    </View>
   );
 };
 
@@ -31,12 +37,15 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colourTheme.primaryColour,
-    justifyContent: "flex-start",
+    justifyContent: 'flex-start',
   },
   user: {
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
     padding: 30,
+  },
+  backgroundImg: {
+    marginTop: 120,
   },
 });
 
