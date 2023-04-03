@@ -8,8 +8,10 @@ import userContext from "../context/userContext";
 import axios from "axios";
 import { useNavigation } from "@react-navigation/native";
 import { colourTheme } from "../stylesheet";
+import globalSongArray from "../context/globalSongArray";
 const GameOver = () => {
-  const { songsSelected } = useContext(songsSelectedArray);
+  const { songsSelected, setSongsSelected } = useContext(songsSelectedArray);
+  const { globalArray, setGlobalArray } = useContext(globalSongArray);
   const { user } = useContext(userContext);
 
   const [itsPlaying, setItsPlaying] = useState(false);
@@ -37,11 +39,19 @@ const GameOver = () => {
     }
   });
 
+  const stateClear = () => {
+    setSongsSelected([]);
+    setGlobalArray([]);
+  };
+
   return (
     <View style={{ alignItems: "center" }}>
       {!user ? (
         <Button
-          onPress={() => navigation.navigate("Home")}
+          onPress={() => {
+            navigation.navigate("Home");
+            stateClear();
+          }}
           color={
             Platform.OS === "android" ? colourTheme.secondaryColour : "white"
           }
@@ -49,7 +59,10 @@ const GameOver = () => {
         ></Button>
       ) : (
         <Button
-          onPress={() => navigation.navigate("User Login")}
+          onPress={() => {
+            navigation.navigate("User Login");
+            stateClear();
+          }}
           color={
             Platform.OS === "android" ? colourTheme.secondaryColour : "white"
           }
