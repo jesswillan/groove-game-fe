@@ -5,39 +5,39 @@ import {
   TouchableOpacity,
   Image,
   Button,
-} from "react-native";
-import { buttonTheme, colourTheme } from "../stylesheet";
-import React, { useEffect, useState, useContext } from "react";
-import songsGenre from "../context/songsGenre";
-import axios from "axios";
-import FruitMachineGame from "../components/FruitMachineGame";
-import globalSongArray from "../context/globalSongArray";
+} from 'react-native';
+import {buttonTheme, colourTheme} from '../stylesheet';
+import React, {useEffect, useState, useContext} from 'react';
+import songsGenre from '../context/songsGenre';
+import axios from 'axios';
+import FruitMachineGame from '../components/FruitMachineGame';
+import globalSongArray from '../context/globalSongArray';
 
 const DanceFloorScreen = () => {
   const [sampleMusic, setSampleMusic] = useState([]);
-  const { chosenGenre, setChosenGenre } = useContext(songsGenre);
+  const {chosenGenre, setChosenGenre} = useContext(songsGenre);
   const [isLoading, setIsLoading] = useState(true);
   const [isRoundFinished, setIsRoundFinished] = useState(false);
   const [isNextRound, setIsNextRound] = useState(false);
-  const { globalArray, setGlobalArray } = useContext(globalSongArray);
+  const {globalArray, setGlobalArray} = useContext(globalSongArray);
 
-  const [square1, setSquare1] = useState("");
+  const [square1, setSquare1] = useState('');
   const [square1Pressed, setSquare1Pressed] = useState(false);
-  const [square2, setSquare2] = useState("");
+  const [square2, setSquare2] = useState('');
   const [square2Pressed, setSquare2Pressed] = useState(false);
-  const [square3, setSquare3] = useState("");
+  const [square3, setSquare3] = useState('');
   const [square3Pressed, setSquare3Pressed] = useState(false);
-  const [square4, setSquare4] = useState("");
+  const [square4, setSquare4] = useState('');
   const [square4Pressed, setSquare4Pressed] = useState(false);
-  const [square5, setSquare5] = useState("");
+  const [square5, setSquare5] = useState('');
   const [square5Pressed, setSquare5Pressed] = useState(false);
-  const [square6, setSquare6] = useState("");
+  const [square6, setSquare6] = useState('');
   const [square6Pressed, setSquare6Pressed] = useState(false);
-  const [square7, setSquare7] = useState("");
+  const [square7, setSquare7] = useState('');
   const [square7Pressed, setSquare7Pressed] = useState(false);
-  const [square8, setSquare8] = useState("");
+  const [square8, setSquare8] = useState('');
   const [square8Pressed, setSquare8Pressed] = useState(false);
-  const [square9, setSquare9] = useState("");
+  const [square9, setSquare9] = useState('');
   const [square9Pressed, setSquare9Pressed] = useState(false);
   const [count, setCount] = useState(0);
   const [selectedSongs, setSelectedSongs] = useState([]);
@@ -80,41 +80,41 @@ const DanceFloorScreen = () => {
   const handleClick = (str) => {
     if (count >= 3) {
       setIsRoundFinished(true);
-      console.log("round complete");
+      console.log('round complete');
     } else {
-      if (str === "square1") {
+      if (str === 'square1') {
         setSquare1Pressed(true);
         setSelectedSongs((current) => [...current, square1]);
       }
-      if (str === "square2") {
+      if (str === 'square2') {
         setSquare2Pressed(true);
         setSelectedSongs((current) => [...current, square2]);
       }
-      if (str === "square3") {
+      if (str === 'square3') {
         setSquare3Pressed(true);
         setSelectedSongs((current) => [...current, square3]);
       }
-      if (str === "square4") {
+      if (str === 'square4') {
         setSquare4Pressed(true);
         setSelectedSongs((current) => [...current, square4]);
       }
-      if (str === "square5") {
+      if (str === 'square5') {
         setSquare5Pressed(true);
         setSelectedSongs((current) => [...current, square5]);
       }
-      if (str === "square6") {
+      if (str === 'square6') {
         setSquare6Pressed(true);
         setSelectedSongs((current) => [...current, square6]);
       }
-      if (str === "square7") {
+      if (str === 'square7') {
         setSquare7Pressed(true);
         setSelectedSongs((current) => [...current, square7]);
       }
-      if (str === "square8") {
+      if (str === 'square8') {
         setSquare8Pressed(true);
         setSelectedSongs((current) => [...current, square8]);
       }
-      if (str === "square9") {
+      if (str === 'square9') {
         setSquare9Pressed(true);
         setSelectedSongs((current) => [...current, square9]);
       }
@@ -133,7 +133,7 @@ const DanceFloorScreen = () => {
               <View style={styles.squaresContainer}>
                 <TouchableOpacity
                   onPress={() => {
-                    handleClick("square1");
+                    handleClick('square1');
                   }}
                 >
                   {!square1Pressed ? (
@@ -142,6 +142,7 @@ const DanceFloorScreen = () => {
                     <View style={styles.squareBlue}>
                       {/* <Text>{square1.track_name}</Text> */}
                       <Image
+                        style={{borderRadius: 5}}
                         source={{
                           uri: square1.img_url,
                           width: 123,
@@ -153,7 +154,7 @@ const DanceFloorScreen = () => {
                 </TouchableOpacity>
                 <TouchableOpacity
                   onPress={() => {
-                    handleClick("square2");
+                    handleClick('square2');
                   }}
                 >
                   {!square2Pressed ? (
@@ -162,6 +163,7 @@ const DanceFloorScreen = () => {
                     <View style={styles.squareGreen}>
                       {/* <Text>{square2.track_name}</Text> */}
                       <Image
+                        style={{borderRadius: 5}}
                         source={{
                           uri: square2.img_url,
                           width: 123,
@@ -173,7 +175,7 @@ const DanceFloorScreen = () => {
                 </TouchableOpacity>
                 <TouchableOpacity
                   onPress={() => {
-                    handleClick("square3");
+                    handleClick('square3');
                   }}
                 >
                   {!square3Pressed ? (
@@ -182,6 +184,7 @@ const DanceFloorScreen = () => {
                     <View style={styles.squarePink}>
                       {/* <Text>{square3.track_name}</Text> */}
                       <Image
+                        style={{borderRadius: 5}}
                         source={{
                           uri: square3.img_url,
                           width: 123,
@@ -193,7 +196,7 @@ const DanceFloorScreen = () => {
                 </TouchableOpacity>
                 <TouchableOpacity
                   onPress={() => {
-                    handleClick("square4");
+                    handleClick('square4');
                   }}
                 >
                   {!square4Pressed ? (
@@ -202,6 +205,7 @@ const DanceFloorScreen = () => {
                     <View style={styles.squarePink}>
                       {/* <Text>{square4.track_name}</Text> */}
                       <Image
+                        style={{borderRadius: 5}}
                         source={{
                           uri: square4.img_url,
                           width: 123,
@@ -213,7 +217,7 @@ const DanceFloorScreen = () => {
                 </TouchableOpacity>
                 <TouchableOpacity
                   onPress={() => {
-                    handleClick("square5");
+                    handleClick('square5');
                   }}
                 >
                   {!square5Pressed ? (
@@ -222,6 +226,7 @@ const DanceFloorScreen = () => {
                     <View style={styles.squareBlue}>
                       {/* <Text>{square5.track_name}</Text> */}
                       <Image
+                        style={{borderRadius: 5}}
                         source={{
                           uri: square5.img_url,
                           width: 123,
@@ -233,7 +238,7 @@ const DanceFloorScreen = () => {
                 </TouchableOpacity>
                 <TouchableOpacity
                   onPress={() => {
-                    handleClick("square6");
+                    handleClick('square6');
                   }}
                 >
                   {!square6Pressed ? (
@@ -242,6 +247,7 @@ const DanceFloorScreen = () => {
                     <View style={styles.squareGreen}>
                       {/* <Text>{square6.track_name}</Text> */}
                       <Image
+                        style={{borderRadius: 5}}
                         source={{
                           uri: square6.img_url,
                           width: 123,
@@ -253,7 +259,7 @@ const DanceFloorScreen = () => {
                 </TouchableOpacity>
                 <TouchableOpacity
                   onPress={() => {
-                    handleClick("square7");
+                    handleClick('square7');
                   }}
                 >
                   {!square7Pressed ? (
@@ -262,6 +268,7 @@ const DanceFloorScreen = () => {
                     <View style={styles.squareGreen}>
                       {/* <Text>{square7.track_name}</Text> */}
                       <Image
+                        style={{borderRadius: 5}}
                         source={{
                           uri: square7.img_url,
                           width: 123,
@@ -273,7 +280,7 @@ const DanceFloorScreen = () => {
                 </TouchableOpacity>
                 <TouchableOpacity
                   onPress={() => {
-                    handleClick("square8");
+                    handleClick('square8');
                   }}
                 >
                   {!square8Pressed ? (
@@ -282,6 +289,7 @@ const DanceFloorScreen = () => {
                     <View style={styles.squarePink}>
                       {/* <Text>{square8.track_name}</Text> */}
                       <Image
+                        style={{borderRadius: 5}}
                         source={{
                           uri: square8.img_url,
                           width: 123,
@@ -293,23 +301,19 @@ const DanceFloorScreen = () => {
                 </TouchableOpacity>
                 <TouchableOpacity
                   onPress={() => {
-                    handleClick("square9");
+                    handleClick('square9');
                   }}
                 >
                   {!square9Pressed ? (
                     <View style={styles.squareBlue}></View>
                   ) : (
                     <View style={styles.squareBlue}>
-                      {/* <Text>{square9.track_name}</Text> */}
                       <Image
+                        style={{borderRadius: 5}}
                         source={{
                           uri: square9.img_url,
                           width: 123,
                           height: 123,
-                          borderColor: "black",
-                          borderWidth: 5,
-                          borderRadius: 5,
-                          overflow: "hidden",
                         }}
                       />
                     </View>
@@ -332,9 +336,9 @@ const DanceFloorScreen = () => {
             <View style={buttonTheme}>
               <Button
                 color={
-                  Platform.OS === "android"
+                  Platform.OS === 'android'
                     ? colourTheme.secondaryColour
-                    : "white"
+                    : 'white'
                 }
                 title="Next round"
                 onPress={renderNextRound}
@@ -347,6 +351,14 @@ const DanceFloorScreen = () => {
       ) : (
         <FruitMachineGame />
       )}
+      <Image
+        source={require('../img/logo-nobg.png')}
+        style={[
+          {opacity: 0.2},
+          {position: 'absolute', zIndex: -1},
+          styles.backgroundImg,
+        ]}
+      />
     </View>
   );
 };
@@ -360,13 +372,13 @@ const styles = StyleSheet.create({
   },
   squaresContainer: {
     borderColor: colourTheme.primaryColour,
-    flexDirection: "row",
-    flexWrap: "wrap",
+    flexDirection: 'row',
+    flexWrap: 'wrap',
     marginTop: 150,
-    marginLeft: "auto",
-    marginRight: "auto",
-    width: "auto",
-    justifyContent: "center",
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    width: 'auto',
+    justifyContent: 'center',
   },
   squareBlue: {
     width: 125,
@@ -374,8 +386,9 @@ const styles = StyleSheet.create({
     backgroundColor: colourTheme.highlightBlue,
     borderColor: colourTheme.primaryColour,
     borderWidth: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    borderRadius: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   squareGreen: {
     width: 125,
@@ -383,8 +396,9 @@ const styles = StyleSheet.create({
     backgroundColor: colourTheme.highlightGreen,
     borderColor: colourTheme.primaryColour,
     borderWidth: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    borderRadius: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   squarePink: {
     width: 125,
@@ -392,23 +406,24 @@ const styles = StyleSheet.create({
     backgroundColor: colourTheme.highlightPink,
     borderColor: colourTheme.primaryColour,
     borderWidth: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    borderRadius: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   songList: {
     backgroundColor: colourTheme.secondaryColour,
     width: 375,
-    height: "auto",
-    alignItems: "center",
-    marginLeft: "auto",
-    marginRight: "auto",
+    height: 'auto',
+    alignItems: 'center',
+    marginLeft: 'auto',
+    marginRight: 'auto',
     marginTop: 10,
     padding: 10,
     borderRadius: 5,
   },
   yourSongs: {
     color: colourTheme.white,
-    fontWeight: "bold",
+    fontWeight: 'bold',
     fontSize: 18,
     padding: 2,
     paddingBottom: 10,
@@ -417,6 +432,9 @@ const styles = StyleSheet.create({
     color: colourTheme.white,
     padding: 2,
     fontSize: 16,
+  },
+  backgroundImg: {
+    marginTop: 120,
   },
 });
 
