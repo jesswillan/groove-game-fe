@@ -15,9 +15,15 @@ const [itsPlaying, setItsPlaying] = useState(false);
 const [songIndex, setSongIndex] = useState(0);
 
   const playSong = (song) =>{
-    console.log(song)
-    setItsPlaying(true);
-    setSongIndex(song)
+    
+    if(songIndex === song && itsPlaying){
+      setItsPlaying(false)
+    }else{
+      console.log(song)
+      setItsPlaying(true);
+      setSongIndex(song)
+    }
+
   }
 
   useEffect(() =>{
@@ -73,13 +79,6 @@ console.log(mappedArray);
         })}
       </View>
       {itsPlaying ?  <WebView source={{ uri: songsSelected[songIndex].track_preview }}></WebView> : <Text/>}
-
-      <WebView source={{ uri: songsSelected[0].track_preview }}></WebView>
-      <WebView source={{ uri: songsSelected[1].track_preview }}></WebView>
-      <WebView source={{ uri: songsSelected[2].track_preview }}></WebView>
-      <WebView source={{ uri: songsSelected[3].track_preview }}></WebView>
-      <WebView source={{ uri: songsSelected[4].track_preview }}></WebView>
-      <WebView source={{ uri: songsSelected[5].track_preview }}></WebView>
     </View>
 
   );
