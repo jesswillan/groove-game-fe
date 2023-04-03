@@ -11,6 +11,8 @@ import {
 import React, { useState, useContext, useEffect } from "react";
 import globalSongArray from "../context/globalSongArray";
 import { colourTheme } from "../stylesheet";
+import GameOver from "./GameOver";
+import songsSelectedArray from "../context/songsSelectedArray";
 
 export default function FruitMachineGame() {
   const [box1PositionValue] = useState(new Animated.Value(0));
@@ -23,6 +25,8 @@ export default function FruitMachineGame() {
   const [isRoundOver, setIsRoundOver] = useState(false);
   const { globalArray, setGlobalArray } = useContext(globalSongArray);
   const [selectedSongs, setSelectedSongs] = useState([]);
+  const [isGameOver, setIsGameOver] = useState(false);
+  const { songsSelected, setSongsSelected } = useContext(songsSelectedArray);
 
   const rndNum = () => {
     let min = 1;
@@ -54,6 +58,16 @@ export default function FruitMachineGame() {
 
     // console.log(t1Song);
     // console.log(globalArray[Math.floor(t1Song)].track_artist[0].name);
+
+    setSongsSelected((currentSongs) => {
+      if (boxPositionValue === box1PositionValue) {
+        return [...currentSongs, globalArray[Math.floor(t1Song)]];
+      } else if (boxPositionValue === box2PositionValue) {
+        return [...currentSongs, globalArray[Math.floor(t2Song)]];
+      } else if (boxPositionValue === box3PositionValue) {
+        return [...currentSongs, globalArray[Math.floor(t3Song)]];
+      }
+    });
 
     setSelectedSongs((currentSongs) => {
       if (boxPositionValue === box1PositionValue) {
@@ -129,91 +143,99 @@ export default function FruitMachineGame() {
 
   return (
     <View style={styles.container}>
-      <View>
-        <StatusBar style="auto" />
-        <View style={styles.tileContainer}>
-          <Animated.View
-            style={[
-              styles.spinner,
-              {
-                transform: [{ translateX: translateBox(box1PositionValue) }],
-              },
-            ]}
+      {!isGameOver ? (
+        <View>
+          <StatusBar style="auto" />
+          <View style={styles.tileContainer}>
+            <Animated.View
+              style={[
+                styles.spinner,
+                {
+                  transform: [{ translateX: translateBox(box1PositionValue) }],
+                },
+              ]}
+            >
+              {renderBoxes()}
+            </Animated.View>
+          </View>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => {
+              moveBox(box1PositionValue);
+              setIsBox1Spun(true);
+            }}
+            disabled={isBox1Spun}
           >
-            {renderBoxes()}
-          </Animated.View>
-        </View>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => {
-            moveBox(box1PositionValue);
-            setIsBox1Spun(true);
-          }}
-          disabled={isBox1Spun}
-        >
-          <Text>Spin</Text>
-        </TouchableOpacity>
-        {isRoundOver ? (
-          <Text style={styles.yourSongs}>{selectedSongs[0]}</Text>
-        ) : (
-          <Text></Text>
-        )}
-        <View style={styles.tileContainer}>
-          <Animated.View
-            style={[
-              styles.spinner,
-              {
-                transform: [{ translateX: translateBox(box2PositionValue) }],
-              },
-            ]}
+            <Text>Spin</Text>
+          </TouchableOpacity>
+          {isRoundOver ? (
+            <Text style={styles.yourSongs}>{selectedSongs[0]}</Text>
+          ) : (
+            <Text></Text>
+          )}
+          <View style={styles.tileContainer}>
+            <Animated.View
+              style={[
+                styles.spinner,
+                {
+                  transform: [{ translateX: translateBox(box2PositionValue) }],
+                },
+              ]}
+            >
+              {renderBoxes()}
+            </Animated.View>
+          </View>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => {
+              moveBox(box2PositionValue);
+              setIsBox2Spun(true);
+            }}
+            disabled={isBox2Spun}
           >
-            {renderBoxes()}
-          </Animated.View>
-        </View>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => {
-            moveBox(box2PositionValue);
-            setIsBox2Spun(true);
-          }}
-          disabled={isBox2Spun}
-        >
-          <Text>Spin</Text>
-        </TouchableOpacity>
-        {isRoundOver ? (
-          <Text style={styles.yourSongs}>{selectedSongs[1]}</Text>
-        ) : (
-          <Text></Text>
-        )}
-        <View style={styles.tileContainer}>
-          <Animated.View
-            style={[
-              styles.spinner,
-              {
-                transform: [{ translateX: translateBox(box3PositionValue) }],
-              },
-            ]}
+            <Text>Spin</Text>
+          </TouchableOpacity>
+          {isRoundOver ? (
+            <Text style={styles.yourSongs}>{selectedSongs[1]}</Text>
+          ) : (
+            <Text></Text>
+          )}
+          <View style={styles.tileContainer}>
+            <Animated.View
+              style={[
+                styles.spinner,
+                {
+                  transform: [{ translateX: translateBox(box3PositionValue) }],
+                },
+              ]}
+            >
+              {renderBoxes()}
+            </Animated.View>
+          </View>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => {
+              moveBox(box3PositionValue);
+              setIsBox3Spun(true);
+            }}
+            disabled={isBox3Spun}
           >
-            {renderBoxes()}
-          </Animated.View>
+            <Text>Spin</Text>
+          </TouchableOpacity>
+          {isRoundOver ? (
+            <Text style={styles.yourSongs}>{selectedSongs[2]}</Text>
+          ) : (
+            <Text></Text>
+          )}
+          {isRoundOver ? (
+            <Button onPress={() => setIsGameOver(true)} title="Next round" />
+          ) : (
+            <Text></Text>
+          )}
         </View>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => {
-            moveBox(box3PositionValue);
-            setIsBox3Spun(true);
-          }}
-          disabled={isBox3Spun}
-        >
-          <Text>Spin</Text>
-        </TouchableOpacity>
-        {isRoundOver ? (
-          <Text style={styles.yourSongs}>{selectedSongs[2]}</Text>
-        ) : (
-          <Text></Text>
-        )}
-        {isRoundOver ? <Button title="Next round" /> : <Text></Text>}
-      </View>
+      ) : (
+        <GameOver />
+      )}
     </View>
   );
 }

@@ -12,14 +12,15 @@ import songsGenre from "../context/songsGenre";
 import axios from "axios";
 import FruitMachineGame from "../components/FruitMachineGame";
 import globalSongArray from "../context/globalSongArray";
+import songsSelectedArray from "../context/songsSelectedArray";
 
 const DanceFloorScreen = () => {
-  const [sampleMusic, setSampleMusic] = useState([]);
   const { chosenGenre, setChosenGenre } = useContext(songsGenre);
   const [isLoading, setIsLoading] = useState(true);
   const [isRoundFinished, setIsRoundFinished] = useState(false);
   const [isNextRound, setIsNextRound] = useState(false);
   const { globalArray, setGlobalArray } = useContext(globalSongArray);
+  const { songsSelected, setSongsSelected } = useContext(songsSelectedArray);
 
   const [square1, setSquare1] = useState("");
   const [square1Pressed, setSquare1Pressed] = useState(false);
@@ -84,38 +85,65 @@ const DanceFloorScreen = () => {
     } else {
       if (str === "square1") {
         setSquare1Pressed(true);
+        setSongsSelected((songs) => {
+          return [...songs, square1];
+        });
         setSelectedSongs((current) => [...current, square1]);
       }
       if (str === "square2") {
         setSquare2Pressed(true);
+        setSongsSelected((songs) => {
+          return [...songs, square2];
+        });
         setSelectedSongs((current) => [...current, square2]);
       }
       if (str === "square3") {
         setSquare3Pressed(true);
+        setSongsSelected((songs) => {
+          return [...songs, square3];
+        });
         setSelectedSongs((current) => [...current, square3]);
       }
       if (str === "square4") {
         setSquare4Pressed(true);
+        setSongsSelected((songs) => {
+          return [...songs, square4];
+        });
         setSelectedSongs((current) => [...current, square4]);
       }
       if (str === "square5") {
         setSquare5Pressed(true);
+        setSongsSelected((songs) => {
+          return [...songs, square5];
+        });
         setSelectedSongs((current) => [...current, square5]);
       }
       if (str === "square6") {
         setSquare6Pressed(true);
+        setSongsSelected((songs) => {
+          return [...songs, square6];
+        });
         setSelectedSongs((current) => [...current, square6]);
       }
       if (str === "square7") {
         setSquare7Pressed(true);
+        setSongsSelected((songs) => {
+          return [...songs, square7];
+        });
         setSelectedSongs((current) => [...current, square7]);
       }
       if (str === "square8") {
         setSquare8Pressed(true);
+        setSongsSelected((songs) => {
+          return [...songs, square8];
+        });
         setSelectedSongs((current) => [...current, square8]);
       }
       if (str === "square9") {
         setSquare9Pressed(true);
+        setSongsSelected((songs) => {
+          return [...songs, square9];
+        });
         setSelectedSongs((current) => [...current, square9]);
       }
       setCount((count) => count + 1);
