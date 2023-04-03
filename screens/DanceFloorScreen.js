@@ -79,10 +79,7 @@ const DanceFloorScreen = () => {
   };
 
   const handleClick = (str) => {
-    if (count >= 3) {
-      setIsRoundFinished(true);
-      console.log("round complete");
-    } else {
+    if (!isRoundFinished) {
       if (str === "square1") {
         setSquare1Pressed(true);
         setSongsSelected((songs) => {
@@ -147,6 +144,11 @@ const DanceFloorScreen = () => {
         setSelectedSongs((current) => [...current, square9]);
       }
       setCount((count) => count + 1);
+      console.log(count);
+      if (count >= 2) {
+        setIsRoundFinished(true);
+        console.log("round complete");
+      }
     }
   };
 
@@ -163,6 +165,7 @@ const DanceFloorScreen = () => {
                   onPress={() => {
                     handleClick("square1");
                   }}
+                  disabled={square1Pressed ? true : false}
                 >
                   {!square1Pressed ? (
                     <View style={styles.squareBlue}></View>
@@ -184,6 +187,7 @@ const DanceFloorScreen = () => {
                   onPress={() => {
                     handleClick("square2");
                   }}
+                  disabled={square2Pressed ? true : false}
                 >
                   {!square2Pressed ? (
                     <View style={styles.squareGreen}></View>
@@ -205,6 +209,7 @@ const DanceFloorScreen = () => {
                   onPress={() => {
                     handleClick("square3");
                   }}
+                  disabled={square3Pressed ? true : false}
                 >
                   {!square3Pressed ? (
                     <View style={styles.squarePink}></View>
@@ -226,6 +231,7 @@ const DanceFloorScreen = () => {
                   onPress={() => {
                     handleClick("square4");
                   }}
+                  disabled={square4Pressed ? true : false}
                 >
                   {!square4Pressed ? (
                     <View style={styles.squarePink}></View>
@@ -247,6 +253,7 @@ const DanceFloorScreen = () => {
                   onPress={() => {
                     handleClick("square5");
                   }}
+                  disabled={square5Pressed ? true : false}
                 >
                   {!square5Pressed ? (
                     <View style={styles.squareBlue}></View>
@@ -268,6 +275,7 @@ const DanceFloorScreen = () => {
                   onPress={() => {
                     handleClick("square6");
                   }}
+                  disabled={square6Pressed ? true : false}
                 >
                   {!square6Pressed ? (
                     <View style={styles.squareGreen}></View>
@@ -289,6 +297,7 @@ const DanceFloorScreen = () => {
                   onPress={() => {
                     handleClick("square7");
                   }}
+                  disabled={square7Pressed ? true : false}
                 >
                   {!square7Pressed ? (
                     <View style={styles.squareGreen}></View>
@@ -310,6 +319,7 @@ const DanceFloorScreen = () => {
                   onPress={() => {
                     handleClick("square8");
                   }}
+                  disabled={square8Pressed ? true : false}
                 >
                   {!square8Pressed ? (
                     <View style={styles.squarePink}></View>
@@ -331,6 +341,7 @@ const DanceFloorScreen = () => {
                   onPress={() => {
                     handleClick("square9");
                   }}
+                  disabled={square9Pressed ? true : false}
                 >
                   {!square9Pressed ? (
                     <View style={styles.squareBlue}></View>
