@@ -1,17 +1,17 @@
 // react/hooks
-import React, { useContext, useState, useEffect } from "react";
+import React, {useContext, useState, useEffect} from 'react';
 // react components
-import { View, Button, Text, StyleSheet } from "react-native";
+import {View, Button, Text, StyleSheet, Image} from 'react-native';
 // custom styling objects
-import { colourTheme, buttonTheme, defaultPaddinTop } from "../stylesheet";
+import {colourTheme, buttonTheme, defaultPaddinTop} from '../stylesheet';
 // imports Radio Button component
-import RadioButton from "../components/RadioButton";
+import RadioButton from '../components/RadioButton';
 // axios for requests
-import axios from "axios";
+import axios from 'axios';
 // navigation hook
-import { useNavigation } from "@react-navigation/native";
+import {useNavigation} from '@react-navigation/native';
 // global songsGenre context
-import songsGenre from "../context/songsGenre";
+import songsGenre from '../context/songsGenre';
 
 export default function App() {
   // option state
@@ -19,14 +19,14 @@ export default function App() {
   // data state
   const [data, setData] = useState([]);
   // chosenGenre setChosenGenre from the songsGenre context
-  const { chosenGenre, setChosenGenre } = useContext(songsGenre);
+  const {chosenGenre, setChosenGenre} = useContext(songsGenre);
   // invokes hook to allow access to the navigation object
   const navigation = useNavigation();
   // useEffect does a axios request then sets the genres data
   useEffect(() => {
     axios
-      .get("https://groove-game-be.onrender.com/api/genres")
-      .then(({ data }) => {
+      .get('https://groove-game-be.onrender.com/api/genres')
+      .then(({data}) => {
         console.log(data.genres);
         setData(data.genres);
       });
@@ -39,13 +39,21 @@ export default function App() {
       <Text style={styles.options}> You've chosen {chosenGenre}</Text>
       <View style={buttonTheme}>
         <Button
-          onPress={() => navigation.navigate("dance")}
+          onPress={() => navigation.navigate('dance')}
           color={
-            Platform.OS === "android" ? colourTheme.secondaryColour : "white"
+            Platform.OS === 'android' ? colourTheme.secondaryColour : 'white'
           }
           title="Play the game"
         ></Button>
       </View>
+      <Image
+        source={require('../img/logo-nobg.png')}
+        style={[
+          {opacity: 0.2},
+          {position: 'absolute', zIndex: -1},
+          styles.backgroundImg,
+        ]}
+      />
     </View>
   );
 }
@@ -59,15 +67,18 @@ const styles = StyleSheet.create({
   paragraph: {
     margin: 0,
     fontSize: 18,
-    fontWeight: "bold",
-    textAlign: "center",
+    fontWeight: 'bold',
+    textAlign: 'center',
     color: colourTheme.white,
   },
 
   options: {
     margin: 24,
     fontSize: 20,
-    textAlign: "center",
+    textAlign: 'center',
     color: colourTheme.white,
+  },
+  backgroundImg: {
+    marginTop: 120,
   },
 });

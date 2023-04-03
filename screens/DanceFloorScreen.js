@@ -170,6 +170,7 @@ const DanceFloorScreen = () => {
                     <View style={styles.squareBlue}>
                       {/* <Text>{square1.track_name}</Text> */}
                       <Image
+                        style={{ borderRadius: 5 }}
                         source={{
                           uri: square1.img_url,
                           width: 123,
@@ -190,6 +191,7 @@ const DanceFloorScreen = () => {
                     <View style={styles.squareGreen}>
                       {/* <Text>{square2.track_name}</Text> */}
                       <Image
+                        style={{ borderRadius: 5 }}
                         source={{
                           uri: square2.img_url,
                           width: 123,
@@ -210,6 +212,7 @@ const DanceFloorScreen = () => {
                     <View style={styles.squarePink}>
                       {/* <Text>{square3.track_name}</Text> */}
                       <Image
+                        style={{ borderRadius: 5 }}
                         source={{
                           uri: square3.img_url,
                           width: 123,
@@ -230,6 +233,7 @@ const DanceFloorScreen = () => {
                     <View style={styles.squarePink}>
                       {/* <Text>{square4.track_name}</Text> */}
                       <Image
+                        style={{ borderRadius: 5 }}
                         source={{
                           uri: square4.img_url,
                           width: 123,
@@ -250,6 +254,7 @@ const DanceFloorScreen = () => {
                     <View style={styles.squareBlue}>
                       {/* <Text>{square5.track_name}</Text> */}
                       <Image
+                        style={{ borderRadius: 5 }}
                         source={{
                           uri: square5.img_url,
                           width: 123,
@@ -270,6 +275,7 @@ const DanceFloorScreen = () => {
                     <View style={styles.squareGreen}>
                       {/* <Text>{square6.track_name}</Text> */}
                       <Image
+                        style={{ borderRadius: 5 }}
                         source={{
                           uri: square6.img_url,
                           width: 123,
@@ -290,6 +296,7 @@ const DanceFloorScreen = () => {
                     <View style={styles.squareGreen}>
                       {/* <Text>{square7.track_name}</Text> */}
                       <Image
+                        style={{ borderRadius: 5 }}
                         source={{
                           uri: square7.img_url,
                           width: 123,
@@ -310,6 +317,7 @@ const DanceFloorScreen = () => {
                     <View style={styles.squarePink}>
                       {/* <Text>{square8.track_name}</Text> */}
                       <Image
+                        style={{ borderRadius: 5 }}
                         source={{
                           uri: square8.img_url,
                           width: 123,
@@ -328,16 +336,12 @@ const DanceFloorScreen = () => {
                     <View style={styles.squareBlue}></View>
                   ) : (
                     <View style={styles.squareBlue}>
-                      {/* <Text>{square9.track_name}</Text> */}
                       <Image
+                        style={{ borderRadius: 5 }}
                         source={{
                           uri: square9.img_url,
                           width: 123,
                           height: 123,
-                          borderColor: "black",
-                          borderWidth: 5,
-                          borderRadius: 5,
-                          overflow: "hidden",
                         }}
                       />
                     </View>
@@ -375,6 +379,14 @@ const DanceFloorScreen = () => {
       ) : (
         <FruitMachineGame />
       )}
+      <Image
+        source={require("../img/logo-nobg.png")}
+        style={[
+          { opacity: 0.2 },
+          { position: "absolute", zIndex: -1 },
+          styles.backgroundImg,
+        ]}
+      />
     </View>
   );
 };
@@ -402,6 +414,7 @@ const styles = StyleSheet.create({
     backgroundColor: colourTheme.highlightBlue,
     borderColor: colourTheme.primaryColour,
     borderWidth: 1,
+    borderRadius: 10,
     justifyContent: "center",
     alignItems: "center",
   },
@@ -411,6 +424,7 @@ const styles = StyleSheet.create({
     backgroundColor: colourTheme.highlightGreen,
     borderColor: colourTheme.primaryColour,
     borderWidth: 1,
+    borderRadius: 10,
     justifyContent: "center",
     alignItems: "center",
   },
@@ -420,6 +434,7 @@ const styles = StyleSheet.create({
     backgroundColor: colourTheme.highlightPink,
     borderColor: colourTheme.primaryColour,
     borderWidth: 1,
+    borderRadius: 10,
     justifyContent: "center",
     alignItems: "center",
   },
@@ -445,6 +460,9 @@ const styles = StyleSheet.create({
     color: colourTheme.white,
     padding: 2,
     fontSize: 16,
+  },
+  backgroundImg: {
+    marginTop: 120,
   },
 });
 
