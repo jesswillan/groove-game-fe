@@ -12,6 +12,7 @@ import Icons from "react-native-vector-icons/Ionicons";
 import { colourTheme, defaultPaddinTop } from "../stylesheet";
 import axios from "axios";
 import { WebView } from "react-native-webview";
+import { useIsFocused } from "@react-navigation/native";
 
 const UserProfile = () => {
   const { user, setUser } = useContext(userContext);
@@ -21,6 +22,8 @@ const UserProfile = () => {
   const [itsPlaying, setItsPlaying] = useState(false);
   const [songIndex, setSongIndex] = useState(0);
 
+  const isFocused = useIsFocused();
+
   useEffect(() => {
     axios
       .post("https://groove-game-be.onrender.com/api/get-games", {
@@ -29,7 +32,7 @@ const UserProfile = () => {
       .then((data) => {
         setUsersGames(data.data);
       });
-  }, []);
+  }, [isFocused]);
 
   const renderGame = (game) => {
     setCurrentGame(game);
