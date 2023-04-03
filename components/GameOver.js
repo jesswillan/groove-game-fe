@@ -9,6 +9,7 @@ import axios from "axios";
 import { useNavigation } from "@react-navigation/native";
 import { colourTheme } from "../stylesheet";
 import globalSongArray from "../context/globalSongArray";
+import { TextInput } from "react-native-gesture-handler";
 const GameOver = () => {
   const { songsSelected, setSongsSelected } = useContext(songsSelectedArray);
   const { globalArray, setGlobalArray } = useContext(globalSongArray);
@@ -16,6 +17,7 @@ const GameOver = () => {
 
   const [itsPlaying, setItsPlaying] = useState(false);
   const [songIndex, setSongIndex] = useState(0);
+  const [input, setInput] = useState("");
 
   const navigation = useNavigation();
 
@@ -28,20 +30,32 @@ const GameOver = () => {
     }
   };
 
-  useEffect(() => {
-    if (user) {
-      axios.post("https://groove-game-be.onrender.com/api/submit-games", {
-        game: {
-          user: user,
-          songs: songsSelected,
-        },
-      });
-    }
-  });
-
   const stateClear = () => {
     setSongsSelected([]);
     setGlobalArray([]);
+  };
+
+  const handleSave = () => {
+    if (!input) {
+      console.log("please enter a game name");
+    } else {
+      if (user) {
+        axios
+          .post("https://groove-game-be.onrender.com/api/submit-games", {
+            game: {
+              game_name: input,
+              user: user,
+              songs: songsSelected,
+            },
+          })
+          .then(() => {
+            console.log("game submitted");
+          });
+      } else {
+        console.log("please sign up or log in to save games");
+      }
+    }
+    setInput("");
   };
 
   return (
@@ -70,7 +84,21 @@ const GameOver = () => {
         ></Button>
       )}
 
-      <Text style={{ color: "white", fontSize: 30 }}>Your playlist</Text>
+      {/* <Text style={{ color: "white", fontSize: 30 }}>Your playlist</Text> */}
+      <TextInput
+        style={{
+          backgroundColor: "white",
+          width: 250,
+          height: 50,
+          marginTop: 10,
+        }}
+        value={input}
+        placeholder="Your Playlist Name... "
+        onChangeText={(text) => setInput(text)}
+      />
+      <View>
+        <Button title="save playlist to profile" onPress={handleSave} />
+      </View>
       <View style={styles.playlistContainer}>
         {songsSelected.map((songs) => {
           return (
@@ -130,7 +158,7 @@ const GameOver = () => {
 
 const styles = StyleSheet.create({
   playlistContainer: {
-    marginTop: 50,
+    marginTop: 25,
     backgroundColor: "black",
     padding: 5,
     alignItems: "center",
