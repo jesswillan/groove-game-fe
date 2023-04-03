@@ -29,10 +29,10 @@ export default function FruitMachineGame() {
 
   const rndNum = () => {
     let min = 1;
-    let max = 10;
+    let max = 19;
     let rndNum = Math.floor(Math.random() * (max - min) + min);
     let roundedNum = Math.ceil(rndNum / 1.2) * 1.2;
-    return roundedNum;
+    return Math.ceil(roundedNum / 1.2) * 1.2;
     // return 1.2;
   };
   let randomValue = rndNum();
