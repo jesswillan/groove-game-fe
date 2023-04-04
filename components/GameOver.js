@@ -112,34 +112,40 @@ const GameOver = () => {
       )}
 
       {/* <Text style={{ color: "white", fontSize: 30 }}>Your playlist</Text> */}
-      <View
-        style={{
-          flexDirection: "row",
-          justifyContent: "space-evenly",
-          alignItems: "center",
-        }}
-      >
-        <TextInput
-          style={styles.input}
-          value={input}
-          placeholder="Your Playlist Name... "
-          onChangeText={(text) => setInput(text)}
-          autoCapitalize="none"
-        />
+      {user ? (
         <View
-          style={StyleSheet.compose(buttonTheme, {
-            width: 100,
-          })}
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-evenly",
+            alignItems: "center",
+          }}
         >
-          <Button
-            title="Save"
-            onPress={handleSave}
-            color={
-              Platform.OS === "android" ? colourTheme.secondaryColour : "white"
-            }
+          <TextInput
+            style={styles.input}
+            value={input}
+            placeholder="Your Playlist Name... "
+            onChangeText={(text) => setInput(text)}
+            autoCapitalize="none"
           />
+          <View
+            style={StyleSheet.compose(buttonTheme, {
+              width: 100,
+            })}
+          >
+            <Button
+              title="Save"
+              onPress={handleSave}
+              color={
+                Platform.OS === "android"
+                  ? colourTheme.secondaryColour
+                  : "white"
+              }
+            />
+          </View>
         </View>
-      </View>
+      ) : (
+        <Text></Text>
+      )}
       <View style={styles.playlistContainer}>
         {songsSelected.map((songs) => {
           //map the playlist from the global state

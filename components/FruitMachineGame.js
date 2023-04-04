@@ -90,7 +90,6 @@ export default function FruitMachineGame() {
       // if the count is more than two, the round is over
       setTimeout(() => {
         // the timeout function will mean text revealing song names will render
-        console.log("round over"); // 3500ms after the last wheel has been spun
         setIsRoundOver(true);
       }, 3500);
     }
