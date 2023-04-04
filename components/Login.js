@@ -48,15 +48,17 @@ const Login = ({ setLogin }) => {
       <TextInput
         onChangeText={(text) => setUsername(text)}
         value={username}
+        autoCapitalize="none"
         placeholder="Username"
-        style={[styles.input, {borderRadius: 5}]}
+        style={[styles.input, { borderRadius: 5 }]}
       />
       <TextInput
         onChangeText={(text) => setPassword(text)}
         value={password}
         secureTextEntry={true}
+        autoCapitalize="none"
         placeholder="Password"
-        style={[styles.input, {borderRadius: 5}]}
+        style={[styles.input, { borderRadius: 5 }]}
       />
       {showAlert ? (
         <Text style={styles.textCentre}>Invalid username or password</Text>

@@ -12,10 +12,14 @@ import globalSongArray from "../context/globalSongArray";
 import {TextInput} from "react-native-gesture-handler";
 import Icons from "react-native-vector-icons/Ionicons";
 // import GenericTouchable from 'react-native-gesture-handler/lib/typescript/components/touchables/GenericTouchable';
+// the above code imports different library function & modules from react
+
 const GameOver = () => {
   const {songsSelected, setSongsSelected} = useContext(songsSelectedArray);
   const {globalArray, setGlobalArray} = useContext(globalSongArray);
   const {user} = useContext(userContext);
+
+  // setting different useContext which will be used to call the variables alter one
 
   const [itsPlaying, setItsPlaying] = useState(false);
   const [songIndex, setSongIndex] = useState(0);
@@ -25,10 +29,11 @@ const GameOver = () => {
 
   const playSong = (song) => {
     if (songIndex === song && itsPlaying) {
-      setItsPlaying(false);
+      //check the song index and if the song is being currently played
+      setItsPlaying(false); //if its playing turn it off ie set it to false
     } else {
-      setItsPlaying(true);
-      setSongIndex(song);
+      setItsPlaying(true); //if not playing the set the set the playing to true so it can be invoked later on
+      setSongIndex(song); //set the index to the current song chosen
     }
   };
 
@@ -36,18 +41,20 @@ const GameOver = () => {
     setSongsSelected([]);
     setGlobalArray([]);
   };
+  // function which will clear the global states once the game has finished
 
   const handleSave = () => {
     if (!input) {
-      console.log("please enter a game name");
+      console.log("please enter a game name"); //hasn't entered the game name they will get a console log warning
     } else {
       if (user) {
-        axios
+        axios // using axios post the game to the database through our backend
           .post("https://groove-game-be.onrender.com/api/submit-games", {
             game: {
               game_name: input,
               user: user,
               songs: songsSelected,
+              // the body of the request
             },
           })
           .then(() => {
@@ -60,6 +67,7 @@ const GameOver = () => {
     setInput("");
   };
 
+  //html screen below which will invoke all the function from above and display the data
   return (
     <View style={{alignItems: "center"}}>
       {!user ? (
@@ -67,11 +75,11 @@ const GameOver = () => {
           <TouchableOpacity
           style={styles.arrowBack}
             onPress={() => {
-              navigation.navigate("Home");
+              navigation.navigate("Home"); // If the user is not logged in, the button will navigate them home
               stateClear();
             }}
             color={
-              Platform.OS === "android" ? colourTheme.secondaryColour : "white"
+              Platform.OS === "android" ? colourTheme.secondaryColour : "white" // colour theme for Android
             }
           >
             <Icons name='arrow-back' size={18} color={'white'}/>
@@ -112,6 +120,7 @@ const GameOver = () => {
       </View>
       <View style={styles.playlistContainer}>
         {songsSelected.map((songs) => {
+          //map the playlist from the global state
           return (
             <View
               key={Math.floor(Math.random() * 500)}
@@ -138,7 +147,7 @@ const GameOver = () => {
                 <View style={styles.playButton}>
                   <TouchableOpacity
                     onPress={() => {
-                      playSong(songsSelected.indexOf(songs));
+                      playSong(songsSelected.indexOf(songs)); // invokes the playSong function with the index of the selected song
                     }}
                   >
                     <Icons name="musical-notes" size={18} color={"white"} />
@@ -162,6 +171,7 @@ const GameOver = () => {
   );
 };
 
+//styling using CSS below
 const styles = StyleSheet.create({
   playlistContainer: {
     marginTop: 25,
