@@ -6,6 +6,7 @@ import DanceFloorScreen from "./screens/DanceFloorScreen";
 import QuizScreen from "./screens/QuizScreen";
 // Bottom Navigator / Navbar
 import MyTabs from "./components/MyTabs";
+import LeaderboardScreen from "./screens/LeaderboardScreen";
 
 // creates stackNavigator for buttons
 const Stack = createNativeStackNavigator();
@@ -27,6 +28,11 @@ export default function StackNavigator() {
         options={{ headerShown: false }}
         name="quiz"
         component={QuizScreen}
+      />
+      <Stack.Screen
+        options={{ headerShown: false }}
+        name="leaderboard"
+        component={LeaderboardScreen}
       />
     </Stack.Navigator>
   );

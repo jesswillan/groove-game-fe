@@ -3,9 +3,13 @@ import { quesions } from "../questionsData";
 // react components
 import { Button, StyleSheet, Text, View, Platform } from "react-native";
 // react/hooks
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 // custom styling objects
 import { defaultPaddinTop, colourTheme, buttonTheme } from "../stylesheet";
+// axios
+import axios from "axios";
+import userContext from "../context/userContext";
+import { useNavigation } from "@react-navigation/native";
 
 const QuizScreen = () => {
   // correct answers state
@@ -13,9 +17,16 @@ const QuizScreen = () => {
   // number of questions state
   const [questionCount, setQuestionCount] = useState(0);
   // which random question displays state
-  const [randQuestion, setRandomQuestion] = useState(0);
+  const [randQuestion, setRandomQuestion] = useState(
+    Math.floor(Math.random() * quesions.length)
+  );
+  //
+  const { user } = useContext(userContext);
+  //
+  const navigation = useNavigation();
+
   return (
-    <View style={[defaultPaddinTop, styles.container]}>
+    <View style={[defaultPaddinTop, styles.container, styles.centrePage]}>
       <View style={styles.centre}>
         {questionCount === 5 ? (
           <>
@@ -23,14 +34,32 @@ const QuizScreen = () => {
               you answered {correctCount} / {questionCount}
             </Text>
             <View style={buttonTheme}>
-              {/* on button press post result to the leaderboard */}
               <Button
+                onPress={() => {
+                  axios
+                    .post("https://groove-game-be.onrender.com/api/scores", {
+                      username: user,
+                      score: correctCount,
+                    })
+                    .then((resp) => navigation.navigate("Home"));
+                }}
                 color={
                   Platform.OS === "android"
                     ? colourTheme.secondaryColour
                     : "white"
                 }
                 title="submit results"
+              />
+            </View>
+            <View style={buttonTheme}>
+              <Button
+                onPress={() => navigation.navigate("Home")}
+                color={
+                  Platform.OS === "android"
+                    ? colourTheme.secondaryColour
+                    : "white"
+                }
+                title="Home"
               />
             </View>
           </>
@@ -81,6 +110,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   text: { color: "white", fontSize: 25 },
+  centrePage: {
+    alignItems: "center",
+    justifyContent: "center",
+  },
 });
 
 export default QuizScreen;
