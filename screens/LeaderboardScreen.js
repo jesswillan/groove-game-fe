@@ -1,10 +1,10 @@
-import {StyleSheet, Text, View, TouchableOpacity} from "react-native";
-import React, {useEffect} from "react";
-import {colourTheme, defaultPaddinTop, backButton} from "../stylesheet";
+import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import React, { useEffect } from "react";
+import { colourTheme, defaultPaddinTop, backButton } from "../stylesheet";
 import axios from "axios";
-import {useState} from "react";
-import {ScrollView} from "react-native-gesture-handler";
-import {useNavigation} from "@react-navigation/native";
+import { useState } from "react";
+import { ScrollView } from "react-native-gesture-handler";
+import { useNavigation } from "@react-navigation/native";
 import Icons from "react-native-vector-icons/Ionicons";
 
 const LeaderboardScreen = () => {

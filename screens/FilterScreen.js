@@ -34,7 +34,6 @@ export default function App() {
     axios
       .get("https://groove-game-be.onrender.com/api/genres")
       .then(({ data }) => {
-        console.log(data.genres);
         setData(data.genres);
       });
   }, []);

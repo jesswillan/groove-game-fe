@@ -28,13 +28,12 @@ const Login = ({ setLogin }) => {
       password: password,
     };
     axios
-    //using axios retieve the user infroamtion from user database. Use callback to set them then concole log the new user
+      //using axios retieve the user infroamtion from user database. Use callback to set them then concole log the new user
       .post("https://groove-game-be.onrender.com/api/user-login", loginObj)
       .then(() => {
         setUser(username);
         setUsername("");
-        setPassword(""); //checking if username & password is filled up 
-        console.log("logged in");
+        setPassword(""); //checking if username & password is filled up
       })
       //if the user does not exists show error of user not found
       .catch((err) => {
@@ -43,7 +42,6 @@ const Login = ({ setLogin }) => {
         setTimeout(() => {
           setShowAlert(false);
         }, 10000); //message to be displayed for 10 sec
-        console.log(err);
       });
   };
 
@@ -73,7 +71,6 @@ const Login = ({ setLogin }) => {
       <View style={buttonTheme}>
         <Button
           onPress={() => {
-            console.log({ username, password });
             handleLogin();
             // resetState();
           }}

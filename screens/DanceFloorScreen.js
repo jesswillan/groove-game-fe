@@ -145,11 +145,9 @@ const DanceFloorScreen = () => {
         setSelectedSongs((current) => [...current, square9]);
       }
       setCount((count) => count + 1);
-      console.log(count);
       if (count >= 2) {
         // increases the count variable and checks to see if the round has finished
         setIsRoundFinished(true);
-        console.log("round complete");
       }
     }
   };
