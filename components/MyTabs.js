@@ -18,16 +18,16 @@ const Tab = createBottomTabNavigator();
 export const MyTabs = () => {
   return (
     <Tab.Navigator
-      initialRouteName="HomeScreen"
+      initialRouteName="HomeScreen" //initialise from the home screen
       screenOptions={({ route }) => ({
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
           if (route.name === "Home") {
-            iconName = focused ? "home" : "home-outline";
+            iconName = focused ? "home" : "home-outline"; //if icon name is home route to home screen
           } else if (route.name === "Game") {
-            iconName = focused ? "musical-notes" : "musical-notes-outline";
+            iconName = focused ? "musical-notes" : "musical-notes-outline"; //if icon name is game route to Game screen
           } else {
-            iconName = focused ? "person" : "person-outline";
+            iconName = focused ? "person" : "person-outline"; //else if none of the above two is preseed stay on the profile page
           }
           return <Icons name={iconName} color={color} size={size} />;
         },
@@ -38,7 +38,7 @@ export const MyTabs = () => {
       <Tab.Screen
         name="Home"
         options={{ headerShown: false }}
-        component={HomeScreen}
+        component={HomeScreen} //if button tapped navigate to these screens
       />
       <Tab.Screen
         options={{ headerShown: false }}
