@@ -126,7 +126,7 @@ const GameOver = () => {
               key={Math.floor(Math.random() * 500)}
               style={styles.resultContainer}
             >
-              <View style={[styles.songContainer, {paddingHorizontal: 10}]}>
+              <View style={{paddingHorizontal: 10}}>
                 <Image
                   source={{
                     uri: songs.img_url,
@@ -225,9 +225,6 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     marginHorizontal: 5,
     justifyContent: 'flex-end',
-  },
-  songContainer: {
-
   },
 });
 
