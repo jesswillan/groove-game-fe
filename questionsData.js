@@ -22,7 +22,7 @@ export const quesions = [
   {
     question: "Which singer cant stop staring at those ocean eyes?",
     correctAnswer: "Alicia Keys",
-    potentialAnswers: ["Alicia Keys", "Adele", "Lewis Capaldi", "Ed Sheeran"],
+    potentialAnswers: ["Adele", "Alicia Keys", "Lewis Capaldi", "Ed Sheeran"],
   },
   {
     question: "Which American hip hop duo had a 1986 hit with Push It?",
@@ -49,7 +49,7 @@ export const quesions = [
     question: "Where did Drake start from?",
     correctAnswer: "Started from the Bottom",
     potentialAnswers: [
-      "Started from the bottom",
+      "Started from the Bottom",
       "Started from the top",
       "Starting up",
       "Still trying to start",
@@ -70,9 +70,9 @@ export const quesions = [
       "Celine Dion had a hit with My Heart Will Go On from the soundtrack of which movie?",
     correctAnswer: "Titanic",
     potentialAnswers: [
+      "iRobot",
       "Titanic",
       "Sinking Ship",
-      "iRobot",
       "Shawshank Redemption",
     ],
   },
@@ -127,10 +127,10 @@ export const quesions = [
     question: "Immigrant Song was a hit for which band in 1970?",
     correctAnswer: "Led Zeppelin",
     potentialAnswers: [
-      "Led Zeppelin",
       "Lead Zippers",
       "Led me Away",
       "Led Thread",
+      "Led Zeppelin",
     ],
   },
   {
@@ -138,9 +138,9 @@ export const quesions = [
       "Which musical is based on the 1992 film of the same name which starred and featured songs by Whitney Houston?",
     correctAnswer: "The Bodyguard",
     potentialAnswers: [
-      "The Bodyguard",
       "The Hitsman Bodyguard",
       "Musical for Whitney",
+      "The Bodyguard",
       "This is Whitney",
     ],
   },
@@ -175,23 +175,23 @@ export const quesions = [
   {
     question: "Van Halen famously banned what color M&Ms in their rider?",
     correctAnswer: "Brown",
-    potentialAnswers: ["Brown", "Yellow", "Red", "Blue"],
+    potentialAnswers: ["Yellow", "Brown", "Red", "Blue"],
   },
   {
     question: "What does Lady Gaga affectionately call her fans?",
     correctAnswer: "Little Monsters",
     potentialAnswers: [
+      "Gaga Fans",
       "Little Monsters",
       "Monsters",
       "Big Monsters",
-      "Gaga Fans",
     ],
   },
   {
     question:
       "Who Sang Sunflower, the song for the animation film, Into the Spiderverse?",
     correctAnswer: "Post Malone",
-    potentialAnswers: ["Post Malone", "Usher", "Pre Malone", "Selena Gomez"],
+    potentialAnswers: [, "Usher", "Pre Malone", "Post Malone", "Selena Gomez"],
   },
   {
     question: "The J in Mary J. Blige stands for what?",
