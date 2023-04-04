@@ -22,12 +22,13 @@ const GameOver = () => {
   const [itsPlaying, setItsPlaying] = useState(false);
   const [songIndex, setSongIndex] = useState(0);
   const [input, setInput] = useState("");
-//Use State defined that would be called later on
+  //Use State defined that would be called later on
 
   const navigation = useNavigation();
 
   const playSong = (song) => {
-    if (songIndex === song && itsPlaying) { //check the song index and if the song is being currently played
+    if (songIndex === song && itsPlaying) {
+      //check the song index and if the song is being currently played
       setItsPlaying(false); //if its playing turn it off ie set it to false
     } else {
       setItsPlaying(true); //if not playing the set the set the playing to true so it can be invoked later on
@@ -39,20 +40,20 @@ const GameOver = () => {
     setSongsSelected([]);
     setGlobalArray([]);
   };
-  // function which will set difffernt songs and populate the array
+  // function which will clear the global states once the game has finished
 
   const handleSave = () => {
     if (!input) {
       console.log("please enter a game name"); //hasn't entered the game name they will get a console log warning
     } else {
       if (user) {
-        axios // using axios call the api that will retreive the songs from spotify
+        axios // using axios post the game to the database through our backend
           .post("https://groove-game-be.onrender.com/api/submit-games", {
             game: {
               game_name: input,
               user: user,
               songs: songsSelected,
-              // specify from the api which attributes we need
+              // the body of the request
             },
           })
           .then(() => {
@@ -65,13 +66,13 @@ const GameOver = () => {
     setInput("");
   };
 
-  //html frotn screen below which will invoke all the function from above and display the data
+  //html screen below which will invoke all the function from above and display the data
   return (
     <View style={{ alignItems: "center" }}>
       {!user ? (
         <Button
           onPress={() => {
-            navigation.navigate("Home"); // Navigation to different pages
+            navigation.navigate("Home"); // If the user is not logged in, the button will navigate them home
             stateClear();
           }}
           color={
@@ -108,10 +109,11 @@ const GameOver = () => {
         <Button title="save playlist to profile" onPress={handleSave} />
       </View>
       <View style={styles.playlistContainer}>
-        {songsSelected.map((songs) => { //map the playlist from the api
+        {songsSelected.map((songs) => {
+          //map the playlist from the global state
           return (
             <View
-              key={Math.floor(Math.random() * 500)} //identifyer fro different elements
+              key={Math.floor(Math.random() * 500)} // key for the mapped elements
               style={styles.songContainer}
             >
               <View style={{ padding: 5 }}>
@@ -133,15 +135,15 @@ const GameOver = () => {
               </View>
               {songs.track_preview ? (
                 <View style={styles.playButton}>
-                  <TouchableOpacity 
-                  // styling the button
+                  <TouchableOpacity
+                    // styling the button
                     style={{
                       backgroundColor: "lightgreen",
                       padding: 10,
                       borderRadius: 10,
                     }}
                     onPress={() => {
-                      playSong(songsSelected.indexOf(songs)); //display the index of the song selected
+                      playSong(songsSelected.indexOf(songs)); // invokes the playSong function with the index of the selected song
                     }}
                   >
                     <Text>+</Text>
@@ -156,7 +158,7 @@ const GameOver = () => {
       </View>
       {itsPlaying ? (
         <WebView
-          source={{ uri: songsSelected[songIndex].track_preview }} //preview the track once selected
+          source={{ uri: songsSelected[songIndex].track_preview }} // WebView component to play the audio of the specifed track
         ></WebView>
       ) : (
         <Text />
