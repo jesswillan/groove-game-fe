@@ -19,7 +19,11 @@ import axios from "axios";
 import { WebView } from "react-native-webview";
 import { useIsFocused } from "@react-navigation/native";
 import { ScrollView } from "react-native-gesture-handler";
-import { ResponseType, useAuthRequest } from "expo-auth-session";
+import {
+  ResponseType,
+  useAuthRequest,
+  makeRedirectUri,
+} from "expo-auth-session";
 
 const UserProfile = () => {
   const { user, setUser } = useContext(userContext);
@@ -39,7 +43,7 @@ const UserProfile = () => {
   const [request, response, promptAsync] = useAuthRequest(
     {
       responseType: ResponseType.Token,
-      clientId: "635e97b41a384a20bea1ce568b72c060",
+      clientId: "",
       scopes: [
         "user-read-currently-playing",
         "user-read-recently-played",
@@ -54,8 +58,9 @@ const UserProfile = () => {
       // fetch token after authorizationEndpoint
       // this must be set to false
       usePKCE: false,
-      redirectUri: "exp://localhost:19000/--/",
-      //AuthSession.getRedirectUrl('redirect');
+      redirectUri: makeRedirectUri({
+        scheme: "groovegame",
+      }),
     },
     discovery
   );
@@ -108,12 +113,12 @@ const UserProfile = () => {
                 title="logout"
               ></Button>
             </View>
-            <Button
+            {/* <Button
               title="clickme"
               onPress={() => {
                 promptAsync();
               }}
-            ></Button>
+            ></Button> */}
             <View style={{ marginBottom: 50 }}>
               {usersGames.map(({ game }) => {
                 return (
