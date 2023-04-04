@@ -32,14 +32,11 @@ const UserProfile = () => {
   const isFocused = useIsFocused();
 
   const discovery = {
-    authorizationEndpoint:
-    "https://accounts.spotify.com/authorize",
-    tokenEndpoint:
-    "https://accounts.spotify.com/api/token",
+    authorizationEndpoint: "https://accounts.spotify.com/authorize",
+    tokenEndpoint: "https://accounts.spotify.com/api/token",
   };
 
-  const [request, response, promptAsync] =
-useAuthRequest(
+  const [request, response, promptAsync] = useAuthRequest(
     {
       responseType: ResponseType.Token,
       clientId: "635e97b41a384a20bea1ce568b72c060",
@@ -58,6 +55,7 @@ useAuthRequest(
       // this must be set to false
       usePKCE: false,
       redirectUri: "exp://127.0.0.1:19000/",
+      //AuthSession.getRedirectUrl('redirect');
     },
     discovery
   );
@@ -109,16 +107,14 @@ useAuthRequest(
                 }}
                 title="logout"
               ></Button>
-            
             </View>
-<Button title="clickme" onPress={()=>{
-promptAsync()
-
-}}> 
-
-</Button>
+            <Button
+              title="clickme"
+              onPress={() => {
+                promptAsync();
+              }}
+            ></Button>
             <View style={{ marginBottom: 50 }}>
-
               {usersGames.map(({ game }) => {
                 return (
                   <View
