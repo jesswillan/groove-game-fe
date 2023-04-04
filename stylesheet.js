@@ -70,11 +70,25 @@ const defaultPaddinTop = {
   paddingTop: Platform.OS === "ios" ? 40 : StatusBar.currentHeight,
 };
 
+const backButton = {
+  marginTop: 25,
+  backgroundColor: colourTheme.primaryColour,
+  borderColor: colourTheme.highlightPink,
+  borderWidth: 4,
+  width: 'auto',
+  height: 50,
+  borderRadius: 10,
+  justifyContent: "center",
+  marginLeft: 20,
+  marginRight: "auto",
+};
+
 export {
   colourTheme,
   buttonTheme,
   defaultPaddinTop,
   radioButtonUnselected,
   radioButtonSelected,
-  logoutButtonTheme
+  logoutButtonTheme,
+  backButton
 };

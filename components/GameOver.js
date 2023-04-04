@@ -1,19 +1,21 @@
-import React, { useEffect, useState } from "react";
-import { Text, View, StyleSheet, Image, Button } from "react-native";
+import React, {useEffect, useState} from "react";
+import {Text, View, StyleSheet, Image, Button, TouchableOpacity} from "react-native";
 import songsSelectedArray from "../context/songsSelectedArray";
-import { useContext } from "react";
-import { WebView } from "react-native-webview";
-import { TouchableOpacity } from "react-native";
+import {useContext} from "react";
+import {WebView} from "react-native-webview";
+// import {TouchableOpacity} from "react-native";
 import userContext from "../context/userContext";
 import axios from "axios";
-import { useNavigation } from "@react-navigation/native";
-import { colourTheme } from "../stylesheet";
+import {useNavigation} from "@react-navigation/native";
+import {backButton, buttonTheme, colourTheme} from "../stylesheet";
 import globalSongArray from "../context/globalSongArray";
-import { TextInput } from "react-native-gesture-handler";
+import {TextInput} from "react-native-gesture-handler";
+import Icons from "react-native-vector-icons/Ionicons";
+// import GenericTouchable from 'react-native-gesture-handler/lib/typescript/components/touchables/GenericTouchable';
 const GameOver = () => {
-  const { songsSelected, setSongsSelected } = useContext(songsSelectedArray);
-  const { globalArray, setGlobalArray } = useContext(globalSongArray);
-  const { user } = useContext(userContext);
+  const {songsSelected, setSongsSelected} = useContext(songsSelectedArray);
+  const {globalArray, setGlobalArray} = useContext(globalSongArray);
+  const {user} = useContext(userContext);
 
   const [itsPlaying, setItsPlaying] = useState(false);
   const [songIndex, setSongIndex] = useState(0);
@@ -59,45 +61,53 @@ const GameOver = () => {
   };
 
   return (
-    <View style={{ alignItems: "center" }}>
+    <View style={{alignItems: "center"}}>
       {!user ? (
-        <Button
-          onPress={() => {
-            navigation.navigate("Home");
-            stateClear();
-          }}
-          color={
-            Platform.OS === "android" ? colourTheme.secondaryColour : "white"
-          }
-          title="Back to home"
-        ></Button>
+        <View style={backButton}>
+          <TouchableOpacity
+          style={styles.arrowBack}
+            onPress={() => {
+              navigation.navigate("Home");
+              stateClear();
+            }}
+            color={
+              Platform.OS === "android" ? colourTheme.secondaryColour : "white"
+            }
+          >
+            <Icons name='arrow-back' size={18} color={'white'}/>
+            <Text style={styles.backButtonText}>Back to home</Text>
+          </TouchableOpacity>
+        </View>
       ) : (
-        <Button
-          onPress={() => {
-            navigation.navigate("User Login");
-            stateClear();
-          }}
-          color={
-            Platform.OS === "android" ? colourTheme.secondaryColour : "white"
-          }
-          title="Back to profile"
-        ></Button>
+        <View>
+          <Button
+            onPress={() => {
+              navigation.navigate("User Login");
+              stateClear();
+            }}
+            color={
+              Platform.OS === "android" ? colourTheme.secondaryColour : "white"
+            }
+            title="Back to profile"
+          ></Button>
+        </View>
       )}
 
       {/* <Text style={{ color: "white", fontSize: 30 }}>Your playlist</Text> */}
       <TextInput
-        style={{
-          backgroundColor: "white",
-          width: 250,
-          height: 50,
-          marginTop: 10,
-        }}
+        style={styles.input}
         value={input}
         placeholder="Your Playlist Name... "
         onChangeText={(text) => setInput(text)}
       />
-      <View>
-        <Button title="save playlist to profile" onPress={handleSave} />
+      <View style={buttonTheme}>
+        <Button
+          title="Save your playlist"
+          onPress={handleSave}
+          color={
+            Platform.OS === "android" ? colourTheme.secondaryColour : "white"
+          }
+        />
       </View>
       <View style={styles.playlistContainer}>
         {songsSelected.map((songs) => {
@@ -106,7 +116,7 @@ const GameOver = () => {
               key={Math.floor(Math.random() * 500)}
               style={styles.songContainer}
             >
-              <View style={{ padding: 5 }}>
+              <View style={{padding: 5}}>
                 <Image
                   source={{
                     uri: songs.img_url,
@@ -115,11 +125,11 @@ const GameOver = () => {
                   }}
                 />
               </View>
-              <View style={{ width: 250 }}>
-                <Text style={{ fontSize: 16, color: "white" }}>
+              <View style={{width: 250}}>
+                <Text style={{fontSize: 16, color: "white"}}>
                   {songs.track_name}
                 </Text>
-                <Text style={{ fontSize: 12, color: "white" }}>
+                <Text style={{fontSize: 12, color: "white"}}>
                   {songs.track_artist[0].name}
                 </Text>
               </View>
@@ -147,7 +157,7 @@ const GameOver = () => {
       </View>
       {itsPlaying ? (
         <WebView
-          source={{ uri: songsSelected[songIndex].track_preview }}
+          source={{uri: songsSelected[songIndex].track_preview}}
         ></WebView>
       ) : (
         <Text />
@@ -176,6 +186,29 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+  input: {
+    height: 50,
+    width: 300,
+    marginLeft: 25,
+    marginRight: 25,
+    marginTop: 25,
+    backgroundColor: colourTheme.white,
+    color: colourTheme.primaryColour,
+    textAlign: "center",
+    borderRadius: 5,
+    padding: 5,
+  },
+  arrowBack: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'row',
+    paddingHorizontal: 10,
+  },
+  backButtonText: {
+    color: colourTheme.white,
+    fontSize: 16,
+  }
 });
 
 export default GameOver;
