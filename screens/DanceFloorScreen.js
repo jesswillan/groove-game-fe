@@ -12,18 +12,18 @@ import songsGenre from "../context/songsGenre";
 import axios from "axios";
 import FruitMachineGame from "../components/FruitMachineGame";
 import globalSongArray from "../context/globalSongArray";
-import songsSelectedArray from "../context/songsSelectedArray";
+import songsSelectedArray from "../context/songsSelectedArray"; // importing of libraries and modules
 
 const DanceFloorScreen = () => {
-  const { chosenGenre, setChosenGenre } = useContext(songsGenre);
-  const [isLoading, setIsLoading] = useState(true);
-  const [isRoundFinished, setIsRoundFinished] = useState(false);
+  const { chosenGenre, setChosenGenre } = useContext(songsGenre); // global state for the chosen genre
+  const [isLoading, setIsLoading] = useState(true); // flag for loading content from the api
+  const [isRoundFinished, setIsRoundFinished] = useState(false); // flag for checking if the round is over
   const [isNextRound, setIsNextRound] = useState(false);
-  const { globalArray, setGlobalArray } = useContext(globalSongArray);
-  const { songsSelected, setSongsSelected } = useContext(songsSelectedArray);
+  const { globalArray, setGlobalArray } = useContext(globalSongArray); // global state for the songs in the game
+  const { songsSelected, setSongsSelected } = useContext(songsSelectedArray); // global state for the songs in the game
 
-  const [square1, setSquare1] = useState("");
-  const [square1Pressed, setSquare1Pressed] = useState(false);
+  const [square1, setSquare1] = useState(""); // the following states store songs within the tiles
+  const [square1Pressed, setSquare1Pressed] = useState(false); // these states check if the tile has been selected
   const [square2, setSquare2] = useState("");
   const [square2Pressed, setSquare2Pressed] = useState(false);
   const [square3, setSquare3] = useState("");
@@ -40,17 +40,17 @@ const DanceFloorScreen = () => {
   const [square8Pressed, setSquare8Pressed] = useState(false);
   const [square9, setSquare9] = useState("");
   const [square9Pressed, setSquare9Pressed] = useState(false);
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(0); // count increases each time a tile has been selected
   const [selectedSongs, setSelectedSongs] = useState([]);
 
   useEffect(() => {
-    console.log(chosenGenre);
-    axios
+    axios // this use effect will get 50 songs from spotify through our back end
       .get(`https://groove-game-be.onrender.com/api/songs/${chosenGenre}`)
       .then((res) => {
         const mappedArr = res.data.tracks.map((obj) => {
+          // this will create an object for each song
           let newObj = {
-            track_name: obj.name,
+            track_name: obj.name, // the object will contain these specific properties
             track_artist: obj.artists,
             track_preview: obj.preview_url,
             img_url: obj.album.images[0].url,
@@ -64,26 +64,27 @@ const DanceFloorScreen = () => {
         setSquare2(mappedArr[1]);
         setSquare3(mappedArr[2]);
         setSquare4(mappedArr[3]);
-        setSquare5(mappedArr[4]);
+        setSquare5(mappedArr[4]); // the songs are mapped to each dance floor tile
         setSquare6(mappedArr[5]);
         setSquare7(mappedArr[6]);
         setSquare8(mappedArr[7]);
         setSquare9(mappedArr[8]);
-        setIsLoading(false);
-        console.log(square1);
+        setIsLoading(false); // loading is set to false, rendering the majority of the JSX
       });
   }, []);
 
   const renderNextRound = () => {
+    // function to set the flag of isNextRound to true
     setIsNextRound(true);
   };
 
   const handleClick = (str) => {
+    // function for selecting tiles
     if (!isRoundFinished) {
       if (str === "square1") {
         setSquare1Pressed(true);
         setSongsSelected((songs) => {
-          return [...songs, square1];
+          return [...songs, square1]; // adds the song to our selected songs array
         });
         setSelectedSongs((current) => [...current, square1]);
       }
@@ -146,6 +147,7 @@ const DanceFloorScreen = () => {
       setCount((count) => count + 1);
       console.log(count);
       if (count >= 2) {
+        // increases the count variable and checks to see if the round has finished
         setIsRoundFinished(true);
         console.log("round complete");
       }
