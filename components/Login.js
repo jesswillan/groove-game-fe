@@ -6,7 +6,9 @@ import { TextInput } from "react-native-gesture-handler";
 import { colourTheme, buttonTheme } from "../stylesheet";
 import axios from "axios";
 import userContext from "../context/userContext";
+//Above importing the modules and library function from react
 
+//Settign the states and user context
 const Login = ({ setLogin }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -20,24 +22,27 @@ const Login = ({ setLogin }) => {
   // };
 
   const handleLogin = () => {
+    //declaring a function which will invoke username and password
     const loginObj = {
       username: username,
       password: password,
     };
     axios
+    //using axios retieve the user infroamtion from user database. Use callback to set them then concole log the new user
       .post("https://groove-game-be.onrender.com/api/user-login", loginObj)
       .then(() => {
         setUser(username);
         setUsername("");
-        setPassword("");
+        setPassword(""); //checking if username & password is filled up 
         console.log("logged in");
       })
+      //if the user does not exists show error of user not found
       .catch((err) => {
         //setAlertWarning("Invalid Username or password");
         setShowAlert(true);
         setTimeout(() => {
           setShowAlert(false);
-        }, 10000);
+        }, 10000); //message to be displayed for 10 sec
         console.log(err);
       });
   };
@@ -50,7 +55,7 @@ const Login = ({ setLogin }) => {
         value={username}
         autoCapitalize="none"
         placeholder="Username"
-        style={[styles.input, { borderRadius: 5 }]}
+        style={[styles.input, { borderRadius: 5 }]} //Enter the username and password then check them against the database
       />
       <TextInput
         onChangeText={(text) => setPassword(text)}
@@ -60,7 +65,7 @@ const Login = ({ setLogin }) => {
         placeholder="Password"
         style={[styles.input, { borderRadius: 5 }]}
       />
-      {showAlert ? (
+      {showAlert ? ( //alert message to show user doesn't exists
         <Text style={styles.textCentre}>Invalid username or password</Text>
       ) : (
         ""
@@ -88,6 +93,7 @@ const Login = ({ setLogin }) => {
   );
 };
 
+//Style the login page using consistence format
 const styles = StyleSheet.create({
   input: {
     height: 50,
