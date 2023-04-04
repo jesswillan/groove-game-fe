@@ -99,6 +99,7 @@ const GameOver = () => {
         value={input}
         placeholder="Your Playlist Name... "
         onChangeText={(text) => setInput(text)}
+        autoCapitalize='none'
       />
       <View style={buttonTheme}>
         <Button
@@ -114,9 +115,9 @@ const GameOver = () => {
           return (
             <View
               key={Math.floor(Math.random() * 500)}
-              style={styles.songContainer}
+              style={styles.resultContainer}
             >
-              <View style={{padding: 5}}>
+              <View style={[styles.songContainer, {paddingHorizontal: 10}]}>
                 <Image
                   source={{
                     uri: songs.img_url,
@@ -125,8 +126,8 @@ const GameOver = () => {
                   }}
                 />
               </View>
-              <View style={{width: 250}}>
-                <Text style={{fontSize: 16, color: "white"}}>
+              <View style={styles.songNameArtist}>
+                <Text style={{fontSize: 14, color: "white"}}>
                   {songs.track_name}
                 </Text>
                 <Text style={{fontSize: 12, color: "white"}}>
@@ -136,16 +137,11 @@ const GameOver = () => {
               {songs.track_preview ? (
                 <View style={styles.playButton}>
                   <TouchableOpacity
-                    style={{
-                      backgroundColor: "lightgreen",
-                      padding: 10,
-                      borderRadius: 10,
-                    }}
                     onPress={() => {
                       playSong(songsSelected.indexOf(songs));
                     }}
                   >
-                    <Text>+</Text>
+                    <Icons name="musical-notes" size={18} color={"white"} />
                   </TouchableOpacity>
                 </View>
               ) : (
@@ -169,22 +165,22 @@ const GameOver = () => {
 const styles = StyleSheet.create({
   playlistContainer: {
     marginTop: 25,
-    backgroundColor: "black",
-    padding: 5,
+    backgroundColor: colourTheme.white,
+    padding: 1,
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 10,
+    
   },
-  songContainer: {
+  resultContainer: {
     flexDirection: "row",
-    backgroundColor: "purple",
-    borderBottomColor: "black",
-    borderBottomWidth: 2,
+    backgroundColor: colourTheme.secondaryColour,
     width: 350,
     margin: 5,
-    padding: 5,
-    justifyContent: "center",
+    paddingVertical: 10,
     alignItems: "center",
+    borderRadius: 5,
+    justifyContent: 'flex-start'
   },
   input: {
     height: 50,
@@ -208,7 +204,21 @@ const styles = StyleSheet.create({
   backButtonText: {
     color: colourTheme.white,
     fontSize: 16,
-  }
+  },
+  songNameArtist: {
+    width: 'auto',
+  },
+  playButton: {
+    backgroundColor: colourTheme.primaryColour,
+    padding: 8,
+    borderColor: colourTheme.white,
+    borderRadius: 5,
+    marginHorizontal: 5,
+    justifyContent: 'flex-end',
+  },
+  songContainer: {
+
+  },
 });
 
 export default GameOver;
