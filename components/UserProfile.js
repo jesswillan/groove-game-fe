@@ -19,6 +19,11 @@ import axios from "axios";
 import { WebView } from "react-native-webview";
 import { useIsFocused } from "@react-navigation/native";
 import { ScrollView } from "react-native-gesture-handler";
+import {
+  ResponseType,
+  useAuthRequest,
+  makeRedirectUri,
+} from "expo-auth-session";
 
 const UserProfile = () => {
   const { user, setUser } = useContext(userContext);
@@ -29,6 +34,36 @@ const UserProfile = () => {
   const [songIndex, setSongIndex] = useState(0);
 
   const isFocused = useIsFocused();
+
+  const discovery = {
+    authorizationEndpoint: "https://accounts.spotify.com/authorize",
+    tokenEndpoint: "https://accounts.spotify.com/api/token",
+  };
+
+  const [request, response, promptAsync] = useAuthRequest(
+    {
+      responseType: ResponseType.Token,
+      clientId: "",
+      scopes: [
+        "user-read-currently-playing",
+        "user-read-recently-played",
+        "user-read-playback-state",
+        "user-top-read",
+        "user-modify-playback-state",
+        "streaming",
+        "user-read-email",
+        "user-read-private",
+      ],
+      // In order to follow the "Authorization Code Flow" to
+      // fetch token after authorizationEndpoint
+      // this must be set to false
+      usePKCE: false,
+      redirectUri: makeRedirectUri({
+        scheme: "groovegame",
+      }),
+    },
+    discovery
+  );
 
   useEffect(() => {
     axios
@@ -78,6 +113,12 @@ const UserProfile = () => {
                 title="logout"
               ></Button>
             </View>
+            {/* <Button
+              title="clickme"
+              onPress={() => {
+                promptAsync();
+              }}
+            ></Button> */}
             <View style={{ marginBottom: 50 }}>
               {usersGames.map(({ game }) => {
                 return (
