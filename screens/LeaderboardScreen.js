@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { colourTheme, defaultPaddinTop } from "../stylesheet";
 import axios from "axios";
 import { useState } from "react";
+import { ScrollView } from "react-native-gesture-handler";
 
 const LeaderboardScreen = () => {
   const [leaderboardData, setLeaderboardData] = useState([]);
@@ -14,16 +15,18 @@ const LeaderboardScreen = () => {
   }, []);
 
   return (
-    <View style={[defaultPaddinTop, styles.container]}>
-      <Text style={styles.textCentre}>Leaderboard</Text>
-      {leaderboardData.map((data, index) => {
-        return (
-          <Text style={styles.textCentre}>{`${index + 1} ${
-            data.username
-          } : score ${data.score}`}</Text>
-        );
-      })}
-    </View>
+    <ScrollView>
+      <View style={[defaultPaddinTop, styles.container]}>
+        <Text style={styles.textCentre}>Leaderboard</Text>
+        {leaderboardData.map((data, index) => {
+          return (
+            <Text style={styles.textCentre}>{`${index + 1} ${
+              data.username
+            } : score ${data.score}`}</Text>
+          );
+        })}
+      </View>
+    </ScrollView>
   );
 };
 

@@ -13,6 +13,7 @@ import globalSongArray from "../context/globalSongArray";
 import { buttonTheme, colourTheme } from "../stylesheet";
 import GameOver from "./GameOver";
 import songsSelectedArray from "../context/songsSelectedArray";
+import { ScrollView } from "react-native-gesture-handler";
 // the code above handles importing external libraries and importing modules
 
 export default function FruitMachineGame() {
@@ -141,117 +142,125 @@ export default function FruitMachineGame() {
     return boxArr;
   };
   return (
-    <View style={styles.container}>
-      {!isGameOver ? ( // if the game is not over, generate the code below
-        <View>
-          <StatusBar style="auto" />
-          <View style={styles.tileContainer}>
-            <Animated.View
-              style={[
-                styles.spinner,
-                {
-                  transform: [{ translateX: translateBox(box1PositionValue) }], // the x axis transform
-                }, // value evaluates to the animation values
-              ]} // when the tile is spun, this value is updated frame by frame
-            >
-              {renderBoxes()}
-            </Animated.View>
-          </View>
-          <View style={styles.buttonResultContainer}>
-            <TouchableOpacity
-              style={[buttonTheme, styles.button]}
-              onPress={() => {
-                moveBox(box1PositionValue); // pressing the spin button triggers the animation and the moveBox function
-                setIsBox1Spun(true); // the box has been spun
-              }}
-              disabled={isBox1Spun} // disables this button if the box has been spun
-            >
-              <Text style={{ color: colourTheme.white }}>Spin</Text>
-            </TouchableOpacity>
-            {isRoundOver ? ( // if the round is over, display the song selected
-              <Text style={styles.yourSongs}>{selectedSongs[0]}</Text>
-            ) : (
-              <Text></Text>
-            )}
-          </View>
-          <View style={styles.tileContainer}>
-            <Animated.View
-              style={[
-                styles.spinner,
-                {
-                  transform: [{ translateX: translateBox(box2PositionValue) }],
-                },
-              ]}
-            >
-              {renderBoxes()}
-            </Animated.View>
-          </View>
-          <View style={styles.buttonResultContainer}>
-            <TouchableOpacity
-              style={[buttonTheme, styles.button]}
-              onPress={() => {
-                moveBox(box2PositionValue);
-                setIsBox2Spun(true);
-              }}
-              disabled={isBox2Spun}
-            >
-              <Text style={{ color: colourTheme.white }}>Spin</Text>
-            </TouchableOpacity>
-            {isRoundOver ? (
-              <Text style={styles.yourSongs}>{selectedSongs[1]}</Text>
-            ) : (
-              <Text></Text>
-            )}
-          </View>
-          <View style={styles.tileContainer}>
-            <Animated.View
-              style={[
-                styles.spinner,
-                {
-                  transform: [{ translateX: translateBox(box3PositionValue) }],
-                },
-              ]}
-            >
-              {renderBoxes()}
-            </Animated.View>
-          </View>
-          <View style={styles.buttonResultContainer}>
-            <TouchableOpacity
-              style={[buttonTheme, styles.button]}
-              onPress={() => {
-                moveBox(box3PositionValue);
-                setIsBox3Spun(true);
-              }}
-              disabled={isBox3Spun}
-            >
-              <Text style={{ color: colourTheme.white }}>Spin</Text>
-            </TouchableOpacity>
-            {isRoundOver ? (
-              <Text style={styles.yourSongs}>{selectedSongs[2]}</Text>
-            ) : (
-              <Text></Text>
-            )}
-          </View>
-          {isRoundOver ? (
-            <View style={buttonTheme}>
-              <Button
-                title="Next round"
-                onPress={() => setIsGameOver(true)}
-                color={
-                  Platform.OS === "android"
-                    ? colourTheme.secondaryColour
-                    : "white"
-                }
-              />
+    <ScrollView>
+      <View style={styles.container}>
+        {!isGameOver ? ( // if the game is not over, generate the code below
+          <View>
+            <StatusBar style="auto" />
+            <View style={styles.tileContainer}>
+              <Animated.View
+                style={[
+                  styles.spinner,
+                  {
+                    transform: [
+                      { translateX: translateBox(box1PositionValue) },
+                    ], // the x axis transform
+                  }, // value evaluates to the animation values
+                ]} // when the tile is spun, this value is updated frame by frame
+              >
+                {renderBoxes()}
+              </Animated.View>
             </View>
-          ) : (
-            <Text></Text>
-          )}
-        </View>
-      ) : (
-        <GameOver />
-      )}
-    </View>
+            <View style={styles.buttonResultContainer}>
+              <TouchableOpacity
+                style={[buttonTheme, styles.button]}
+                onPress={() => {
+                  moveBox(box1PositionValue); // pressing the spin button triggers the animation and the moveBox function
+                  setIsBox1Spun(true); // the box has been spun
+                }}
+                disabled={isBox1Spun} // disables this button if the box has been spun
+              >
+                <Text style={{ color: colourTheme.white }}>Spin</Text>
+              </TouchableOpacity>
+              {isRoundOver ? ( // if the round is over, display the song selected
+                <Text style={styles.yourSongs}>{selectedSongs[0]}</Text>
+              ) : (
+                <Text></Text>
+              )}
+            </View>
+            <View style={styles.tileContainer}>
+              <Animated.View
+                style={[
+                  styles.spinner,
+                  {
+                    transform: [
+                      { translateX: translateBox(box2PositionValue) },
+                    ],
+                  },
+                ]}
+              >
+                {renderBoxes()}
+              </Animated.View>
+            </View>
+            <View style={styles.buttonResultContainer}>
+              <TouchableOpacity
+                style={[buttonTheme, styles.button]}
+                onPress={() => {
+                  moveBox(box2PositionValue);
+                  setIsBox2Spun(true);
+                }}
+                disabled={isBox2Spun}
+              >
+                <Text style={{ color: colourTheme.white }}>Spin</Text>
+              </TouchableOpacity>
+              {isRoundOver ? (
+                <Text style={styles.yourSongs}>{selectedSongs[1]}</Text>
+              ) : (
+                <Text></Text>
+              )}
+            </View>
+            <View style={styles.tileContainer}>
+              <Animated.View
+                style={[
+                  styles.spinner,
+                  {
+                    transform: [
+                      { translateX: translateBox(box3PositionValue) },
+                    ],
+                  },
+                ]}
+              >
+                {renderBoxes()}
+              </Animated.View>
+            </View>
+            <View style={styles.buttonResultContainer}>
+              <TouchableOpacity
+                style={[buttonTheme, styles.button]}
+                onPress={() => {
+                  moveBox(box3PositionValue);
+                  setIsBox3Spun(true);
+                }}
+                disabled={isBox3Spun}
+              >
+                <Text style={{ color: colourTheme.white }}>Spin</Text>
+              </TouchableOpacity>
+              {isRoundOver ? (
+                <Text style={styles.yourSongs}>{selectedSongs[2]}</Text>
+              ) : (
+                <Text></Text>
+              )}
+            </View>
+            {isRoundOver ? (
+              <View style={buttonTheme}>
+                <Button
+                  title="Next round"
+                  onPress={() => setIsGameOver(true)}
+                  color={
+                    Platform.OS === "android"
+                      ? colourTheme.secondaryColour
+                      : "white"
+                  }
+                />
+              </View>
+            ) : (
+              <Text></Text>
+            )}
+          </View>
+        ) : (
+          <GameOver />
+        )}
+      </View>
+    </ScrollView>
   );
 }
 const styles = StyleSheet.create({

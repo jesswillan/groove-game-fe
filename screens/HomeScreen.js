@@ -19,7 +19,12 @@ export default HomeScreen = () => {
 
   return (
     <View style={[styles.container, defaultPaddinTop]}>
-      <Text style={{ color: "white" }}>logged in as: {user}</Text>
+      {user ? (
+        <Text style={{ color: "white" }}>logged in as: {user}</Text>
+      ) : (
+        <Text></Text>
+      )}
+
       <Text style={styles.welcome}>
         Welcome to {"\n"} <Text style={styles.grooveGame}>Groove Game</Text>
       </Text>
