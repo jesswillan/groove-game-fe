@@ -10,23 +10,28 @@ import { useNavigation } from "@react-navigation/native";
 import { colourTheme } from "../stylesheet";
 import globalSongArray from "../context/globalSongArray";
 import { TextInput } from "react-native-gesture-handler";
+// the above code imports different library function & modules from react
+
 const GameOver = () => {
   const { songsSelected, setSongsSelected } = useContext(songsSelectedArray);
   const { globalArray, setGlobalArray } = useContext(globalSongArray);
   const { user } = useContext(userContext);
 
+  // setting different useContext which will be used to call the variables alter one
+
   const [itsPlaying, setItsPlaying] = useState(false);
   const [songIndex, setSongIndex] = useState(0);
   const [input, setInput] = useState("");
+//Use State defined that would be called later on
 
   const navigation = useNavigation();
 
   const playSong = (song) => {
-    if (songIndex === song && itsPlaying) {
-      setItsPlaying(false);
+    if (songIndex === song && itsPlaying) { //check the song index and if the song is being currently played
+      setItsPlaying(false); //if its playing turn it off ie set it to false
     } else {
-      setItsPlaying(true);
-      setSongIndex(song);
+      setItsPlaying(true); //if not playing the set the set the playing to true so it can be invoked later on
+      setSongIndex(song); //set the index to the current song chosen
     }
   };
 
@@ -34,18 +39,20 @@ const GameOver = () => {
     setSongsSelected([]);
     setGlobalArray([]);
   };
+  // function which will set difffernt songs and populate the array
 
   const handleSave = () => {
     if (!input) {
-      console.log("please enter a game name");
+      console.log("please enter a game name"); //hasn't entered the game name they will get a console log warning
     } else {
       if (user) {
-        axios
+        axios // using axios call the api that will retreive the songs from spotify
           .post("https://groove-game-be.onrender.com/api/submit-games", {
             game: {
               game_name: input,
               user: user,
               songs: songsSelected,
+              // specify from the api which attributes we need
             },
           })
           .then(() => {
@@ -58,16 +65,17 @@ const GameOver = () => {
     setInput("");
   };
 
+  //html frotn screen below which will invoke all the function from above and display the data
   return (
     <View style={{ alignItems: "center" }}>
       {!user ? (
         <Button
           onPress={() => {
-            navigation.navigate("Home");
+            navigation.navigate("Home"); // Navigation to different pages
             stateClear();
           }}
           color={
-            Platform.OS === "android" ? colourTheme.secondaryColour : "white"
+            Platform.OS === "android" ? colourTheme.secondaryColour : "white" // colour theme for Android
           }
           title="Back to home"
         ></Button>
@@ -100,10 +108,10 @@ const GameOver = () => {
         <Button title="save playlist to profile" onPress={handleSave} />
       </View>
       <View style={styles.playlistContainer}>
-        {songsSelected.map((songs) => {
+        {songsSelected.map((songs) => { //map the playlist from the api
           return (
             <View
-              key={Math.floor(Math.random() * 500)}
+              key={Math.floor(Math.random() * 500)} //identifyer fro different elements
               style={styles.songContainer}
             >
               <View style={{ padding: 5 }}>
@@ -125,14 +133,15 @@ const GameOver = () => {
               </View>
               {songs.track_preview ? (
                 <View style={styles.playButton}>
-                  <TouchableOpacity
+                  <TouchableOpacity 
+                  // styling the button
                     style={{
                       backgroundColor: "lightgreen",
                       padding: 10,
                       borderRadius: 10,
                     }}
                     onPress={() => {
-                      playSong(songsSelected.indexOf(songs));
+                      playSong(songsSelected.indexOf(songs)); //display the index of the song selected
                     }}
                   >
                     <Text>+</Text>
@@ -147,7 +156,7 @@ const GameOver = () => {
       </View>
       {itsPlaying ? (
         <WebView
-          source={{ uri: songsSelected[songIndex].track_preview }}
+          source={{ uri: songsSelected[songIndex].track_preview }} //preview the track once selected
         ></WebView>
       ) : (
         <Text />
@@ -156,6 +165,7 @@ const GameOver = () => {
   );
 };
 
+//styling using CSS below
 const styles = StyleSheet.create({
   playlistContainer: {
     marginTop: 25,
