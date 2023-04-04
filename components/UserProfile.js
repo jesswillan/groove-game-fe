@@ -9,7 +9,11 @@ import {
 } from "react-native";
 import userContext from "../context/userContext";
 import Icons from "react-native-vector-icons/Ionicons";
-import { colourTheme, defaultPaddinTop, logoutButtonTheme } from "../stylesheet";
+import {
+  colourTheme,
+  defaultPaddinTop,
+  logoutButtonTheme,
+} from "../stylesheet";
 import axios from "axios";
 import { WebView } from "react-native-webview";
 import { useIsFocused } from "@react-navigation/native";
@@ -54,24 +58,25 @@ const UserProfile = () => {
         <View>
           <View style={styles.user}>
             <Icons name={"person"} color={colourTheme.white} size={50} />
-            <Text style={{ color: "white", fontSize: 30, paddingLeft: 30 }}>{user}</Text>
+            <Text style={{ color: "white", fontSize: 30, paddingLeft: 30 }}>
+              {user}
+            </Text>
           </View>
           <View style={logoutButtonTheme}>
-
-          <Button
-            color={colourTheme.primaryColour}
-            onPress={() => {
-              setUser("");
-            }}
-            title="logout"
-          >
-            logout
-          </Button>
+            <Button
+              color={colourTheme.primaryColour}
+              onPress={() => {
+                setUser("");
+              }}
+              title="logout"
+            >
+              logout
+            </Button>
           </View>
           <View>
             {usersGames.map(({ game }) => {
               return (
-                <View key={Math.floor(Math.random() * 5000)}>
+                <View key={Math.floor(Math.random() * 5000) + game.game_name}>
                   <Button
                     title={game.game_name}
                     onPress={() => renderGame(game)}
@@ -91,7 +96,7 @@ const UserProfile = () => {
             {currentGame.songs.map((song) => {
               return (
                 <View
-                  key={Math.floor(Math.random() * 5000)}
+                  key={Math.floor(Math.random() * 5000) + song.track_name}
                   style={styles.songContainer}
                 >
                   <View style={{ padding: 5 }}>

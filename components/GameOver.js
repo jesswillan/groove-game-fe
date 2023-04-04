@@ -103,7 +103,7 @@ const GameOver = () => {
         {songsSelected.map((songs) => {
           return (
             <View
-              key={Math.floor(Math.random() * 500)}
+              key={Math.floor(Math.random() * 500) + songs.track_name}
               style={styles.songContainer}
             >
               <View style={{ padding: 5 }}>
