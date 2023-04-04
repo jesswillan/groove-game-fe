@@ -54,7 +54,7 @@ const UserProfile = () => {
       // fetch token after authorizationEndpoint
       // this must be set to false
       usePKCE: false,
-      redirectUri: "exp://127.0.0.1:19000/",
+      redirectUri: "exp://localhost:19000/--/",
       //AuthSession.getRedirectUrl('redirect');
     },
     discovery
