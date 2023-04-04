@@ -113,7 +113,11 @@ const GameOver = () => {
           //map the playlist from the global state
           return (
             <View
+
               key={Math.floor(Math.random() * 500)} // key for the mapped elements
+
+              key={Math.floor(Math.random() * 500) + songs.track_name}
+
               style={styles.songContainer}
             >
               <View style={{ padding: 5 }}>
