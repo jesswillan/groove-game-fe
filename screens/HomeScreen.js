@@ -1,5 +1,5 @@
 // react/hooks
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 // react components
 import { Text, View, Button, Image } from "react-native";
 // global userContext
@@ -9,13 +9,26 @@ import { StyleSheet } from "react-native";
 // custom styling objects
 import { colourTheme, defaultPaddinTop, buttonTheme } from "../stylesheet";
 // navigation hook
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useIsFocused } from "@react-navigation/native";
+import globalSongArray from "../context/globalSongArray";
+import songsSelectedArray from "../context/songsSelectedArray";
 
 export default HomeScreen = () => {
   // grabs the user and setUser values from the userContext
   const { user, setUser } = useContext(userContext);
   // invokes hook to allow access to the navigation object
+  const { songsSelected, setSongsSelected } = useContext(songsSelectedArray);
+  const { globalArray, setGlobalArray } = useContext(globalSongArray);
+  // global context imports
   const navigation = useNavigation();
+
+  const isFocused = useIsFocused(); // invocation of the useIsFocused module
+
+  useEffect(() => {
+    // This will clear global state when home screen is the focused screen
+    setGlobalArray([]);
+    setSongsSelected([]);
+  }, [isFocused]);
 
   return (
     <View style={[styles.container, defaultPaddinTop]}>
