@@ -17,12 +17,12 @@ export const quesions = [
   {
     question: "How many members are there in Korean boy band BTS?",
     correctAnswer: "7",
-    potentialAnswers: ["9", "6", "8", "10"],
+    potentialAnswers: ["9", "6", "7", "10"],
   },
   {
     question: "Which singer cant stop staring at those ocean eyes?",
     correctAnswer: "Alicia Keys",
-    potentialAnswers: ["Jay-Z", "Adele", "Lewis Capaldi", "Ed Sheeran"],
+    potentialAnswers: ["Alicia Keys", "Adele", "Lewis Capaldi", "Ed Sheeran"],
   },
   {
     question: "Which American hip hop duo had a 1986 hit with Push It?",
@@ -33,7 +33,7 @@ export const quesions = [
     question:
       "In 2017 Luis Fonsi and Daddy Yankee topped the chart in 47 countries with which song?",
     correctAnswer: "Despacito",
-    potentialAnswers: ["Havana", "Mockingbird", "Sunshine", "47 countries"],
+    potentialAnswers: ["Havana", "Mockingbird", "Despacito", "47 countries"],
   },
   {
     question: "Beyonce rose to stardom as part of which girl band?",
@@ -49,8 +49,8 @@ export const quesions = [
     question: "Where did Drake start from?",
     correctAnswer: "Started from the Bottom",
     potentialAnswers: [
-      "Started from the Bottom",
-      "Started from the Top",
+      "Started from the bottom",
+      "Started from the top",
       "Starting up",
       "Still trying to start",
     ],
@@ -67,7 +67,7 @@ export const quesions = [
   },
   {
     question:
-      "Celine Dion had a hit with ‘My Heart Will Go On’ from the soundtrack of which movie?",
+      "Celine Dion had a hit with My Heart Will Go On from the soundtrack of which movie?",
     correctAnswer: "Titanic",
     potentialAnswers: [
       "Titanic",
@@ -78,10 +78,10 @@ export const quesions = [
   },
   {
     question:
-      "‘Bad Blood’, ‘Love Story’, and ‘Cardigan’ are hits for which best-selling American singer?",
+      "Bad Blood, Love Story, and Cardigan are hits for which best-selling American singer?",
     correctAnswer: "Taylor Swift",
     potentialAnswers: [
-      "Selena gomez",
+      "Selena Gomez",
       "Taylor Swift",
       "Justin Bieber",
       "Kendrick Lamar",
@@ -143,5 +143,59 @@ export const quesions = [
       "Musical for Whitney",
       "This is Whitney",
     ],
+  },
+  {
+    question:
+      "Before Miley Cyrus recorded Wrecking Ball, it was offered to which singer?",
+    correctAnswer: "Beyonce",
+    potentialAnswers: [
+      "Beyonce",
+      "Taylor Swift",
+      "Michael Jackson",
+      "James Blunt",
+    ],
+  },
+  {
+    question: "Eminem's 8 Mile is named after a road in which city?",
+    correctAnswer: "Detroit",
+    potentialAnswers: ["Kansas", "Texas", "New York", "Detroit"],
+  },
+
+  {
+    question:
+      "Believe it or not, Jimi Hendrix only had one Top 40 hit. Which song was it?",
+    correctAnswer: "All Along the Watchtower",
+    potentialAnswers: [
+      "Hey Joe",
+      "Marry Me",
+      "All Along the Watchtower",
+      "Voodoo Child",
+    ],
+  },
+  {
+    question: "Van Halen famously banned what color M&Ms in their rider?",
+    correctAnswer: "Brown",
+    potentialAnswers: ["Brown", "Yellow", "Red", "Blue"],
+  },
+  {
+    question: "What does Lady Gaga affectionately call her fans?",
+    correctAnswer: "Little Monsters",
+    potentialAnswers: [
+      "Little Monsters",
+      "Monsters",
+      "Big Monsters",
+      "Gaga Fans",
+    ],
+  },
+  {
+    question:
+      "Who Sang Sunflower, the song for the animation film, Into the Spiderverse?",
+    correctAnswer: "Post Malone",
+    potentialAnswers: ["Post Malone", "Usher", "Pre Malone", "Selena Gomez"],
+  },
+  {
+    question: "The J in Mary J. Blige stands for what?",
+    correctAnswer: "Jane",
+    potentialAnswers: ["John", "Jen", "Jane", "Jacuzzi"],
   },
 ];
