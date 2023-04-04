@@ -31,9 +31,9 @@ const logoutButtonTheme = {
   width: 200,
   height: 50,
   borderRadius: 10,
-  justifyContent: 'center',
-  marginLeft: 'auto',
-  marginRight: 'auto',
+  justifyContent: "center",
+  marginLeft: "auto",
+  marginRight: "auto",
 };
 const radioButtonUnselected = {
   marginTop: 25,
@@ -75,7 +75,7 @@ const backButton = {
   backgroundColor: colourTheme.primaryColour,
   borderColor: colourTheme.highlightPink,
   borderWidth: 4,
-  width: 'auto',
+  width: "auto",
   height: 50,
   borderRadius: 10,
   justifyContent: "center",
@@ -104,5 +104,5 @@ export {
   radioButtonSelected,
   logoutButtonTheme,
   backButton,
-  quizButton
+  quizButton,
 };

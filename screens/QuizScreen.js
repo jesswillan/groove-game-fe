@@ -5,7 +5,12 @@ import { Button, StyleSheet, Text, View, Platform } from "react-native";
 // react/hooks
 import React, { useContext, useState } from "react";
 // custom styling objects
-import { defaultPaddinTop, colourTheme, buttonTheme, quizButton } from "../stylesheet";
+import {
+  defaultPaddinTop,
+  colourTheme,
+  buttonTheme,
+  quizButton,
+} from "../stylesheet";
 // axios
 import axios from "axios";
 import userContext from "../context/userContext";
@@ -66,7 +71,7 @@ const QuizScreen = () => {
         ) : (
           <>
             <Text style={styles.questionCount}>
-              Question {questionCount+1} / 5
+              Question {questionCount + 1} / 5
             </Text>
             <Text style={styles.question}>
               {quesions[randQuestion].question}
@@ -75,7 +80,7 @@ const QuizScreen = () => {
               return (
                 <View
                   key={answer}
-                  style={[quizButton, {color: colourTheme.primaryColour}]}
+                  style={[quizButton, { color: colourTheme.primaryColour }]}
                 >
                   <Button
                     onPress={() => {
@@ -97,9 +102,7 @@ const QuizScreen = () => {
                 </View>
               );
             })}
-            <Text style={styles.score}>
-              Correct answers : {correctCount}
-            </Text>
+            <Text style={styles.score}>Correct answers : {correctCount}</Text>
           </>
         )}
       </View>
@@ -127,12 +130,12 @@ const styles = StyleSheet.create({
     padding: 15,
   },
   score: {
-    color: 'white',
+    color: "white",
     fontSize: 20,
     marginTop: 20,
   },
   questionCount: {
-    color: 'white',
+    color: "white",
     fontSize: 20,
   },
 });

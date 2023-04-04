@@ -21,11 +21,11 @@ const Signup = ({ setLogin }) => {
     //check if the username, name is filled up and the password box has minimum 6 characters
     if (password.length >= 6 && username && name) {
       {
-        console.log({
-          username: username,
-          name: name,
-          password: password,
-        });
+        // console.log({
+        //   username: username,
+        //   name: name,
+        //   password: password,
+        // });
         //send the sign-up details to the table in render
         axios
           .post("https://groove-game-be.onrender.com/api/user-signup", {
@@ -39,12 +39,8 @@ const Signup = ({ setLogin }) => {
             setUsername("");
             setPassword("");
             setName("");
-            console.log("posted sucessfully");
-          })
-          //catch errors if it cannot be retreived
-          .catch((err) => {
-            console.log(err);
           });
+        //catch errors if it cannot be retreived
       }
       //if any fields are missing not filled up, show the alert to indicate which firld need filling
     } else if (!username || !password || !name) {
