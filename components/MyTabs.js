@@ -12,6 +12,8 @@ import Icons from "react-native-vector-icons/Ionicons";
 // colour theme
 import { colourTheme } from "../stylesheet";
 
+//imported all modules and library function from react
+
 // creates Tab navigator
 const Tab = createBottomTabNavigator();
 

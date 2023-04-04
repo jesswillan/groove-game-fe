@@ -33,7 +33,7 @@ const Login = ({ setLogin }) => {
       .then(() => {
         setUser(username);
         setUsername("");
-        setPassword("");
+        setPassword(""); //checking if username & password is filled up 
         console.log("logged in");
       })
       //if the user does not exists show error of user not found
