@@ -9,9 +9,11 @@ import RadioButton from "../components/RadioButton";
 // axios for requests
 import axios from "axios";
 // navigation hook
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useIsFocused } from "@react-navigation/native";
 // global songsGenre context
 import songsGenre from "../context/songsGenre";
+import songsSelectedArray from "../context/songsSelectedArray";
+import globalSongArray from "../context/globalSongArray";
 
 export default function App() {
   // option state
@@ -23,6 +25,11 @@ export default function App() {
   // invokes hook to allow access to the navigation object
   const navigation = useNavigation();
   // useEffect does a axios request then sets the genres data
+  const { songsSelected, setSongsSelected } = useContext(songsSelectedArray);
+  const { globalArray, setGlobalArray } = useContext(globalSongArray);
+
+  const isFocused = useIsFocused(); // invocation of the useIsFocused module
+
   useEffect(() => {
     axios
       .get("https://groove-game-be.onrender.com/api/genres")
@@ -31,6 +38,11 @@ export default function App() {
         setData(data.genres);
       });
   }, []);
+
+  useEffect(() => {
+    setSongsSelected([]);
+    setGlobalArray([]);
+  }, [isFocused]);
 
   return (
     <View style={[styles.container, defaultPaddinTop]}>
