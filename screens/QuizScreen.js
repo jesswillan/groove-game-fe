@@ -5,7 +5,7 @@ import { Button, StyleSheet, Text, View, Platform } from "react-native";
 // react/hooks
 import React, { useContext, useState } from "react";
 // custom styling objects
-import { defaultPaddinTop, colourTheme, buttonTheme } from "../stylesheet";
+import { defaultPaddinTop, colourTheme, buttonTheme, quizButton } from "../stylesheet";
 // axios
 import axios from "axios";
 import userContext from "../context/userContext";
@@ -65,10 +65,18 @@ const QuizScreen = () => {
           </>
         ) : (
           <>
-            <Text style={styles.text}>{quesions[randQuestion].question}</Text>
+            <Text style={styles.questionCount}>
+              Question {questionCount+1} / 5
+            </Text>
+            <Text style={styles.question}>
+              {quesions[randQuestion].question}
+            </Text>
             {quesions[randQuestion].potentialAnswers.map((answer) => {
               return (
-                <View key={answer} style={buttonTheme}>
+                <View
+                  key={answer}
+                  style={[quizButton, {color: colourTheme.primaryColour}]}
+                >
                   <Button
                     onPress={() => {
                       if (answer === quesions[randQuestion].correctAnswer) {
@@ -81,17 +89,16 @@ const QuizScreen = () => {
                     }}
                     color={
                       Platform.OS === "android"
-                        ? colourTheme.secondaryColour
-                        : "white"
+                        ? colourTheme.highlightBlue
+                        : colourTheme.primaryColour
                     }
                     title={answer}
                   ></Button>
                 </View>
               );
             })}
-            <Text style={styles.text}>correct answers : {correctCount}</Text>
-            <Text style={styles.text}>
-              number of questions : {questionCount}
+            <Text style={styles.score}>
+              Correct answers : {correctCount}
             </Text>
           </>
         )}
@@ -113,6 +120,20 @@ const styles = StyleSheet.create({
   centrePage: {
     alignItems: "center",
     justifyContent: "center",
+  },
+  question: {
+    color: colourTheme.white,
+    fontSize: 23,
+    padding: 15,
+  },
+  score: {
+    color: 'white',
+    fontSize: 20,
+    marginTop: 20,
+  },
+  questionCount: {
+    color: 'white',
+    fontSize: 20,
   },
 });
 

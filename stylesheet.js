@@ -83,6 +83,19 @@ const backButton = {
   marginRight: "auto",
 };
 
+const quizButton = {
+  marginTop: 25,
+  backgroundColor: colourTheme.highlightBlue,
+  borderColor: colourTheme.white,
+  borderWidth: 4,
+  width: 250,
+  height: 50,
+  borderRadius: 10,
+  justifyContent: "center",
+  marginLeft: "auto",
+  marginRight: "auto",
+};
+
 export {
   colourTheme,
   buttonTheme,
@@ -90,5 +103,6 @@ export {
   radioButtonUnselected,
   radioButtonSelected,
   logoutButtonTheme,
-  backButton
+  backButton,
+  quizButton
 };
