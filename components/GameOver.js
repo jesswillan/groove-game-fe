@@ -64,6 +64,8 @@ const GameOver = () => {
     setInput("");
   };
 
+  let count = 0;
+
   //html screen below which will invoke all the function from above and display the data
   return (
     <View style={{ alignItems: "center" }}>
@@ -142,10 +144,13 @@ const GameOver = () => {
       )}
       <View style={styles.playlistContainer}>
         {songsSelected.map((songs) => {
-          //map the playlist from the global state
+          count++;
           return (
             <View
-              key={Math.floor(Math.random() * 500)}
+              key={
+                // songsSelected.indexOf(songs) + Math.floor(Math.random() * 5000)
+                count
+              }
               style={styles.resultContainer}
             >
               <View style={{ paddingHorizontal: 10 }}>
