@@ -1,23 +1,30 @@
-import React, {useEffect, useState} from "react";
-import {Text, View, StyleSheet, Image, Button, TouchableOpacity} from "react-native";
+import React, { useEffect, useState } from "react";
+import {
+  Text,
+  View,
+  StyleSheet,
+  Image,
+  Button,
+  TouchableOpacity,
+} from "react-native";
 import songsSelectedArray from "../context/songsSelectedArray";
-import {useContext} from "react";
-import {WebView} from "react-native-webview";
+import { useContext } from "react";
+import { WebView } from "react-native-webview";
 // import {TouchableOpacity} from "react-native";
 import userContext from "../context/userContext";
 import axios from "axios";
-import {useNavigation} from "@react-navigation/native";
-import {backButton, buttonTheme, colourTheme} from "../stylesheet";
+import { useNavigation } from "@react-navigation/native";
+import { backButton, buttonTheme, colourTheme } from "../stylesheet";
 import globalSongArray from "../context/globalSongArray";
-import {TextInput} from "react-native-gesture-handler";
+import { TextInput } from "react-native-gesture-handler";
 import Icons from "react-native-vector-icons/Ionicons";
 // import GenericTouchable from 'react-native-gesture-handler/lib/typescript/components/touchables/GenericTouchable';
 // the above code imports different library function & modules from react
 
 const GameOver = () => {
-  const {songsSelected, setSongsSelected} = useContext(songsSelectedArray);
-  const {globalArray, setGlobalArray} = useContext(globalSongArray);
-  const {user} = useContext(userContext);
+  const { songsSelected, setSongsSelected } = useContext(songsSelectedArray);
+  const { globalArray, setGlobalArray } = useContext(globalSongArray);
+  const { user } = useContext(userContext);
 
   // setting different useContext which will be used to call the variables alter one
 
@@ -69,11 +76,11 @@ const GameOver = () => {
 
   //html screen below which will invoke all the function from above and display the data
   return (
-    <View style={{alignItems: "center"}}>
+    <View style={{ alignItems: "center" }}>
       {!user ? (
         <View style={backButton}>
           <TouchableOpacity
-          style={styles.arrowBack}
+            style={styles.arrowBack}
             onPress={() => {
               navigation.navigate("Home"); // If the user is not logged in, the button will navigate them home
               stateClear();
@@ -82,13 +89,14 @@ const GameOver = () => {
               Platform.OS === "android" ? colourTheme.secondaryColour : "white" // colour theme for Android
             }
           >
-            <Icons name='arrow-back' size={18} color={'white'}/>
+            <Icons name="arrow-back" size={18} color={"white"} />
             <Text style={styles.backButtonText}>Back to home</Text>
           </TouchableOpacity>
         </View>
       ) : (
-        <View>
-          <Button
+        <View style={backButton}>
+          <TouchableOpacity
+            style={styles.arrowBack}
             onPress={() => {
               navigation.navigate("User Login");
               stateClear();
@@ -96,27 +104,41 @@ const GameOver = () => {
             color={
               Platform.OS === "android" ? colourTheme.secondaryColour : "white"
             }
-            title="Back to profile"
-          ></Button>
+          >
+            <Icons name="arrow-back" size={18} color={"white"} />
+            <Text style={styles.backButtonText}>Back to profile</Text>
+          </TouchableOpacity>
         </View>
       )}
 
       {/* <Text style={{ color: "white", fontSize: 30 }}>Your playlist</Text> */}
-      <TextInput
-        style={styles.input}
-        value={input}
-        placeholder="Your Playlist Name... "
-        onChangeText={(text) => setInput(text)}
-        autoCapitalize='none'
-      />
-      <View style={buttonTheme}>
-        <Button
-          title="Save your playlist"
-          onPress={handleSave}
-          color={
-            Platform.OS === "android" ? colourTheme.secondaryColour : "white"
-          }
+      <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "space-evenly",
+          alignItems: "center",
+        }}
+      >
+        <TextInput
+          style={styles.input}
+          value={input}
+          placeholder="Your Playlist Name... "
+          onChangeText={(text) => setInput(text)}
+          autoCapitalize="none"
         />
+        <View
+          style={StyleSheet.compose(buttonTheme, {
+            width: 100,
+          })}
+        >
+          <Button
+            title="Save"
+            onPress={handleSave}
+            color={
+              Platform.OS === "android" ? colourTheme.secondaryColour : "white"
+            }
+          />
+        </View>
       </View>
       <View style={styles.playlistContainer}>
         {songsSelected.map((songs) => {
@@ -126,7 +148,7 @@ const GameOver = () => {
               key={Math.floor(Math.random() * 500)}
               style={styles.resultContainer}
             >
-              <View style={{paddingHorizontal: 10}}>
+              <View style={{ paddingHorizontal: 10 }}>
                 <Image
                   source={{
                     uri: songs.img_url,
@@ -136,10 +158,10 @@ const GameOver = () => {
                 />
               </View>
               <View style={styles.songNameArtist}>
-                <Text style={{fontSize: 14, color: "white"}}>
+                <Text style={{ fontSize: 14, color: "white" }}>
                   {songs.track_name}
                 </Text>
-                <Text style={{fontSize: 12, color: "white"}}>
+                <Text style={{ fontSize: 12, color: "white" }}>
                   {songs.track_artist[0].name}
                 </Text>
               </View>
@@ -162,7 +184,7 @@ const GameOver = () => {
       </View>
       {itsPlaying ? (
         <WebView
-          source={{uri: songsSelected[songIndex].track_preview}}
+          source={{ uri: songsSelected[songIndex].track_preview }}
         ></WebView>
       ) : (
         <Text />
@@ -180,7 +202,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 10,
-    
   },
   resultContainer: {
     flexDirection: "row",
@@ -190,11 +211,11 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     alignItems: "center",
     borderRadius: 5,
-    justifyContent: 'flex-start'
+    justifyContent: "flex-start",
   },
   input: {
     height: 50,
-    width: 300,
+    width: 220,
     marginLeft: 25,
     marginRight: 25,
     marginTop: 25,
@@ -206,9 +227,9 @@ const styles = StyleSheet.create({
   },
   arrowBack: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    flexDirection: 'row',
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "row",
     paddingHorizontal: 10,
   },
   backButtonText: {
@@ -216,7 +237,8 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   songNameArtist: {
-    width: 'auto',
+    // width: "auto",
+    width: 220,
   },
   playButton: {
     backgroundColor: colourTheme.primaryColour,
@@ -224,7 +246,7 @@ const styles = StyleSheet.create({
     borderColor: colourTheme.white,
     borderRadius: 5,
     marginHorizontal: 5,
-    justifyContent: 'flex-end',
+    justifyContent: "flex-end",
   },
 });
 

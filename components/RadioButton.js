@@ -19,7 +19,11 @@ export default function RadioButton({ data, onSelect }) {
             ]}
             onPress={() => selectHandler(item)}
           >
-            <Text style={styles.option}>{item}</Text>
+            {item === "hip_hop" ? (
+              <Text style={styles.option}>hip hop</Text>
+            ) : (
+              <Text style={styles.option}>{item}</Text>
+            )}
           </Pressable>
         );
       })}
