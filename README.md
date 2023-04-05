@@ -12,7 +12,7 @@ This is the front-end to the Groove Games project. The app integrates with the S
 ## Built With
 
 - React Native
-
+<br/>
 ---
 
 ## Getting Started
@@ -43,13 +43,18 @@ git clone https://github.com/your_username_/groove-game-fe
 
 5. Install dependencies by running
 ```
-npm i
+npm install
 ```
 
 6. Install Expo to be able preview the app on your machine. You may also install the Expo Go app on your mobile device.
-
-
-7. Preview the app by running, then selecting the correct when prompted, or scan the QR code using the expo mobile app
+<br/>
+https://docs.expo.dev/get-started/installation/
+<br />
+Suggested mobile simulators: XCode (iOS) and Android Studio.
+<br />
+7. Preview the app through this command, then selecting the correct when prompted in the terminal.
+<br/>
+Alternatively scan the QR code displayed in the terminal.
 ```
 npm start
 ```
