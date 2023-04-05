@@ -51,28 +51,20 @@ const GameOver = () => {
   // function which will clear the global states once the game has finished
 
   const handleSave = () => {
-    if (!input) {
-      console.log("please enter a game name"); //hasn't entered the game name they will get a console log warning
-    } else {
-      if (user) {
-        axios // using axios post the game to the database through our backend
-          .post("https://groove-game-be.onrender.com/api/submit-games", {
-            game: {
-              game_name: input,
-              user: user,
-              songs: songsSelected,
-              // the body of the request
-            },
-          })
-          .then(() => {
-            console.log("game submitted");
-          });
-      } else {
-        console.log("please sign up or log in to save games");
-      }
-    }
+    axios // using axios post the game to the database through our backend
+      .post("https://groove-game-be.onrender.com/api/submit-games", {
+        game: {
+          game_name: input,
+          user: user,
+          songs: songsSelected,
+          // the body of the request
+        },
+      });
+
     setInput("");
   };
+
+  let count = 0;
 
   //html screen below which will invoke all the function from above and display the data
   return (
@@ -134,7 +126,11 @@ const GameOver = () => {
           >
             <Button
               title="Save"
-              onPress={handleSave}
+              onPress={() => {
+                handleSave();
+                navigation.navigate("User Login");
+                stateClear();
+              }}
               color={
                 Platform.OS === "android"
                   ? colourTheme.secondaryColour
@@ -148,10 +144,13 @@ const GameOver = () => {
       )}
       <View style={styles.playlistContainer}>
         {songsSelected.map((songs) => {
-          //map the playlist from the global state
+          count++;
           return (
             <View
-              key={Math.floor(Math.random() * 500)}
+              key={
+                // songsSelected.indexOf(songs) + Math.floor(Math.random() * 5000)
+                count
+              }
               style={styles.resultContainer}
             >
               <View style={{ paddingHorizontal: 10 }}>
