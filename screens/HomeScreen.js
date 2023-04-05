@@ -51,9 +51,8 @@ export default HomeScreen = () => {
         ></Button>
       </View>
       <Text style={styles.instructions}>
-        Click "Play Game" to start playing through the three rounds of mini
-        games. Please log in or create an account to be able to add the songs to
-        your Spotify playlist at the end of each round.{" "}
+        Click "Play Game" to filter your results by genre, then play the game rounds to create your playlist. Please log in or create an account to be able to add the songs to
+        your Spotify playlist at the end of each round, and to play the quiz!{" "}
       </Text>
       {user ? (
         <>
