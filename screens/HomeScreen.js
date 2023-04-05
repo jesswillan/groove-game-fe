@@ -51,8 +51,10 @@ export default HomeScreen = () => {
         ></Button>
       </View>
       <Text style={styles.instructions}>
-        Click "Play Game" to filter your results by genre, then play the game rounds to create your playlist. Please log in or create an account to be able to add the songs to
-        your Spotify playlist at the end of each round, and to play the quiz!{" "}
+        Click "Play Game" to filter your results by genre, then play the game
+        rounds to create your playlist. Please log in or create an account to be
+        able to add the songs to your Spotify playlist at the end of each round,
+        and to play the quiz!{" "}
       </Text>
       {user ? (
         <>
@@ -102,8 +104,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: colourTheme.primaryColour,
     padding: 20,
-    marginLeft: "auto",
-    marginRight: "auto",
   },
 
   welcome: {
